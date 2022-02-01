@@ -1,0 +1,143 @@
+==4068== Memcheck, a memory error detector
+==4068== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==4068== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==4068== Command: ./cub3d
+==4068== Parent PID: 4067
+==4068== 
+--4068-- 
+--4068-- Valgrind options:
+--4068--    --leak-check=full
+--4068--    --show-leak-kinds=all
+--4068--    --track-origins=yes
+--4068--    --verbose
+--4068--    --log-file=valgrind-out.txt
+--4068-- Contents of /proc/version:
+--4068--   Linux version 5.4.0-94-generic (buildd@lcy02-amd64-053) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #106-Ubuntu SMP Thu Jan 6 23:58:14 UTC 2022
+--4068-- 
+--4068-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--4068-- Page sizes: currently 4096, max supported 4096
+--4068-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--4068-- Reading syms from /home/coder/Desktop/Cub3d/cub3d
+--4068-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--4068--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--4068--   .. CRC mismatch (computed 975d0390 wanted 30bd717f)
+--4068--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--4068--   .. CRC mismatch (computed 975d0390 wanted 30bd717f)
+--4068--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--4068--   .. CRC is valid
+--4068-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--4068--    object doesn't have a symbol table
+--4068--    object doesn't have a dynamic symbol table
+--4068-- Scheduler: using generic scheduler lock implementation.
+--4068-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==4068== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-4068-by-coder-on-???
+==4068== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-4068-by-coder-on-???
+==4068== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-4068-by-coder-on-???
+==4068== 
+==4068== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==4068== don't want to do, unless you know exactly what you're doing,
+==4068== or are doing some strange experiment):
+==4068==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=4068 ...command...
+==4068== 
+==4068== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==4068==   /path/to/gdb ./cub3d
+==4068== and then give GDB the following command
+==4068==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=4068
+==4068== --pid is optional if only one valgrind process is running
+==4068== 
+--4068-- REDIR: 0x4022e10 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--4068-- REDIR: 0x4022be0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--4068-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--4068--    object doesn't have a symbol table
+--4068-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--4068--    object doesn't have a symbol table
+==4068== WARNING: new redirection conflicts with existing -- ignoring it
+--4068--     old: 0x04022e10 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--4068--     new: 0x04022e10 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--4068-- REDIR: 0x401f5f0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--4068-- REDIR: 0x4023370 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--4068-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--4068--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--4068--   .. CRC mismatch (computed 86b78530 wanted e380f01c)
+--4068--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--4068--   .. CRC mismatch (computed 86b78530 wanted e380f01c)
+--4068--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--4068--   .. CRC is valid
+--4068-- REDIR: 0x48fb600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fcdd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x4917e60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x49179a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x4917960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fbad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x49190d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x49179e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fa7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x4903d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x4917ab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fac60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fb870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fce10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x48fba20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--4068-- REDIR: 0x49e3490 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--4068-- REDIR: 0x48f5260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--4068-- REDIR: 0x48f5850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+--4068-- REDIR: 0x49e3660 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--4068-- REDIR: 0x49e6650 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+==4068== 
+==4068== HEAP SUMMARY:
+==4068==     in use at exit: 12 bytes in 3 blocks
+==4068==   total heap usage: 13 allocs, 10 frees, 1,123 bytes allocated
+==4068== 
+==4068== Searching for pointers to 3 not-freed blocks
+==4068== Checked 72,136 bytes
+==4068== 
+==4068== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==4068==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4068==    by 0x1096CA: ft_strdup (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109402: add_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109494: output (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x10962D: get_next_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x10927F: main (in /home/coder/Desktop/Cub3d/cub3d)
+==4068== 
+==4068== 4 bytes in 1 blocks are still reachable in loss record 2 of 3
+==4068==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4068==    by 0x1096CA: ft_strdup (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109402: add_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109494: output (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x10962D: get_next_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x1092A8: main (in /home/coder/Desktop/Cub3d/cub3d)
+==4068== 
+==4068== 4 bytes in 1 blocks are still reachable in loss record 3 of 3
+==4068==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4068==    by 0x1096CA: ft_strdup (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109402: add_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x109494: output (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x10962D: get_next_line (in /home/coder/Desktop/Cub3d/cub3d)
+==4068==    by 0x1092D1: main (in /home/coder/Desktop/Cub3d/cub3d)
+==4068== 
+==4068== LEAK SUMMARY:
+==4068==    definitely lost: 0 bytes in 0 blocks
+==4068==    indirectly lost: 0 bytes in 0 blocks
+==4068==      possibly lost: 0 bytes in 0 blocks
+==4068==    still reachable: 12 bytes in 3 blocks
+==4068==         suppressed: 0 bytes in 0 blocks
+==4068== 
+==4068== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
