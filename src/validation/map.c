@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/02 01:21:49 by mavinici         ###   ########.fr       */
+/*   Created: 2022/02/02 01:22:22 by mavinici          #+#    #+#             */
+/*   Updated: 2022/02/02 01:23:18 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char **argv)
+int	valid_map(void)
 {
-	if (is_invalid_arg(argc, argv) == FALSE)
-		return (3);
-	return (0);
+	return (1);
 }

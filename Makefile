@@ -1,5 +1,6 @@
 PATH_SRC = ./src/
-PATH_PARSER = $(PATH_SRC)parser
+PATH_VALIDATION = $(PATH_SRC)validation/
+PATH_ERROR = $(PATH_SRC)error/
 PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
@@ -7,7 +8,9 @@ PATH_INCLUDES = ./includes/
 LIBFT = $(PATH_LIBFT)libft.a
 SRC = \
 	$(addprefix $(PATH_SRC), cub3d.c) \
-	#$(addprefix $(PATH_PARSER),)
+	$(addprefix $(PATH_ERROR), error.c) \
+	$(addprefix $(PATH_VALIDATION), args.c) 
+
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
 
@@ -23,6 +26,8 @@ $(NAME): $(OBJS)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
+	@mkdir -p $(PATH_OBJ)error
+	@mkdir -p $(PATH_OBJ)validation
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
@@ -42,7 +47,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "start"
+	git commit -m "Validando os args"
 
 push: add
 	git push
