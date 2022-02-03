@@ -6,10 +6,8 @@ PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
 LIBFT = $(PATH_LIBFT)libft.a
-SRC = \
-	$(addprefix $(PATH_SRC), cub3d.c) \
-	$(addprefix $(PATH_ERROR), error.c) \
-	$(addprefix $(PATH_VALIDATION), args.c) 
+SRC = $(addprefix $(PATH_ERROR), error.c) \
+	  $(addprefix $(PATH_VALIDATION), args.c) 
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
@@ -22,13 +20,18 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PATH_SRC)cub3d.c -o $(NAME)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
 	@mkdir -p $(PATH_OBJ)error
 	@mkdir -p $(PATH_OBJ)validation
 	$(CC) $(CFLAGS) -I. -c $< -o $@
+
+test:
+	@rm -rf test
+	make -C $(PATH_LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) ./tests/testing.c ./tests/unity/unity.c -o check_test
 
 clean:
 	$(RM) $(PATH_OBJ)
