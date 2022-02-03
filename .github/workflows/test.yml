@@ -20,6 +20,9 @@ jobs:
       - name: Compilando programa.
         run: make
 
-      - name: Teste inicial.
-        run: ./cub3d map.cub
+      - name: compilando teste
+        run: make test
+        
+      - name: rodando testes
+        run: ./check_test
       
