@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/02 01:21:49 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/03 01:06:23 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	if (is_invalid_arg(argc, argv) == FALSE)
+	if (is_invalid_arg(argc, argv) == TRUE)
 		return (3);
 	return (0);
 }

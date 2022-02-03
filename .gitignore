@@ -53,3 +53,5 @@ dkms.conf
 
 # My
 valgrind-out.txt
+cub3d
+obj
