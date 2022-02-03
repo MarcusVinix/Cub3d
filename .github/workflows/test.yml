@@ -1,0 +1,25 @@
+name: Execução de testes do mapa
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testes-mapa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v2
+
+      - name: Setup C/C++ Compiler
+        uses: rlalik/setup-cpp-compiler@v1.1
+      
+      - name: Compilando programa.
+        run: make
+
+      - name: Teste inicial.
+        run: ./cub3d map.cub
+      
