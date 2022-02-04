@@ -3,6 +3,7 @@
 
 # Object files
 *.o
+check_test
 *.ko
 *.obj
 *.elf

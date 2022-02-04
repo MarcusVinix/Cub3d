@@ -7,7 +7,7 @@ PATH_INCLUDES = ./includes/
 
 LIBFT = $(PATH_LIBFT)libft.a
 SRC = $(addprefix $(PATH_ERROR), error.c) \
-	  $(addprefix $(PATH_VALIDATION), args.c) 
+	  $(addprefix $(PATH_VALIDATION), args.c map.c) 
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d

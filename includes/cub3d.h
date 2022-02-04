@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/03 23:43:20 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/04 01:10:38 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	error(int error_sig);
 
 //validation
 int	is_invalid_arg(int argc, char **argv);
+int	check_map(char *path_map);
 
 #endif
