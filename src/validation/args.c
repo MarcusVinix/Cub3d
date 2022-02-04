@@ -6,12 +6,19 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:32 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/02 01:23:32 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/04 21:48:48 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+/**
+ * @brief Check if the file has the same extension passed.
+ * 
+ * @param str file to check.
+ * @param extension to compare with the file.
+ * @return If the extensio is right TRUE(1) else FALSE(0).
+ */
 static int	check_extension(char *str, char *extension)
 {
 	int	len_str;
@@ -31,6 +38,12 @@ static int	check_extension(char *str, char *extension)
 	return (TRUE);
 }
 
+/**
+ * @brief Check if the file exists.
+ * 
+ * @param map_path path of the map.
+ * @return If the file exists TRUE(1) else FALSE(0).
+ */
 static int	file_exist(char *map_path)
 {
 	int	fd;
@@ -42,13 +55,20 @@ static int	file_exist(char *map_path)
 	return (FALSE);
 }
 
+/**
+ * @brief Check if the args is valid.
+ * 
+ * @param argc Passed, if is diferent of 2 its wrong.
+ * @param argv Check the index 1 to valid the map file.
+ * @return If something its wrong FALSE(0) else TRUE(1). 
+ */
 int	is_invalid_arg(int argc, char **argv)
 {
 	if (argc != 2)
-		return (error(1));
+		return (error_msg(ERROR_ARG, 2));
 	else if (check_extension(argv[1], ".cub") == FALSE)
-		return (error(1));
+		return (error_msg(ERROR_FILE_EXTENSION, 2));
 	else if (file_exist(argv[1]))
-		return (error(2));
+		return (error_msg(ERROR_FILE_MAP_N_EXIST, 2));
 	return (FALSE);
 }
