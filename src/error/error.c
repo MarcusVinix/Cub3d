@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:04 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/04 21:43:27 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/04 21:59:11 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	error(int error_sig)
  * @param level 1 - (Warning) or 2 - (Error)
  * @return int 1
  */
-int error_msg(char *msg, int level)
+int	error_msg(char *msg, int level)
 {
 	if (level == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:22 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/04 21:54:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/04 21:58:38 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	valid_ceilling_and_floor_color(char **content_map)
 	return (FALSE);
 }
 
-
 /**
  * @brief Use GNL to store all content of the map into a char **.
  * 
@@ -47,12 +46,12 @@ int	valid_ceilling_and_floor_color(char **content_map)
  */
 char	**store_content_map(char *path_map)
 {
-	char **content_map;
-	char c;
-	int fd;
-	int rslt;
-	int	i;
-	int	count_line;
+	char	**content_map;
+	char	c;
+	int		fd;
+	int		rslt;
+	int		i;
+	int		count_line;
 
 	i = 0;
 	count_line = 0;
@@ -60,7 +59,7 @@ char	**store_content_map(char *path_map)
 	rslt = read(fd, &c, 1);
 	if (rslt == 0)
 		return (NULL);
-	while(rslt > 0)
+	while (rslt > 0)
 	{
 		if (c == '\n')
 			count_line++;
@@ -84,7 +83,7 @@ char	**store_content_map(char *path_map)
  */
 int	check_map(char *path_map)
 {
-	char **content_map;
+	char	**content_map;
 
 	content_map = store_content_map(path_map);
 	if (content_map == NULL)
