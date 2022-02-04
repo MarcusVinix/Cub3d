@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:02:52 by coder             #+#    #+#             */
-/*   Updated: 2022/02/04 02:05:25 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/04 21:33:19 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void testando_com_um_arquivo_sem_ponto_cub(void){
 	char *lek[2];
 	lek[0] = "./cube";
 	lek[1] = "./test.cuba";
-	TEST_ASSERT_EQUAL_INT (TRUE, is_invalid_arg(2, lek));	
+	TEST_ASSERT_EQUAL_INT (TRUE, is_invalid_arg(2, lek));
 }
 
 void testando_se_o_arquivo_existe(void)
@@ -50,6 +50,18 @@ void testando_se_o_arquivo_nao_esta_vazio(void)
 {
 	TEST_ASSERT_NOT_NULL (store_content_map("./maps/valid_map.cub"));
 }
+
+void testando_se_as_texturas_sao_validas(void)
+{
+	char **map_content = store_content_map("./maps/valid_map.cub");
+	TEST_ASSERT_EQUAL_INT(FALSE, valid_texture(map_content));
+}
+
+// void testando_se_as_texturas_nao_sao_validas(void)
+// {
+// 	char **map_content = store_content_map("./maps/invalid_map.cub");
+// 	TEST_ASSERT_EQUAL_INT(TRUE, valid_texture(map_content));
+// }
 
 //void testando_se_dentro_do_arquivo_existem_4_texturas_NO_SO_WE_EA(void){
 	// int	fd;
@@ -72,6 +84,8 @@ int main(void) {
 	RUN_TEST(testando_se_o_arquivo_existe);
 	RUN_TEST(testando_se_o_arquivo_esta_vazio);
 	RUN_TEST(testando_se_o_arquivo_nao_esta_vazio);
+	// RUN_TEST(testando_se_as_texturas_nao_sao_validas);
+	RUN_TEST(testando_se_as_texturas_sao_validas);
 	//RUN_TEST(testando_se_dentro_do_arquivo_existem_4_texturas_NO_SO_WE_EA)
     return UNITY_END();
 }
