@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:04 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/04 21:59:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/04 23:34:01 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	error(int error_sig)
 		printf("%sInvalid arg:\nExemplo: ./cub3d map.cub%s\n", RED, RESET);
 	else if (error_sig == 2)
 		printf("%sFile doesn't exist!%s\n", RED, RESET);
-	return (TRUE);
+	return (FALSE);
 }
 
 /**
@@ -42,5 +42,5 @@ int	error_msg(char *msg, int level)
 		ft_putstr_fd(msg, 2);
 		ft_putendl_fd(RESET, 2);
 	}
-	return (TRUE);
+	return (FALSE);
 }

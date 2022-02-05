@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:42:06 by mavinici         ###   ########.fr       */
+/*   Created: 2022/02/05 00:29:22 by mavinici          #+#    #+#             */
+/*   Updated: 2022/02/05 00:47:29 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+// Free a char **
+char	*ft_free_split(char **str)
 {
-	if (is_invalid_arg(argc, argv) == FALSE)
-		return (3);
-	if (check_map(argv[1]) == FALSE)
-		return (4);
-	return (0);
+	int	count;
+
+	count = 0;
+	if (!str)
+		return (NULL);
+	while (str[count])
+		free(str[count++]);
+	if (str)
+		free(str);
+	return (NULL);
 }

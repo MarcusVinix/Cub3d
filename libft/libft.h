@@ -101,4 +101,8 @@ char	*ft_strdup2(const char *s);
 int		find_index(char *str, char c);
 char	*ft_split_rev(char **split);
 void	concatenate_join(char **aux, char *str);
+char	*ft_free_split(char **str);
+char	*ft_set_free_and_null(char **str);
+char	*ft_free_triple(char ***str);
+
 #endif

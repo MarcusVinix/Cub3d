@@ -50,11 +50,11 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "Validando os args"
+	git commit -m "Validando os textura, criando mais funções de testes."
 
 push: add
 	git push
 
-teste:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./cub3d
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./cub3d maps/valid_map.cub
 

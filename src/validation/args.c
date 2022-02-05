@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:32 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/04 21:48:48 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/05 00:27:00 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param extension to compare with the file.
  * @return If the extensio is right TRUE(1) else FALSE(0).
  */
-static int	check_extension(char *str, char *extension)
+int	check_extension(char *str, char *extension)
 {
 	int	len_str;
 	int	len_ext;
@@ -44,15 +44,15 @@ static int	check_extension(char *str, char *extension)
  * @param map_path path of the map.
  * @return If the file exists TRUE(1) else FALSE(0).
  */
-static int	file_exist(char *map_path)
+int	file_exist(char *map_path)
 {
 	int	fd;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		return (TRUE);
+		return (FALSE);
 	close(fd);
-	return (FALSE);
+	return (TRUE);
 }
 
 /**
@@ -70,5 +70,5 @@ int	is_invalid_arg(int argc, char **argv)
 		return (error_msg(ERROR_FILE_EXTENSION, 2));
 	else if (file_exist(argv[1]))
 		return (error_msg(ERROR_FILE_MAP_N_EXIST, 2));
-	return (FALSE);
+	return (TRUE);
 }

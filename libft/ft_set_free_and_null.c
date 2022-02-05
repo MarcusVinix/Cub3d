@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_set_free_and_null.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:42:06 by mavinici         ###   ########.fr       */
+/*   Created: 2022/02/05 00:29:41 by mavinici          #+#    #+#             */
+/*   Updated: 2022/02/05 00:38:44 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+// Set free and null in a char *
+// It's necessary pass a char **
+// example &str if is a char *
+char	*ft_set_free_and_null(char **str)
 {
-	if (is_invalid_arg(argc, argv) == FALSE)
-		return (3);
-	if (check_map(argv[1]) == FALSE)
-		return (4);
-	return (0);
+	if (*str)
+		free(*str);
+	*str = NULL;
+	return (NULL);
 }
