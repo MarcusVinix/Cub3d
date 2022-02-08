@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:02:52 by coder             #+#    #+#             */
-/*   Updated: 2022/02/05 01:35:38 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/07 22:21:12 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,31 @@ void testando_se_as_texturas_nao_sao_validas(void)
 	ft_free_split(map_content);
 }
 
-void testando_se_o_mapa_tem_apenas_os_caracteres_permitidos(void)
+void testando_se_existe_as_cores_do_chao_e_teto(void)
 {
-	char **map_content = store_content_map("./maps/valid_map.cub");
-	TEST_ASSERT_EQUAL_INT(TRUE, valid_characters(map_content));
-	ft_free_split(map_content);
+	char **map_content = remove_empty_line(store_content_map("./maps/valid_map.cub"));
+	TEST_ASSERT_NOT_NULL(valid_ceilling_and_floor_color(map_content));
 }
+
+void testando_se_nao_existe_as_cores_do_chao_e_teto(void)
+{
+	char **map_content = remove_empty_line(store_content_map("./maps/invalid_map.cub"));
+	TEST_ASSERT_NULL(valid_ceilling_and_floor_color(map_content));
+}
+
+void testando_se_a_blueprint_do_mapa_esta_sendo_retornada(void)
+{
+	char	**content_map;
+	content_map = remove_empty_line(store_content_map("./maps/valid_map.cub"));
+	TEST_ASSERT_NOT_NULL(store_map_blueprint(content_map));
+}
+
+// void testando_se_o_mapa_tem_apenas_os_caracteres_permitidos(void)
+// {
+// 	char **map_content = store_content_map("./maps/valid_map.cub");
+// 	TEST_ASSERT_EQUAL_INT(TRUE, valid_characters(map_content));
+// 	ft_free_split(map_content);
+// }
 
 // void testando_se_o_mapa_tem_caracteres_invalidos(void)
 // {
@@ -93,12 +112,12 @@ void testando_se_o_mapa_tem_apenas_os_caracteres_permitidos(void)
 // 	ft_free_split(map_content);
 // }
 
-void testando_se_a_borda_do_map_tem_apenas_1(void)
-{
-	char **map_content = store_content_map("./maps/valid_map.cub");
-	TEST_ASSERT_EQUAL_INT(TRUE, valid_edge(map_content));
-	ft_free_split(map_content);
-}
+// void testando_se_a_borda_do_map_tem_apenas_1(void)
+// {
+// 	char **map_content = store_content_map("./maps/valid_map.cub");
+// 	TEST_ASSERT_EQUAL_INT(TRUE, valid_edge(map_content));
+// 	ft_free_split(map_content);
+// }
 
 // void testando_se_a_borda_do_map_esta_invalida(void)
 // {
@@ -107,20 +126,6 @@ void testando_se_a_borda_do_map_tem_apenas_1(void)
 // 	ft_free_split(map_content);
 // }
 
-
-//void testando_se_dentro_do_arquivo_existem_4_texturas_NO_SO_WE_EA(void){
-	// int	fd;
-	// char **content_map;
-	// int	i;
-
-	// fd = open(path_map, O_RDONLY);
-	// i = 0;
-	// while (get_next_line(fd, &content_map[i++]))
-	// 	;
-	// content_map[i] = NULL;
-	// close(fd);
-	// TEST_ASSERT_EQUAL_INT (TRUE, valid_texture(content_map));
-//}
 
 int main(void) {
     UNITY_BEGIN();
@@ -133,9 +138,12 @@ int main(void) {
 	RUN_TEST(testando_se_as_texturas_sao_validas);
 	RUN_TEST(testando_se_os_arquivos_da_textura_existe_e_sao_validos);
 	RUN_TEST(testando_se_os_arquivos_da_textura_nao_existe);
-	RUN_TEST(testando_se_a_borda_do_map_tem_apenas_1);
+	RUN_TEST(testando_se_existe_as_cores_do_chao_e_teto);
+	RUN_TEST(testando_se_nao_existe_as_cores_do_chao_e_teto);
+	RUN_TEST(testando_se_a_blueprint_do_mapa_esta_sendo_retornada);
+	//RUN_TEST(testando_se_a_borda_do_map_tem_apenas_1);
 	// RUN_TEST(testando_se_a_borda_do_map_esta_invalida);
-	RUN_TEST(testando_se_o_mapa_tem_apenas_os_caracteres_permitidos);
+	//RUN_TEST(testando_se_o_mapa_tem_apenas_os_caracteres_permitidos);
 	// RUN_TEST(testando_se_o_mapa_tem_caracteres_invalidos);
 	//RUN_TEST(testando_se_dentro_do_arquivo_existem_4_texturas_NO_SO_WE_EA)
     return UNITY_END();

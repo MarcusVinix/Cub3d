@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 21:33:52 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:08:07 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/07 22:17:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ERROR_TEXTURE "Error:\nInvalid textures!"
 # define ERROR_CEIL_FLOOR_COLOR "Error:\nCeiiling and floor color its wrong format."
 # define ERROR_TEXTURE_FILE_NOT_EXIST "Error:\nTexture files doesn't exist!"
+# define ERROR_SKY_GROUND_NOT_EXIST "Error:\nSky and ground colors doesn't exist in map file!"
 
 int	error_msg(char *msg, int level);
 int	error(int error_sig);
