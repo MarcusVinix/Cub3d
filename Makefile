@@ -50,7 +50,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "Validando os cores, guardando o mapa."
+	git commit -m "Validando as lateiras do mapa e começando o interior"
 
 push: add
 	git push

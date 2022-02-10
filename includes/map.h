@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/07 22:17:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/09 22:51:12 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,10 @@ int		valid_characters(char **content_map);
 int		valid_edge(char **content_map);
 char	**store_map_blueprint(char **content_map);
 char	**remove_empty_line(char **content_map);
+int		valid_characters(char **map);
+int		valid_edge(char **map);
+int		valid_left_right(char **map);
+int		valid_top_bottom(char **map);
+int		valid_wall_inside_map(char **map);
 
 #endif

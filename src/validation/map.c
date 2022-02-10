@@ -113,24 +113,136 @@ char **valid_ceilling_and_floor_color(char **content_map)
 /**
  * @brief Check if have only the allowed characters on the map.
  *
- * @param content_map A char ** with the content of the map.
+ * @param map A char ** with the content of the map.
  * @return If something its wrong FALSE(0) else TRUE(1).
  */
-int valid_characters(char **content_map)
+int	valid_characters(char **map)
 {
-	(void)content_map;
+	int		i;
+	int		j;
+	char	c;
+	int		side;
+
+	j = -1;
+	i = -1;
+	side = FALSE;
+	while(map[++i])
+	{
+		while(map[i][++j])
+		{
+			c = map[i][j];
+			if (c == '1' || c == '0' || c == ' ' || c == '\t')
+				continue ;
+			else if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
+				if (side == FALSE)
+					side = TRUE;
+				else
+					return (error_msg(ERROR_MORE_THEN_ONE_SIDE, 2));
+			else
+				return (error_msg(ERROR_CARACTER_INVALID, 2));
+		}
+		j = 0;
+	}
+	return (TRUE);
+}
+
+int	valid_wall_inside_map(char **map)
+{
+	int	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	int k = 0;
+	while(map[k])
+		printf("%s\n", map[k++]);
+	while (++i < ft_strlen_split(map) - 1)
+	{
+		while (++j < ft_strlen(map[i]) - 1)
+		{
+			if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ' ||
+				map[i - 1][j] == ' ' || map[i + 1][j] == ' ')
+			{
+				if (map[i][j] != '1')
+				{
+					printf("pos i=%i j=%li |%c|%c|%c|%c|%c|\n", i, j, map[i][j], map[i + 1][j], map[i - 1][j], map[i][j + 1], map[i][j - 1]);
+					return (error_msg(ERROR_WALL_INSIDE_MAP, 2));
+				}
+			}
+		}
+		j = 0;
+	}
 	return (TRUE);
 }
 
 /**
- * @brief Check if the edge is fulled of number 1.
+ * @brief Check if the top and the bottom is fulled of number 1.
  *
- * @param content_map  A char ** with the content of the map.
+ * @param map A char ** with the content of the map.
  * @return If something its wrong FALSE(0) else TRUE(1).
  */
-int valid_edge(char **content_map)
+int valid_top_bottom(char **map)
 {
-	(void)content_map;
+	int		i;
+	int		len;
+
+	len = ft_strlen_split(map) - 1;
+	i = -1;
+	while(map[0][++i])
+	{
+		if (map[0][i] == '1' || map[0][i] == ' ' || map[0][i] == '\t')
+			continue ;
+		else
+			return (error_msg(ERROR_INVALID_EDGE, 2));
+	}
+	i = -1;
+	while(map[len][++i])
+	{
+		if (map[len][i] == '1' || map[len][i] == ' ' || map[len][i] == '\t')
+			continue ;
+		else
+			return (error_msg(ERROR_INVALID_EDGE, 2));
+	}
+	return (TRUE);
+}
+
+/**
+ * @brief Check if the wall map of left and right is fulled of number 1.
+ * 
+ * @param map  A char ** with the content of the map.
+ * @return If something its wrong FALSE(0) else TRUE(1).
+ */
+int	valid_left_right(char **map)
+{
+	int		i;
+	int		len;
+
+	len = ft_strlen(map[0]) - 1;
+	i = -1;
+	while(map[++i] && map[i][0])
+	{
+		if (map[i][0] == '1' || map[i][0] == ' ' || map[i][0] == '\t')
+			continue ;
+		else
+			return (error_msg(ERROR_INVALID_EDGE, 2));
+	}
+	i = -1;
+	while(map[++i] && map[i][len])
+	{
+		if (!(map[i][len] == '1' || map[i][len] == ' ' || map[i][len] == '\t'))
+			return (error_msg(ERROR_INVALID_EDGE, 2));
+		if (map[i + 1])
+			len = ft_strlen(map[i + 1]) - 1;
+	}
+	return (TRUE);
+}
+
+int	valid_edge(char **map)
+{
+	if (valid_top_bottom(map) == FALSE)
+		return (FALSE);
+	if (valid_left_right(map) == FALSE)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -259,9 +371,14 @@ int check_map(char *path_map)
 	char **map;
 
 	content_map = remove_empty_line(store_content_map(path_map));
-	map = store_map_blueprint(content_map);
 	if (content_map == NULL)
 		return (error_msg(ERROR_FILE_MAP_EMPTY, 2));
+	map = store_map_blueprint(content_map);
+	int j = 0;
+	while(map[j])
+		printf("%s\n", map[j++]);
+	valid_left_right(map);
+	valid_characters(map);
 	if (valid_texture(content_map) == FALSE)
 		return (error_msg(ERROR_TEXTURE, 2));
 	texture_path = texture_file_exist(content_map);
