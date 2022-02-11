@@ -63,16 +63,19 @@ char ***valid_texture(char **content_map)
 	sides[2] = ft_split("WE FILE", ' ');
 	sides[3] = ft_split("EA FILE", ' ');
 	textures = ft_calloc(6, sizeof(char *));
-	while (++i < 5 && i < ft_strlen_split(content_map))
+	while (++i < 6 && i < ft_strlen_split(content_map))
+	{
 		textures[i] = ft_split(content_map[i], ' ');
+	}
 	i = -1;
 	j = 0;
-	while (textures[++i][0] && j != 4)
+	while ((++i < 6 && textures[i][0]) && j != 4)
 	{
 		if (ft_strcmp(textures[i][0], sides[j][0]) == 0)
 		{
 			free(sides[j][1]);
-			sides[j++][1] = ft_strdup(textures[i][1]);
+			if (textures[i][1])
+				sides[j++][1] = ft_strdup2(textures[i][1]);
 			i = -1;
 		}
 	}

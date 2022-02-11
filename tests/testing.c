@@ -68,14 +68,14 @@ void testando_se_os_arquivos_da_textura_nao_existe(void)
 void testando_se_as_texturas_sao_validas(void)
 {
 	char **map_content = store_content_map("./maps/valid_map.cub");
-	TEST_ASSERT_EQUAL_INT(TRUE, valid_texture(map_content));
+	TEST_ASSERT_NOT_NULL(valid_texture(map_content));
 	ft_free_split(map_content);
 }
 
 void testando_se_as_texturas_nao_sao_validas(void)
 {
 	char **map_content = store_content_map("./maps/invalid_map.cub");
-	TEST_ASSERT_EQUAL_INT(FALSE, valid_texture(map_content));
+	TEST_ASSERT_NULL(valid_texture(map_content));
 	ft_free_split(map_content);
 }
 
