@@ -49,32 +49,37 @@ char **texture_file_exist(char **content_map)
  * @param content_map A char ** with the content of the map.
  * @return If something its wrong FALSE(0) else TRUE(1).
  */
-int valid_texture(char **content_map)
+char ***valid_texture(char **content_map)
 {
 	int i;
+	int	j;
 	char ***textures;
-	char *sides[4];
+	char ***sides;
 
 	i = -1;
-	sides[0] = "NO";
-	sides[1] = "SO";
-	sides[2] = "WE";
-	sides[3] = "EA";
-	textures = ft_calloc(5, sizeof(char *));
-	while (++i < 4 && i < ft_strlen_split(content_map))
+	sides = ft_calloc(5, sizeof(char *));
+	sides[0] = ft_split("NO FILE", ' ');
+	sides[1] = ft_split("SO FILE", ' ');
+	sides[2] = ft_split("WE FILE", ' ');
+	sides[3] = ft_split("EA FILE", ' ');
+	textures = ft_calloc(6, sizeof(char *));
+	while (++i < 5 && i < ft_strlen_split(content_map))
 		textures[i] = ft_split(content_map[i], ' ');
-	textures[i] = NULL;
 	i = -1;
-	while (textures[++i])
+	j = 0;
+	while (textures[++i][0] && j != 4)
 	{
-		if (ft_strcmp(textures[i][0], sides[i]) != 0)
+		if (ft_strcmp(textures[i][0], sides[j][0]) == 0)
 		{
-			ft_free_triple(textures);
-			return (FALSE);
+			free(sides[j][1]);
+			sides[j++][1] = ft_strdup(textures[i][1]);
+			i = -1;
 		}
 	}
 	ft_free_triple(textures);
-	return (TRUE);
+	if (j != 4)
+	 	return (NULL);
+	return (sides);
 }
 
 /**
@@ -131,7 +136,7 @@ int	valid_characters(char **map)
 		while(map[i][++j])
 		{
 			c = map[i][j];
-			if (c == '1' || c == '0' || c == ' ' || c == '\t')
+			if (c == '1' || c == '0' || c == ' ')
 				continue ;
 			else if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 				if (side == FALSE)
@@ -141,33 +146,46 @@ int	valid_characters(char **map)
 			else
 				return (error_msg(ERROR_CARACTER_INVALID, 2));
 		}
-		j = 0;
+		j = -1;
 	}
 	return (TRUE);
 }
 
+static int	check_around(char **map, int i, int j)
+{
+	int		len_up = ft_strlen(map[i - 1]);
+	int		len_down = ft_strlen(map[i + 1]);
+
+	if (map[i][j - 1])
+		if (map[i - 1][j] == ' ')
+			return (TRUE);
+	if (map[i][j + 1])
+		if (map[i][j + 1] == ' ')
+			return (TRUE);
+	if (j < len_up)
+		if (map[i - 1][j] == ' ')
+			return (TRUE);
+	if (j < len_down)
+		if (map[i + 1][j] == ' ')
+			return (TRUE);
+	return (FALSE);
+}
+
 int	valid_wall_inside_map(char **map)
 {
-	int	i;
+	int		i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	int k = 0;
-	while(map[k])
-		printf("%s\n", map[k++]);
 	while (++i < ft_strlen_split(map) - 1)
 	{
 		while (++j < ft_strlen(map[i]) - 1)
 		{
-			if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ' ||
-				map[i - 1][j] == ' ' || map[i + 1][j] == ' ')
+			if (check_around(map, i, j) == TRUE)
 			{
-				if (map[i][j] != '1')
-				{
-					printf("pos i=%i j=%li |%c|%c|%c|%c|%c|\n", i, j, map[i][j], map[i + 1][j], map[i - 1][j], map[i][j + 1], map[i][j - 1]);
+				if (map[i][j] != '1' && map[i][j] != ' ')
 					return (error_msg(ERROR_WALL_INSIDE_MAP, 2));
-				}
 			}
 		}
 		j = 0;
@@ -352,8 +370,11 @@ char **store_map_blueprint(char **content_map)
 	map = ft_calloc(ft_strlen_split(content_map) - 5, sizeof(char *));
 	i = 6;
 	j = 0;
+	// int f = 0;
 	while (content_map[i])
+	{
 		map[j++] = ft_strdup(content_map[i++]);
+	}
 	return (map);
 }
 
@@ -366,28 +387,27 @@ char **store_map_blueprint(char **content_map)
 int check_map(char *path_map)
 {
 	char **content_map;
-	char **texture_path;
+	char ***texture_path;
 	char **colors;
 	char **map;
 
 	content_map = remove_empty_line(store_content_map(path_map));
 	if (content_map == NULL)
 		return (error_msg(ERROR_FILE_MAP_EMPTY, 2));
+	texture_path = valid_texture(content_map);
+	if (texture_path == NULL)
+		return (error_msg(ERROR_TEXTURE, 2));
 	map = store_map_blueprint(content_map);
-	int j = 0;
-	while(map[j])
-		printf("%s\n", map[j++]);
 	valid_left_right(map);
 	valid_characters(map);
-	if (valid_texture(content_map) == FALSE)
-		return (error_msg(ERROR_TEXTURE, 2));
-	texture_path = texture_file_exist(content_map);
+	valid_wall_inside_map(map);
+	// texture_file_exist(texture_path);
 	if (texture_path == NULL)
 		return (error_msg(ERROR_TEXTURE_FILE_NOT_EXIST, 2));
 	colors = valid_ceilling_and_floor_color(content_map);
 	if (colors == NULL)
 		return (error_msg(ERROR_SKY_GROUND_NOT_EXIST, 2));
-	ft_free_split(texture_path);
+	ft_free_triple(texture_path);
 	ft_free_split(content_map);
 	ft_free_split(colors);
 	ft_free_split(map);

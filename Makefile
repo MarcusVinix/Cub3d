@@ -13,7 +13,7 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(PATH_INCLUDES) #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(PATH_INCLUDES) -fsanitize=address
 RM = rm -rf
 
 all: $(NAME)
@@ -50,7 +50,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "Validando as lateiras do mapa e começando o interior"
+	git commit -m "Corrigindo algumas funções"
 
 push: add
 	git push

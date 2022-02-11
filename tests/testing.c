@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:02:52 by coder             #+#    #+#             */
-/*   Updated: 2022/02/09 22:51:48 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/10 19:54:0 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,8 @@ void testando_se_left_right_do_mapa_esta_errado(void)
 
 void testando_se_as_paredes_dentro_do_mapa_sao_validas(void)
 {
-	char **content = store_map_blueprint(remove_empty_line(store_content_map("./maps/valid_map.cub")));
+	char **map = remove_empty_line(store_content_map("./maps/valid_map.cub"));
+	char **content = store_map_blueprint(map);
 	TEST_ASSERT_EQUAL_INT(TRUE, valid_wall_inside_map(content));
 }
 
