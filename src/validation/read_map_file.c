@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:00:21 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 17:40:36 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/12 00:51:14 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static void	using_gnl(char **content_map, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (get_next_line(fd, &content_map[i++]))
+		;
+	content_map[i] = NULL;
+}
 
 /**
  * @brief Use GNL to store all content of the map into a char **.
@@ -24,10 +34,8 @@ char	**store_content_map(char *path_map)
 	char	c;
 	int		fd;
 	int		rslt;
-	int		i;
 	int		count_line;
 
-	i = 0;
 	count_line = 1;
 	fd = open(path_map, O_RDONLY);
 	rslt = read(fd, &c, 1);
@@ -42,9 +50,7 @@ char	**store_content_map(char *path_map)
 	close(fd);
 	fd = open(path_map, O_RDONLY);
 	content_map = malloc((count_line + 1) * sizeof(char *));
-	while (get_next_line(fd, &content_map[i++]))
-		;
-	content_map[i] = NULL;
+	using_gnl(content_map, fd);
 	close(fd);
 	return (content_map);
 }
@@ -87,25 +93,25 @@ char	**remove_empty_line(char **content_map)
 {
 	int		i;
 	int		j;
-	char	**new_map;
+	char	**n_map;
 	char	**line;
 
 	if (!content_map)
 		return (NULL);
 	i = 0;
 	j = 0;
-	new_map = ft_calloc(count_line_no_empty(content_map) + 1, sizeof(char *));
+	n_map = ft_calloc(count_line_no_empty(content_map) + 1, sizeof(char *));
 	while (content_map[i])
 	{
 		line = ft_split(content_map[i], ' ');
 		if (*line != NULL)
-			new_map[j++] = ft_strdup(content_map[i]);
+			n_map[j++] = ft_strdup(content_map[i]);
 		ft_free_split(line);
 		i++;
 	}
 	ft_free_split(content_map);
 	content_map = NULL;
-	return (new_map);
+	return (n_map);
 }
 
 /**

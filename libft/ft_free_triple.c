@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_triple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 00:33:02 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/07 22:22:20 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/12 00:49:43 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-# include <stdio.h>
+#include <stdio.h>
 
 char	*ft_free_triple(char ***str)
 {

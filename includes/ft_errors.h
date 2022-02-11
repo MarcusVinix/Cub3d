@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 21:33:52 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 23:29:56 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/12 00:48:53 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define ERROR_INVALID_SIZE_MAP "Error:\nThe size map is invalid."
 # define ERROR_WALL_INSIDE_MAP "Error:\nThe wall inside the map must be 1."
 
-int	error_msg(char *msg, int level);
 int	error(int error_sig);
 
 #endif

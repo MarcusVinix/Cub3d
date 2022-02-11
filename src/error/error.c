@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:04 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/04 23:34:01 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/12 00:37:13 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int	error(int error_sig)
  * @param level 1 - (Warning) or 2 - (Error)
  * @return int 1
  */
-int	error_msg(char *msg, int level)
+int	error_msg(char *msg, int level, t_cub *cub)
 {
+	if (cub != NULL)
+		free_struct(cub);
 	if (level == 1)
 	{
 		ft_putstr_fd(YEL, 2);

@@ -6,7 +6,8 @@ PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
 LIBFT = $(PATH_LIBFT)libft.a
-SRC = $(addprefix $(PATH_ERROR), error.c) \
+SRC = $(PATH_SRC)free_struct.c \
+	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) 
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))

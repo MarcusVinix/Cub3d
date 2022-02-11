@@ -13,7 +13,6 @@
 #ifndef MAP_H
 # define MAP_H
 
-int		check_map(char *path_map);
 char	**store_content_map(char *path_map);
 char	**valid_ceilling_and_floor_color(char **content_map);
 char	***valid_texture(char **content_map);

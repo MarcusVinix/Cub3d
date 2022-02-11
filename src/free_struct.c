@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/12 00:12:11 by coder            ###   ########.fr       */
+/*   Created: 2022/02/12 00:09:47 by coder             #+#    #+#             */
+/*   Updated: 2022/02/12 00:40:04 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char **argv)
+void	free_struct(t_cub *cub)
 {
-	t_cub	cub;
-
-	if (is_invalid_arg(argc, argv) == FALSE)
-		return (3);
-	if (check_map(argv[1], &cub) == FALSE)
-		return (4);
-	free_struct(&cub);
-	return (0);
+	if (cub->texture_path != NULL)
+		ft_free_triple(cub->texture_path);
+	if (cub->colors != NULL)
+		ft_free_split(cub->colors);
+	if (cub->map != NULL)
+		ft_free_split(cub->map);
 }

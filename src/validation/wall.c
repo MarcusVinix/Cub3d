@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:58:12 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 22:57:01 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/12 00:34:22 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	valid_wall_inside_map(char **map)
 			if (check_around(map, line, col) == TRUE)
 			{
 				if (map[line][col] != '1' && map[line][col] != ' ')
-					return (error_msg(ERROR_WALL_INSIDE_MAP, 2));
+					return (error_msg(ERROR_WALL_INSIDE_MAP, 2, NULL));
 			}
 		}
 		col = 0;
@@ -89,7 +89,7 @@ int	valid_top_bottom(char **map)
 		if (map[0][i] == '1' || map[0][i] == ' ' || map[0][i] == '\t')
 			continue ;
 		else
-			return (error_msg(ERROR_INVALID_EDGE, 2));
+			return (error_msg(ERROR_INVALID_EDGE, 2, NULL));
 	}
 	i = -1;
 	while (map[len][++i])
@@ -97,7 +97,7 @@ int	valid_top_bottom(char **map)
 		if (map[len][i] == '1' || map[len][i] == ' ' || map[len][i] == '\t')
 			continue ;
 		else
-			return (error_msg(ERROR_INVALID_EDGE, 2));
+			return (error_msg(ERROR_INVALID_EDGE, 2, NULL));
 	}
 	return (TRUE);
 }
@@ -120,13 +120,13 @@ int	valid_left_right(char **map)
 		if (map[i][0] == '1' || map[i][0] == ' ')
 			continue ;
 		else
-			return (error_msg(ERROR_INVALID_EDGE, 2));
+			return (error_msg(ERROR_INVALID_EDGE, 2, NULL));
 	}
 	i = -1;
 	while (map[++i] && map[i][len])
 	{
 		if (!(map[i][len] == '1' || map[i][len] == ' '))
-			return (error_msg(ERROR_INVALID_EDGE, 2));
+			return (error_msg(ERROR_INVALID_EDGE, 2, NULL));
 		if (map[i + 1])
 			len = ft_strlen(map[i + 1]) - 1;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:32 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:27:00 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/12 00:32:50 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	file_exist(char *map_path)
 int	is_invalid_arg(int argc, char **argv)
 {
 	if (argc != 2)
-		return (error_msg(ERROR_ARG, 2));
+		return (error_msg(ERROR_ARG, 2, NULL));
 	else if (check_extension(argv[1], ".cub") == FALSE)
-		return (error_msg(ERROR_FILE_EXTENSION, 2));
+		return (error_msg(ERROR_FILE_EXTENSION, 2, NULL));
 	else if (file_exist(argv[1]))
-		return (error_msg(ERROR_FILE_MAP_N_EXIST, 2));
+		return (error_msg(ERROR_FILE_MAP_N_EXIST, 2, NULL));
 	return (TRUE);
 }

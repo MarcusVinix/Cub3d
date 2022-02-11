@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_character.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 17:38:31 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/12 00:50:44 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int	valid_characters(char **map)
 				if (side == FALSE)
 					side = TRUE;
 				else
-					return (error_msg(ERROR_MORE_THEN_ONE_SIDE, 2));
+					return (error_msg(ERROR_MORE_THEN_ONE_SIDE, 2, NULL));
 			}
 			else
-				return (error_msg(ERROR_CARACTER_INVALID, 2));
+				return (error_msg(ERROR_CARACTER_INVALID, 2, NULL));
 		}
 		j = -1;
 	}
