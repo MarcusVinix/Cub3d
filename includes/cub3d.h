@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:21:23 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:49:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	is_invalid_arg(int argc, char **argv);
 int	check_map(char *path_map);
 int	file_exist(char *map_path);
 int	check_extension(char *str, char *extension);
-
 
 #endif

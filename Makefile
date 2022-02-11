@@ -7,7 +7,7 @@ PATH_INCLUDES = ./includes/
 
 LIBFT = $(PATH_LIBFT)libft.a
 SRC = $(addprefix $(PATH_ERROR), error.c) \
-	  $(addprefix $(PATH_VALIDATION), args.c map.c) 
+	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) 
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
@@ -50,7 +50,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "Corrigindo valid texture"
+	git commit -m "Refatorando função do texure file. Separando as funções do arquivo map.c"
 
 push: add
 	git push

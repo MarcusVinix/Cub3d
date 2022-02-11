@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/10 22:16:46 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:43:35 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		check_map(char *path_map);
 char	**store_content_map(char *path_map);
 char	**valid_ceilling_and_floor_color(char **content_map);
 char	***valid_texture(char **content_map);
-char	**texture_file_exist(char **content_map);
+int		texture_file_exist(char ***texture);
 int		valid_characters(char **content_map);
 int		valid_edge(char **content_map);
 char	**store_map_blueprint(char **content_map);
