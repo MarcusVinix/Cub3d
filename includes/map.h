@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 16:43:35 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/11 23:10:51 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		valid_edge(char **map);
 int		valid_left_right(char **map);
 int		valid_top_bottom(char **map);
 int		valid_wall_inside_map(char **map);
+int		valid_size_map(char **map);
 
 #endif

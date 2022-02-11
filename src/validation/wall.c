@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:58:12 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 17:43:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/11 22:57:01 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ int	valid_edge(char **map)
 	if (valid_top_bottom(map) == FALSE)
 		return (FALSE);
 	if (valid_left_right(map) == FALSE)
+		return (FALSE);
+	if (valid_wall_inside_map(map) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

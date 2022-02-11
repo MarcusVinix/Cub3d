@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 21:33:52 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 17:48:41 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/11 23:29:56 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERROR_CARACTER_INVALID "Error:\nCharacter invalid!"
 # define ERROR_MORE_THEN_ONE_SIDE "Error\nOnly one side of position is allowed!"
 # define ERROR_INVALID_EDGE "Error:\nThe bord of the map must be 1."
+# define ERROR_INVALID_SIZE_MAP "Error:\nThe size map is invalid."
 # define ERROR_WALL_INSIDE_MAP "Error:\nThe wall inside the map must be 1."
 
 int	error_msg(char *msg, int level);
