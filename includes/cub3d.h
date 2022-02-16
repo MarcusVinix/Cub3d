@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/12 00:50:03 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/16 21:53:48 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,22 @@
 # include	<stdio.h>
 # include	<stdlib.h>
 # include	<fcntl.h>
+# include	<mlx.h>
 # define TRUE 0
 # define FALSE 1
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}			t_mlx;
 
 typedef struct s_cub
 {
 	char	***texture_path;
 	char	**colors;
 	char	**map;
+	t_mlx	s_mlx;
 }			t_cub;
 
 //erros 

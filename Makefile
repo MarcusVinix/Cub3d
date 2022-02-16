@@ -5,7 +5,7 @@ PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
-LIBFT = $(PATH_LIBFT)libft.a
+LIBS = -L ./libft -lft -lmlx -lX11 -lXext
 SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) 
@@ -14,14 +14,14 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(PATH_INCLUDES) #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -O3 -I $(PATH_INCLUDES)  #-fsanitize=address
 RM = rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PATH_SRC)cub3d.c -o $(NAME)
+	$(CC) $(CFLAGS) -o $(NAME) $(PATH_SRC)cub3d.c $(OBJS) $(LIBS)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
@@ -51,7 +51,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "Refatorando função do texure file. Separando as funções do arquivo map.c"
+	git commit -m "configurando o projeto para poder usar mlx"
 
 push: add
 	git push
