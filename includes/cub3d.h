@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/16 21:53:48 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/18 01:01:39 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,19 @@
 # include	<stdlib.h>
 # include	<fcntl.h>
 # include	<mlx.h>
+#include <math.h>
+
 # define TRUE 0
 # define FALSE 1
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		l_len;
+	int		endian;
+}			t_data;
 
 typedef struct s_mlx
 {
@@ -50,5 +61,7 @@ int		check_map(char *path_map, t_cub *cub);
 int		error_msg(char *msg, int level, t_cub *cub);
 //free
 void	free_struct(t_cub *cub);
+
+void	ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
 
 #endif

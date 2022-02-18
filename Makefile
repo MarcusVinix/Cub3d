@@ -1,14 +1,16 @@
 PATH_SRC = ./src/
 PATH_VALIDATION = $(PATH_SRC)validation/
 PATH_ERROR = $(PATH_SRC)error/
+PATH_UTILS_MLX = $(PATH_SRC)utils_mlx/
 PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
 LIBS = -L ./libft -lft -lmlx -lX11 -lXext
-SRC = $(PATH_SRC)free_struct.c \
+SRC = $(PATH_SRC)free_struct.c $(PATH_SRC)cub3d.c\
 	  $(addprefix $(PATH_ERROR), error.c) \
-	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) 
+	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
+	  $(addprefix $(PATH_UTILS_MLX), ft_mlx_pixel_put.c)
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
@@ -21,12 +23,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(PATH_SRC)cub3d.c $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
 	@mkdir -p $(PATH_OBJ)error
 	@mkdir -p $(PATH_OBJ)validation
+	@mkdir -p $(PATH_OBJ)utils_mlx
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 test:
@@ -51,7 +54,7 @@ norminha:
 
 add: fclean
 	git add .
-	git commit -m "configurando o projeto para poder usar mlx"
+	git commit -m "testando a mlx"
 
 push: add
 	git push
