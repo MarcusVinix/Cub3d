@@ -6,104 +6,165 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/18 02:00:35 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:24:18 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-unsigned int	get_color(t_data *data, int x, int y)
+void	rec(t_data *img, int x, int y, int color)
 {
-	char	*color;
+	int	i;
 
-	color = data->addr + (y * data->l_len + x * (data->bpp / 8));
-	return (*(unsigned int *)color);
+	i = -1;
+	while (++i < HEIGHT / 2)
+		draw_line(img, x, y++, color, 2);
 }
 
-void	draw_line(t_data *img, int beginX, int beginY, int len, int color, int sig)
+void	draw_background(t_data *img, int color_up, int color_down)
 {
-	if (sig == 1)
-		while (beginY <= len)
-			ft_mlx_pixel_put(img, beginX, beginY++, color);
-	else
-		while (beginX <= len)
-			ft_mlx_pixel_put(img, beginX++, beginY, color);
+	rec(img, 0, 0, color_up);
+	rec(img, 0, HEIGHT / 2, color_down);
 }
+
+void	draw_img(t_cub *cub, t_data *img, t_pos pos)
+{
+	unsigned int black = BLACK;
+	unsigned int	color;
+	int x = 0;
+	int y = 0;
+	// y column
+	// x linha
+	while (x < TILE)
+	{
+		while (y < TILE)
+		{
+			color = get_color(img, x, y);
+			if (color != black)
+				ft_mlx_pixel_put(&cub->img, pos.x - (0.3 * x), pos.y - (0.6 * y), color);
+			y++;
+			pos.y++;
+		}
+		pos.y-= y;
+		y = 0;
+		x++;
+		pos.x++;
+	}
+}
+
+void	print_sprite(t_cub *cub, int line, int col)
+{
+	t_pos	pos;
+
+	pos.x = (col * (0.6 * TILE));
+	pos.y = (line * (0.3 * TILE)) + ((HEIGHT / 2) - 100);
+	if (cub->map[line][col] == '1')
+		draw_img(cub, &cub->sprites.ea, pos);
+	if (cub->map[line][col] == 'N')
+	{
+		cub->player.x = line;
+		cub->player.y = col;
+
+	}
+}
+
+void	draw_walls(t_cub *cub)
+{
+	int		line;
+	size_t		col;
+	int		i;
+
+	i = 0;
+	line = 0;
+	while (line < ft_strlen_split(cub->map))
+	{
+		col = 0;
+		while (col < ft_strlen(cub->map[i]))
+		{
+			print_sprite(cub, line, col);
+			col++;
+		}
+		i++;
+		line++;
+	}
+}
+
+void	drwa_gaming(t_cub *cub)
+{
+	t_pos pos;
+	
+	draw_background(&cub->img, 0x808080, 0x708090);
+	draw_walls(cub);
+	pos.x = (cub->player.y * (0.6 * TILE));
+	pos.y = (cub->player.x * (0.3 * TILE)) + ((HEIGHT / 2) - 100);
+	pos.x += cub->move.x;
+	pos.y += cub->move.y;
+	draw_img(cub, &cub->sprites.player, pos);
+}
+
+void	sprites(t_data *img, void *mlx, char *path)
+{
+	img->img = mlx_xpm_file_to_image(mlx, path, &img->pos.x,
+			&img->pos.y);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->l_len, &img->endian);
+}
+
+void	init_sprite(t_cub *cub)
+{
+	cub->img.img = mlx_new_image(cub->s_mlx.mlx, WIDTH, HEIGHT);
+	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp, &cub->img.l_len, &cub->img.endian);
+	sprites(&cub->sprites.ea, cub->s_mlx.mlx, cub->texture_path[0][1]);
+	sprites(&cub->sprites.player, cub->s_mlx.mlx, cub->texture_path[1][1]);
+}
+
+int	action_loop(t_cub *cub)
+{
+	drwa_gaming(cub);
+	mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, cub->img.img, 0, 0);
+	return (1);
+}
+
+void move_player(t_cub *cub, int line, int col)
+{
+	int	y;
+	int	x;
+	y = cub->player.y;
+	x = cub->player.x;
+	cub->map[x][y] = '0';
+	cub->map[line][col] = 'N';
+	cub->player.x = line;
+	cub->player.y = col;
+}
+
+int	action(int keycode, t_cub *cub)
+{
+	// int x = cub->player.x;
+	// int y = cub->player.y;
+	if (keycode == RIGHT)
+		cub->move.x+=1;
+	if (keycode == LEFT)
+		cub->move.x -= 1;
+	if (keycode == TOP)
+		cub->move.y -= 1;
+	if (keycode == DOWN)
+		cub->move.y += 1;
+	printf("move\n");
+	//move_player(cub, x, y);
+	return (1);
+}	
 
 void	start_game(t_cub *cub)
 {
-	t_data img;
+	t_data img_p;
 
-
+	ft_bzero(&img_p, sizeof(t_data));
 	cub->s_mlx.mlx = mlx_init();
-	cub->s_mlx.win = mlx_new_window(cub->s_mlx.mlx, 600, 600, "cub3D");
-	int xn;
-	int yn;
-	img.img = mlx_xpm_file_to_image(cub->s_mlx.mlx, "./maps/textures/wall.xpm", &xn, &yn);
-	// img.img = mlx_new_image(cub->s_mlx.mlx, 64, 64);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_len, &img.endian);
-	unsigned int color;
+	cub->s_mlx.win = mlx_new_window(cub->s_mlx.mlx, WIDTH, HEIGHT, "cub3D");
+	init_sprite(cub);
 
-	double x = 50;
-	double y = 50;
-	double p = 100;
-	while (x < 100)
-	{
-		while (y < p)
-		{
-			mlx_pixel_put(cub->s_mlx.mlx, cub->s_mlx.win, x, y, 0x00FF0000);
-			y++;
-		}
-		p -= 0.1;
-		y = 50 + (0.1 * x);
-		x++;
-	}
-	int xw = 0;
-	int yw = 0;
-	x = 0.1;
-	y = 0.1;
-	p = 40;
-	// int pi = p;
-	// y column
-	// x linha
-	while (x < 40)
-	{
-		while (y < p)
-		{
-			color = get_color(&img, x, y);
-			mlx_pixel_put(cub->s_mlx.mlx, cub->s_mlx.win, xw, yw, color);
-			y += 0.1;
-			yw++;
-		}
-		y = 0;
-		yw = 0 + (0.1 * xw);
-		x += 0.1;
-		xw++;;
-	}
-	// int x = 0;
-	// int y =0;
-	// while (i++ < 63)
-	// {
-	// 	x++;
-	// 	y++;
-	// 	draw_line(&img, x, y, 63, 0x00FF0000, 1);
-	// 	draw_line(&img, x, y, 63, 0x00FF0000, 2);
-
-	// }
-	// i =0;
-	// x = 30;
-	// y = 30;
-	// while (i++ < 35)
-	// {
-	// 	x++;
-	// 	y++;
-
-	// 		draw_line(&img, x, y, 45, 0x0000FF, 1);
-	// 		draw_line(&img, x, y, 45, 0x0000FF, 2);
-
-	// }
-
-	//mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, img.img, 0, 0);
+	mlx_hook(cub->s_mlx.win, 2, 1L << 0, action, (void *)cub);
+	mlx_loop_hook(cub->s_mlx.mlx, action_loop, (void *)cub);
 	mlx_loop(cub->s_mlx.mlx);
 }
 
@@ -113,6 +174,7 @@ int	main(int argc, char **argv)
 
 	if (is_invalid_arg(argc, argv) == FALSE)
 		return (3);
+	ft_bzero(&cub, sizeof(t_cub));
 	if (check_map(argv[1], &cub) == FALSE)
 		return (4);
 	start_game(&cub);
