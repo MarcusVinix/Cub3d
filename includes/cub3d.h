@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/19 02:10:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 01:10:51 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include	<stdlib.h>
 # include	<fcntl.h>
 # include	<mlx.h>
-#include <math.h>
+# include	<math.h>
 
 # define TRUE 0
 # define FALSE 1
@@ -32,14 +32,19 @@
 # define RIGHT 0x64
 # define ESC 0xff1b
 # define BLACK -16777216
-# define WIDTH 900
-# define HEIGHT 900
+# define WIDTH 1380
+# define HEIGHT 580
 # define TILE 40
+# define PI 3.1415
 
 typedef struct s_pos
 {
 	int	y;
 	int	x;
+	double	pdx;
+	double	pdy;
+	double	pa;
+	double	len;
 }		t_pos;
 
 typedef struct s_data
@@ -95,7 +100,7 @@ void	free_struct(t_cub *cub);
 
 void			ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
 unsigned int	get_color(t_data *data, int x, int y);
-void	draw_line(t_data *img, int beginX, int beginY, int color, int sig);
+void	draw_line(t_data *img, t_pos pos, int color, int sig);
 
 
 

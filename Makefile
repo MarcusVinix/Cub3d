@@ -6,7 +6,7 @@ PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
-LIBS = -L ./libft -lft -lmlx -lX11 -lXext
+LIBS = -L ./libft -lft -lmlx -lX11 -lXext 
 SRC = $(PATH_SRC)free_struct.c $(PATH_SRC)cub3d.c\
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
@@ -16,7 +16,7 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -I $(PATH_INCLUDES)  #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -O3 -I $(PATH_INCLUDES)
 RM = rm -rf
 
 all: $(NAME)

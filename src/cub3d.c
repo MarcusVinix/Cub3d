@@ -6,25 +6,35 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/19 02:24:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 01:17:18 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	rec(t_data *img, int x, int y, int color)
+void	rec(t_data *img, t_pos pos, int color)
 {
 	int	i;
 
 	i = -1;
+	pos.pdx = 0;
+	pos.pdy = 0;
 	while (++i < HEIGHT / 2)
-		draw_line(img, x, y++, color, 2);
+	{
+		draw_line(img, pos, color, 2);
+		pos.y++;
+	}
 }
 
 void	draw_background(t_data *img, int color_up, int color_down)
 {
-	rec(img, 0, 0, color_up);
-	rec(img, 0, HEIGHT / 2, color_down);
+	t_pos pos;
+
+	pos.x = 0;
+	pos.y = 0;
+	rec(img, pos, color_up);
+	pos.y = HEIGHT / 2;
+	rec(img, pos, color_down);
 }
 
 void	draw_img(t_cub *cub, t_data *img, t_pos pos)
@@ -41,11 +51,11 @@ void	draw_img(t_cub *cub, t_data *img, t_pos pos)
 		{
 			color = get_color(img, x, y);
 			if (color != black)
-				ft_mlx_pixel_put(&cub->img, pos.x - (0.3 * x), pos.y - (0.6 * y), color);
+				ft_mlx_pixel_put(&cub->img, pos.x, pos.y, color);
 			y++;
 			pos.y++;
 		}
-		pos.y-= y;
+		pos.y -= y;
 		y = 0;
 		x++;
 		pos.x++;
@@ -56,14 +66,15 @@ void	print_sprite(t_cub *cub, int line, int col)
 {
 	t_pos	pos;
 
-	pos.x = (col * (0.6 * TILE));
-	pos.y = (line * (0.3 * TILE)) + ((HEIGHT / 2) - 100);
+	pos.x = (col * (TILE));
+	pos.y = (line * (TILE)) ;
 	if (cub->map[line][col] == '1')
 		draw_img(cub, &cub->sprites.ea, pos);
 	if (cub->map[line][col] == 'N')
 	{
 		cub->player.x = line;
 		cub->player.y = col;
+		// draw_img(cub, &cub->sprites.player, pos);
 
 	}
 }
@@ -72,19 +83,16 @@ void	draw_walls(t_cub *cub)
 {
 	int		line;
 	size_t		col;
-	int		i;
 
-	i = 0;
 	line = 0;
 	while (line < ft_strlen_split(cub->map))
 	{
 		col = 0;
-		while (col < ft_strlen(cub->map[i]))
+		while (col < ft_strlen(cub->map[line]))
 		{
 			print_sprite(cub, line, col);
 			col++;
 		}
-		i++;
 		line++;
 	}
 }
@@ -95,10 +103,12 @@ void	drwa_gaming(t_cub *cub)
 	
 	draw_background(&cub->img, 0x808080, 0x708090);
 	draw_walls(cub);
-	pos.x = (cub->player.y * (0.6 * TILE));
-	pos.y = (cub->player.x * (0.3 * TILE)) + ((HEIGHT / 2) - 100);
+	pos.x = (cub->player.y * (TILE));
+	pos.y = (cub->player.x * (TILE));
 	pos.x += cub->move.x;
 	pos.y += cub->move.y;
+	draw_line(&cub->img, pos, 0x00FF0000, 2);
+	draw_line(&cub->img, pos, 0x00FF0000, 2);
 	draw_img(cub, &cub->sprites.player, pos);
 }
 
@@ -139,6 +149,8 @@ void move_player(t_cub *cub, int line, int col)
 
 int	action(int keycode, t_cub *cub)
 {
+	(void)keycode;
+	(void)cub;
 	// int x = cub->player.x;
 	// int y = cub->player.y;
 	if (keycode == RIGHT)
@@ -150,7 +162,7 @@ int	action(int keycode, t_cub *cub)
 	if (keycode == DOWN)
 		cub->move.y += 1;
 	printf("move\n");
-	//move_player(cub, x, y);
+	// move_player(cub, x, y);
 	return (1);
 }	
 
