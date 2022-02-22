@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/22 13:23:32 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 23:49:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,24 +100,11 @@ void	draw_walls(t_cub *cub)
 
 void	draw_gaming(t_cub *cub)
 {
-	// t_pos pos;
-	
 	draw_background(&cub->img, 0x808080, 0x708090);
 	draw_walls(cub);
-	// pos.x = (cub->player.y * (TILE)) + cub->move.x;
-	// pos.y = (cub->player.x * (TILE)) + cub->move.y;
-	// pos.len = 20;
-	// pos.pdx = cub->player.pdx;
-	// pos.pdy = cub->player.pdy;
 	draw_img(cub, &cub->sprites.player, cub->player);
 	cub->player.len = 20;
-	// cub->player.y = pos.y;
-	// cub->player.x = pos.x;
-	int i = -1;
-	while (++i < cub->player.len)
-		ft_mlx_pixel_put(&cub->img, cub->player.x + (cub->player.pdx * 5) + i, cub->player.y + (cub->player.pdy * 5), 0x00FF0000);
-	draw_line(&cub->img, cub->player, 0x00FF0000, 1);
-	// draw_line(&cub->img, pos, 0x00FF0000, 1);
+	draw_ray(&cub->img, cub->player);
 }
 
 void	sprites(t_data *img, void *mlx, char *path)

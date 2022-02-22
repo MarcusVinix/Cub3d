@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/22 03:11:00 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 22:53:59 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define HEIGHT 580
 # define TILE 40
 # define PI 3.14159265359
+# define REDMLX 0x00FF0000
 
 typedef struct s_pos
 {
@@ -101,6 +102,7 @@ void	free_struct(t_cub *cub);
 void			ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
 unsigned int	get_color(t_data *data, int x, int y);
 void	draw_line(t_data *img, t_pos pos, int color, int sig);
+void	draw_ray(t_data *img, t_pos pos);
 
 
 
