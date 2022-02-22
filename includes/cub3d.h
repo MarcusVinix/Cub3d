@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/22 01:10:51 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 03:11:00 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WIDTH 1380
 # define HEIGHT 580
 # define TILE 40
-# define PI 3.1415
+# define PI 3.14159265359
 
 typedef struct s_pos
 {

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/22 01:17:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:23:32 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	rec(t_data *img, t_pos pos, int color)
 	i = -1;
 	pos.pdx = 0;
 	pos.pdy = 0;
+	pos.len = WIDTH;
 	while (++i < HEIGHT / 2)
 	{
 		draw_line(img, pos, color, 2);
@@ -72,9 +73,9 @@ void	print_sprite(t_cub *cub, int line, int col)
 		draw_img(cub, &cub->sprites.ea, pos);
 	if (cub->map[line][col] == 'N')
 	{
-		cub->player.x = line;
-		cub->player.y = col;
-		// draw_img(cub, &cub->sprites.player, pos);
+		// cub->player.x = line;//4 160
+		// cub->player.y = col;//26 1040
+		// // draw_img(cub, &cub->sprites.player, pos);
 
 	}
 }
@@ -97,19 +98,26 @@ void	draw_walls(t_cub *cub)
 	}
 }
 
-void	drwa_gaming(t_cub *cub)
+void	draw_gaming(t_cub *cub)
 {
-	t_pos pos;
+	// t_pos pos;
 	
 	draw_background(&cub->img, 0x808080, 0x708090);
 	draw_walls(cub);
-	pos.x = (cub->player.y * (TILE));
-	pos.y = (cub->player.x * (TILE));
-	pos.x += cub->move.x;
-	pos.y += cub->move.y;
-	draw_line(&cub->img, pos, 0x00FF0000, 2);
-	draw_line(&cub->img, pos, 0x00FF0000, 2);
-	draw_img(cub, &cub->sprites.player, pos);
+	// pos.x = (cub->player.y * (TILE)) + cub->move.x;
+	// pos.y = (cub->player.x * (TILE)) + cub->move.y;
+	// pos.len = 20;
+	// pos.pdx = cub->player.pdx;
+	// pos.pdy = cub->player.pdy;
+	draw_img(cub, &cub->sprites.player, cub->player);
+	cub->player.len = 20;
+	// cub->player.y = pos.y;
+	// cub->player.x = pos.x;
+	int i = -1;
+	while (++i < cub->player.len)
+		ft_mlx_pixel_put(&cub->img, cub->player.x + (cub->player.pdx * 5) + i, cub->player.y + (cub->player.pdy * 5), 0x00FF0000);
+	draw_line(&cub->img, cub->player, 0x00FF0000, 1);
+	// draw_line(&cub->img, pos, 0x00FF0000, 1);
 }
 
 void	sprites(t_data *img, void *mlx, char *path)
@@ -130,8 +138,11 @@ void	init_sprite(t_cub *cub)
 
 int	action_loop(t_cub *cub)
 {
-	drwa_gaming(cub);
+	
+	draw_gaming(cub);
+	// mlx_clear_window(cub->s_mlx.mlx, cub->s_mlx.win);
 	mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, cub->img.img, 0, 0);
+
 	return (1);
 }
 
@@ -154,14 +165,35 @@ int	action(int keycode, t_cub *cub)
 	// int x = cub->player.x;
 	// int y = cub->player.y;
 	if (keycode == RIGHT)
-		cub->move.x+=1;
+		{
+		// cub->move.x += 5;
+		cub->player.pa += 0.1;
+		if (cub->player.pa > 2 * PI)
+			cub->player.pa -= 2 * PI;
+		cub->player.pdx = cos(cub->player.pa) * 5;
+		cub->player.pdy = sin(cub->player.pa) * 5;
+	}
 	if (keycode == LEFT)
-		cub->move.x -= 1;
+	{
+		// cub->move.x -= 5;
+		cub->player.pa -= 0.1;
+		if (cub->player.pa < 0)
+			cub->player.pa += 2 * PI;
+		cub->player.pdx = cos(cub->player.pa) * 5;
+		cub->player.pdy = sin(cub->player.pa) * 5;
+	}
 	if (keycode == TOP)
-		cub->move.y -= 1;
+	{
+		cub->move.y -= 0.1;
+		cub->player.x += cub->player.pdx;
+		cub->player.y += cub->player.pdy;
+	}
 	if (keycode == DOWN)
-		cub->move.y += 1;
-	printf("move\n");
+	{
+		cub->move.y += 0.1;
+		cub->player.x -= cub->player.pdx;
+		cub->player.y -= cub->player.pdy;
+	}
 	// move_player(cub, x, y);
 	return (1);
 }	
@@ -174,7 +206,10 @@ void	start_game(t_cub *cub)
 	cub->s_mlx.mlx = mlx_init();
 	cub->s_mlx.win = mlx_new_window(cub->s_mlx.mlx, WIDTH, HEIGHT, "cub3D");
 	init_sprite(cub);
-
+	cub->player.y = 160;
+	cub->player.x = 1040;
+	cub->player.pdx = cos(cub->player.pa) * 5;
+	cub->player.pdy = sin(cub->player.pa) * 5;
 	mlx_hook(cub->s_mlx.win, 2, 1L << 0, action, (void *)cub);
 	mlx_loop_hook(cub->s_mlx.mlx, action_loop, (void *)cub);
 	mlx_loop(cub->s_mlx.mlx);

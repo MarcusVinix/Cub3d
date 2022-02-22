@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 22:18:50 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/22 01:10:04 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/02/22 03:11:23 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ void	draw_line(t_data *img, t_pos pos, int color, int sig)
 
 	i = 0;
 	if (sig == 1)
+	{
 		while (i++ <= pos.len)
-			ft_mlx_pixel_put(img, pos.x + pos.pdx * 5 , pos.y++ + pos.pdy * 5, color);
+		{
+			ft_mlx_pixel_put(img, pos.x + pos.pdx * 5 , pos.y + (pos.pdy * 5), color);
+			pos.y++;
+		}
+	}
 	else
 		while (i++ <= pos.len)
 			ft_mlx_pixel_put(img, pos.x++ + pos.pdx * 5, pos.y + pos.pdy * 5, color);
