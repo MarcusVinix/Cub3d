@@ -1,7 +1,9 @@
 PATH_SRC = ./src/
 PATH_VALIDATION = $(PATH_SRC)validation/
 PATH_ERROR = $(PATH_SRC)error/
-PATH_UTILS_MLX = $(PATH_SRC)utils_mlx/
+PATH_UTILS = $(PATH_SRC)utils/
+PATH_GAME = $(PATH_SRC)game/
+PATH_RENDER_DRAW = $(PATH_SRC)render_draw/
 PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
@@ -10,7 +12,9 @@ LIBS = -L ./libft -lft -lmlx -lX11 -lXext -lm
 SRC = $(PATH_SRC)free_struct.c $(PATH_SRC)cub3d.c\
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
-	  $(addprefix $(PATH_UTILS_MLX), ft_mlx_pixel_put.c)
+	  $(addprefix $(PATH_UTILS), utils.c sprites.c) \
+	  $(addprefix $(PATH_GAME), actions.c) \
+	  $(addprefix $(PATH_RENDER_DRAW), draw_utils.c render_game.c)
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
@@ -29,7 +33,9 @@ $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
 	@mkdir -p $(PATH_OBJ)error
 	@mkdir -p $(PATH_OBJ)validation
-	@mkdir -p $(PATH_OBJ)utils_mlx
+	@mkdir -p $(PATH_OBJ)utils
+	@mkdir -p $(PATH_OBJ)render_draw
+	@mkdir -p $(PATH_OBJ)game
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 test:
