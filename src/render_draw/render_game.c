@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/28 18:23:34 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:27:15 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	draw_gaming(t_cub *cub)
 {
 	draw_background(&cub->img, 0x808080, 0x708090);
 	render_map(cub);
+	renderRays(cub);
 	render_player(&cub->img, cub->player);
 	mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, cub->img.img, 0, 0);
 }

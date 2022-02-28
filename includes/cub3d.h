@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/28 18:24:21 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:28:00 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include	<mlx.h>
 # include	<math.h>
 # include	<structs.h>
-# include	<defines.h>
+# include	<limits.h>
 
 //validation
 int				is_invalid_arg(int argc, char **argv);
@@ -55,10 +55,16 @@ void			draw_background(t_data *img, int color_up, int color_down);
 void			render_map(t_cub *cub);
 void			render_player(t_data *img, t_player player);
 void			draw_gaming(t_cub *cub);
+void			renderRays(t_cub *cub);
+void			castRay(float rayAngle, int id, t_cub *cub);
+void			castAllRays(t_cub *cub);
 
 //utils
 int				mapHasWallAt(float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
+float			normalizeAngle(float angle);
+float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
+
 
 #endif

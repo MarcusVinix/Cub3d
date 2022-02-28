@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/28 18:20:27 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:28:49 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	movePlayer(t_cub *cub)
 void	update(t_cub *cub)
 {
 	movePlayer(cub);
+	castAllRays(cub);
 }
 
 int	action_loop(t_cub *cub)

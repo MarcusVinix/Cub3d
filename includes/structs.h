@@ -2,6 +2,30 @@
 
 #define STRUCTS_H
 
+#include <defines.h>
+
+typedef struct s_utils_ray
+{
+	float	xIntercept;
+	float	yIntercept;
+	float	xStep;
+	float	yStep;
+}			t_utils_ray;
+
+typedef struct s_ray
+{
+	float		rayAngle;
+	float		wallHitX;
+	float		wallHitY;
+	float		distance;
+	int			wasHitVertical;
+	int			isRayFacingUp;
+	int			isRayFacingDown;
+	int			isRayFacingLeft;
+	int			isRayFacingRight;
+	int			wallHitCotent;
+}				t_ray;
+
 typedef struct s_line
 {
 	int				x1;
@@ -78,10 +102,11 @@ typedef struct s_img
 
 typedef struct s_cub
 {
+	t_player	player;
+	t_ray		rays[NUM_RAYS];
 	char	***texture_path;
 	char	**colors;
 	char	**map;
-	t_player	player;
 	t_pos	move;
 	double	x;
 	double y;
