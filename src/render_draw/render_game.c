@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/02 01:19:26 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:22:06 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	render_map(t_cub *cub)
 void	render_player(t_data *img, t_player player)
 {
 	t_rect			rect;
-	t_line			line;
 
 	rect.x = player.x * MINIMAP_SCALE_FACTOR;
 	rect.y = player.y * MINIMAP_SCALE_FACTOR;
@@ -62,12 +61,6 @@ void	render_player(t_data *img, t_player player)
 	rect.height = player.height * MINIMAP_SCALE_FACTOR;
 	rect.color = BLUEMLX;
 	drawRect(img, rect);
-
-	line.x1 = player.x * MINIMAP_SCALE_FACTOR;
-	line.y1 = player.y * MINIMAP_SCALE_FACTOR;
-	line.x2 = player.x * MINIMAP_SCALE_FACTOR + cos(player.rotationAngle) * 30;
-	line.y2 = player.y * MINIMAP_SCALE_FACTOR + sin(player.rotationAngle) * 30;
-	drawLine(img, line);
 }
 
 void	draw_gaming(t_cub *cub)
