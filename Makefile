@@ -14,7 +14,7 @@ SRC = $(PATH_SRC)free_struct.c $(PATH_SRC)cub3d.c\
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
 	  $(addprefix $(PATH_UTILS), utils.c sprites.c) \
 	  $(addprefix $(PATH_GAME), actions.c) \
-	  $(addprefix $(PATH_RENDER_DRAW), draw_utils.c render_game.c rays.c)
+	  $(addprefix $(PATH_RENDER_DRAW), draw_utils.c render_game.c rays.c projection3D.c)
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d

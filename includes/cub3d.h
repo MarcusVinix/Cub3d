@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/01 00:28:00 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:13:10 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			draw_gaming(t_cub *cub);
 void			renderRays(t_cub *cub);
 void			castRay(float rayAngle, int id, t_cub *cub);
 void			castAllRays(t_cub *cub);
+void			generate3DProjection(t_cub *cub);
 
 //utils
 int				mapHasWallAt(float x, float y);

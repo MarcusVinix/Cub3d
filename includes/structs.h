@@ -4,6 +4,16 @@
 
 #include <defines.h>
 
+typedef struct s_projection
+{
+	float	perpDistance;
+	float	distanceProjPlane;
+	float	projectedWallHeight;
+	int		wallStripHeight;
+	int		wallTopPixel;
+	int		wallBottomPixel;
+}			t_projection;
+
 typedef struct s_utils_ray
 {
 	float	xIntercept;

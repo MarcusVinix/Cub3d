@@ -23,7 +23,7 @@
 
 #define PI 3.14159265
 #define TWO_PI 6.28318530
-#define MINIMAP_SCALE_FACTOR 0.5
+#define MINIMAP_SCALE_FACTOR 0.2
 #define FOV_ANGLE (60 * (PI / 180))
 #define NUM_RAYS WIDTH
 #define FPS 30

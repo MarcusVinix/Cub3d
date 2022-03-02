@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/01 00:32:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:15:14 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	setup(t_cub *cub)
 	cub->player.turnDirection = 0;
 	cub->player.walkDirection = 0;
 	cub->player.rotationAngle = PI / 2;
-	cub->player.walkSpeed = 5;
-	cub->player.turnSpeed = 5 * (PI / 180);
+	cub->player.walkSpeed = 10;
+	cub->player.turnSpeed = 10 * (PI / 180);
 }
 
 float	normalizeAngle(float angle)

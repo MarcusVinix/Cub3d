@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/01 00:27:15 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:19:26 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	render_player(t_data *img, t_player player)
 
 void	draw_gaming(t_cub *cub)
 {
-	draw_background(&cub->img, 0x808080, 0x708090);
+	mlx_clear_window(cub->s_mlx.mlx, cub->s_mlx.win);
+	draw_background(&cub->img, 0xFF283747, 0xFF616A6B);
+	generate3DProjection(cub);
 	render_map(cub);
 	renderRays(cub);
 	render_player(&cub->img, cub->player);
