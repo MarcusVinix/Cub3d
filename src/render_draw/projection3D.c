@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:59:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/02 01:11:24 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/04 01:30:21 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	generate3DProjection(t_cub *cub)
 	t_projection	utils;
 	int				i;
 	int				j;
+	int				c;
+	int				f;
 
 	ft_bzero(&utils, sizeof(t_projection));
 	i = 0;
@@ -35,15 +37,32 @@ void	generate3DProjection(t_cub *cub)
 		utils.wallBottomPixel = (HEIGHT / 2) + (utils.wallStripHeight / 2);
 		if (utils.wallBottomPixel > HEIGHT)
 			utils.wallBottomPixel = HEIGHT;
+
+		c = 0;
+		while (c < utils.wallTopPixel)
+			ft_mlx_pixel_put(&cub->img, i, c++, 0xFF283747);
+
+		int textureOffSetX;
+		if (cub->rays[i].wasHitVertical == TRUE) {
+			textureOffSetX = (int)cub->rays[i].wallHitY % TILE;
+		}
+		else {
+			textureOffSetX = (int)cub->rays[i].wallHitX % TILE;
+		}
+		int texNum = cub->rays[i].wallHitCotent - 1;
+
 		j = utils.wallTopPixel;
 		while (j < utils.wallBottomPixel)
 		{
-			if (cub->rays[i].wasHitVertical)
-				ft_mlx_pixel_put(&cub->img, i, j, 0xFFFFFFF);
-			else
-				ft_mlx_pixel_put(&cub->img, i, j, 0xFFCCCCCC);
+			int	distanceFromTop = j + (utils.wallStripHeight / 2) - (HEIGHT / 2);
+			int textureOffSetY = distanceFromTop * ((float)TEXTURE_HEIGHT / utils.wallStripHeight);
+			uint32_t texelColor = cub->textures[texNum][(TEXTURE_WIDTH * textureOffSetY) + textureOffSetX];
+			ft_mlx_pixel_put(&cub->img, i, j, texelColor);
 			j++;
 		}
+		f = utils.wallBottomPixel;
+		while (f < HEIGHT)
+			ft_mlx_pixel_put(&cub->img, i, f++, 0xFF616A6B);
 		i++;
 	}
 }

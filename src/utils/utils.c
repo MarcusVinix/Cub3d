@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/02 01:15:14 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/04 01:34:25 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ void	setup(t_cub *cub)
 	cub->player.rotationAngle = PI / 2;
 	cub->player.walkSpeed = 10;
 	cub->player.turnSpeed = 10 * (PI / 180);
+
+    	//load textures from textures.h
+	cub->textures[0] = (uint32_t*)REDBRICK_TEXTURE;
+	cub->textures[1] = (uint32_t*)PURPLESTONE_TEXTURE;
+	cub->textures[2] = (uint32_t*)MOSSYSTONE_TEXTURE;
+	cub->textures[3] = (uint32_t*)GRAYSTONE_TEXTURE;
+	cub->textures[4] = (uint32_t*)COLORSTONE_TEXTURE;
+	cub->textures[5] = (uint32_t*)BLUESTONE_TEXTURE;
+	cub->textures[6] = (uint32_t*)WOOD_TEXTURE;
+	cub->textures[7] = (uint32_t*)EAGLE_TEXTURE;
 }
 
 float	normalizeAngle(float angle)

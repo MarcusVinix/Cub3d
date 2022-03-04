@@ -3,6 +3,8 @@
 #define STRUCTS_H
 
 #include <defines.h>
+#include <stdint.h>
+
 
 typedef struct s_projection
 {
@@ -123,6 +125,7 @@ typedef struct s_cub
 	t_data	img;
 	t_img	sprites;
 	t_mlx	s_mlx;
+	uint32_t* textures[NUM_TEXTURES];
 }			t_cub;
 
 #endif
