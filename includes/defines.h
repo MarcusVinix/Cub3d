@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 
 #define DEFINES_H
+#include <math.h>
 
 # define TRUE 0
 # define FALSE 1
@@ -19,8 +20,8 @@
 #define MAP_NUM_COLS 20
 #define NUM_TEXTURES 8
 
-#define WIDTH (MAP_NUM_COLS * TILE)
-#define HEIGHT (MAP_NUM_ROWS * TILE)
+#define WIDTH 1200
+#define HEIGHT 800
 
 #define TEXTURE_WIDTH 64
 #define TEXTURE_HEIGHT 64
@@ -30,6 +31,9 @@
 #define MINIMAP_SCALE_FACTOR 0.2
 #define FOV_ANGLE (60 * (PI / 180))
 #define NUM_RAYS WIDTH
+
+#define DIST_PROJ_PLANE ((WIDTH / 2) / tan(FOV_ANGLE / 2))
+
 #define FPS 30
 #define FRAME_TIME_LENGTH (1000 / FPS)
 

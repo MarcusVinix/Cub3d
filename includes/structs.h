@@ -9,7 +9,6 @@
 typedef struct s_projection
 {
 	float	perpDistance;
-	float	distanceProjPlane;
 	float	projectedWallHeight;
 	int		wallStripHeight;
 	int		wallTopPixel;

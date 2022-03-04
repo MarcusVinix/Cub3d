@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/01 00:45:34 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:57:48 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 
 
 	// HORIZONTAL RAY-GRID INTERSECTION CODE
-	int	foundHorzWallHit = FALSE;
+	int		foundHorzWallHit = FALSE;
 	float	horzWallHitX = 0;
 	float	horzWallHitY = 0;
 	int		horzWallContent = 0;
@@ -88,8 +88,8 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 	float	nextHorzTouchY = utils.yIntercept;
 
 	//increment xstep and ystep untill we find a wall
-	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WIDTH
-		&& nextHorzTouchY >= 0 && nextHorzTouchY <= HEIGHT)
+	while (nextHorzTouchX >= 0 && nextHorzTouchX <= MAP_NUM_COLS * TILE
+		&& nextHorzTouchY >= 0 && nextHorzTouchY <= MAP_NUM_ROWS * TILE)
 	{
 		float	xToCheck = nextHorzTouchX;
 		float	yToCheck;
@@ -142,8 +142,8 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 	float	nextVertTouchY = utils.yIntercept;
 
 	//increment xstep and ystep untill we find a wall
-	while (nextVertTouchX >= 0 && nextVertTouchX <= WIDTH
-		&& nextVertTouchY >= 0 && nextVertTouchY <= HEIGHT)
+	while (nextVertTouchX >= 0 && nextVertTouchX <= MAP_NUM_COLS * TILE
+		&& nextVertTouchY >= 0 && nextVertTouchY <= MAP_NUM_ROWS * TILE)
 	{
 		float	yToCheck = nextVertTouchY;
 		float	xToCheck;
@@ -200,14 +200,13 @@ void	castAllRays(t_cub *cub)
 {
 	// start first ray subtracting half of our FOV
 	float	rayAngle;
-	int		id;
+	int		col;
 
-	rayAngle = cub->player.rotationAngle - (FOV_ANGLE /2);
-	id = 0;
-	while (id < NUM_RAYS)
+	col = 0;
+	while (col < NUM_RAYS)
 	{
-		castRay(rayAngle, id, cub);
-		rayAngle += FOV_ANGLE / NUM_RAYS;
-		id++;
+		rayAngle = cub->player.rotationAngle + atan((col - NUM_RAYS / 2) / DIST_PROJ_PLANE);
+		castRay(rayAngle, col, cub);
+		col++;
 	}
 }

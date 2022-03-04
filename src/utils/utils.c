@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 01:34:25 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/04 15:39:16 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mapHasWallAt(float x, float y)
 {
 	int	mapGridIndexX;
 	int	mapGridIndexY;
-	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+	if (x < 0 || x >= MAP_NUM_COLS * TILE || y < 0 || y >= MAP_NUM_ROWS * TILE)
 		return (FALSE);
 	mapGridIndexX = floor(x / TILE);
 	mapGridIndexY = floor(y / TILE);
@@ -40,8 +40,8 @@ void	setup(t_cub *cub)
 	cub->player.turnDirection = 0;
 	cub->player.walkDirection = 0;
 	cub->player.rotationAngle = PI / 2;
-	cub->player.walkSpeed = 10;
-	cub->player.turnSpeed = 10 * (PI / 180);
+	cub->player.walkSpeed = 15;
+	cub->player.turnSpeed = 15 * (PI / 180);
 
     	//load textures from textures.h
 	cub->textures[0] = (uint32_t*)REDBRICK_TEXTURE;
