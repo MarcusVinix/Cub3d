@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:18:19 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 22:52:54 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 23:08:19 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,22 @@
 void	drawLine(t_data *img, t_line line)
 {
 	int	i;
-	// diferença entre o inicio e fim da linha
+
 	line.delta_x = (line.x2 - line.x1);
 	line.delta_y = (line.y2 - line.y1);
-	
-	// o lado mais longo da linha;
 	if (abs(line.delta_x) >= abs(line.delta_y))
 		line.long_side_len = abs(line.delta_x);
 	else
 		line.long_side_len = abs(line.delta_y);
-	
-	// tamanhos de incremento x e y
 	line.x_increment = line.delta_x / (float)line.long_side_len;
 	line.y_increment = line.delta_y / (float)line.long_side_len;
-
-	// start point
 	line.current_x = line.x1;
 	line.current_y = line.y1;
-
-	// iteração de zero até o lado mais lonngo da linha
 	i = 0;
 	while (i < line.long_side_len)
 	{
-		//desenha um pixel, arrenndodamennto para inteiro para pegar o pixel mais proximo
-		ft_mlx_pixel_put(img, round(line.current_x), round(line.current_y), line.color);
-
-		// incremennt the slop to get tthe next pixel
+		ft_mlx_pixel_put(img, round(line.current_x),
+			round(line.current_y), line.color);
 		line.current_x += line.x_increment;
 		line.current_y += line.y_increment;
 		i++;
@@ -93,6 +83,5 @@ void	changeColorIntesity(uint32_t *color, float factor)
 	uint32_t r = (*color & 0x00FF0000) * factor;
 	uint32_t g = (*color & 0x0000FF00) * factor;
 	uint32_t b = (*color & 0x000000FF) * factor;
-
 	*color = a | (r & 0x00FF0000) | (g & 0x0000FF00) | (b & 0x000000FF);
 }

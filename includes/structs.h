@@ -7,12 +7,32 @@
 
 typedef struct s_projection
 {
-	float	perp_dist;
-	float	proj_wall_height;
-	int		wall_strip_height;
-	int		wall_top_pixel;
-	int		wall_bottom_pixel;
-}			t_projection;
+	float		perp_dist;
+	float		proj_wall_height;
+	int			wall_strip_height;
+	int			wall_top_pixel;
+	int			wall_bottom_pixel;
+	int			x;
+	int			y;
+	int			texture_offset_x;
+	int			textureOffSetY;
+	int			texNum;
+	int			distanceFromTop;
+	uint32_t	texelColor;
+}				t_projection;
+
+typedef struct s_aux_ray
+{
+	int		foundWallHit;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	int		WallContent;
+	float	nextTouchX;
+	float	nextTouchY;
+	float	xToCheck;
+	float	yToCheck;
+	float	HitDistance;
+}			t_aux_ray;
 
 typedef struct s_utils_ray
 {
