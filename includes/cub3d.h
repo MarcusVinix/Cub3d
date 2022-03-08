@@ -57,7 +57,7 @@ void			render_map(t_cub *cub);
 void			render_player(t_data *img, t_player player);
 void			draw_gaming(t_cub *cub);
 void			renderRays(t_cub *cub);
-void			castRay(float rayAngle, int id, t_cub *cub);
+void			castRay(float ray_angle, int id, t_cub *cub);
 void			castAllRays(t_cub *cub);
 void			generate3DProjection(t_cub *cub);
 
@@ -70,5 +70,11 @@ float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
 int				getLenght(t_cub *cub, float	line);
 int				isInsideMap(float x, float y, t_cub *cub);
 void			changeColorIntesity(uint32_t *color, float factor);
+int				is_ray_facing_down(float angle);
+int				is_ray_racing_up(float angle);
+int				is_ray_facing_right(float angle);
+int				is_ray_facing_left(float angle);
+void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
+
 
 #endif

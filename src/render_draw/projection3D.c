@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:59:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 01:07:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 23:02:46 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,41 @@ void	generate3DProjection(t_cub *cub)
 	x = 0;
 	while (x < NUM_RAYS)
 	{
-		utils.perpDistance = cub->rays[x].distance *
-			cos(cub->rays[x].rayAngle - cub->player.rotationAngle);
-		utils.projectedWallHeight = (TILE / utils.perpDistance) *
+		utils.perp_dist = cub->rays[x].distance *
+			cos(cub->rays[x].ray_angle - cub->player.rotation_angle);
+		utils.proj_wall_height = (TILE / utils.perp_dist) *
 			DIST_PROJ_PLANE;
-		utils.wallStripHeight = (int)utils.projectedWallHeight;
-		utils.wallTopPixel = (HEIGHT / 2) - (utils.wallStripHeight / 2);
-		if (utils.wallTopPixel < 0)
-			utils.wallTopPixel = 0;
-		utils.wallBottomPixel = (HEIGHT / 2) + (utils.wallStripHeight / 2);
-		if (utils.wallBottomPixel > HEIGHT)
-			utils.wallBottomPixel = HEIGHT;
+		utils.wall_strip_height = (int)utils.proj_wall_height;
+		utils.wall_top_pixel = (HEIGHT / 2) - (utils.wall_strip_height / 2);
+		if (utils.wall_top_pixel < 0)
+			utils.wall_top_pixel = 0;
+		utils.wall_bottom_pixel = (HEIGHT / 2) + (utils.wall_strip_height / 2);
+		if (utils.wall_bottom_pixel > HEIGHT)
+			utils.wall_bottom_pixel = HEIGHT;
 		y = 0;
-		while (y < utils.wallTopPixel)
+		while (y < utils.wall_top_pixel)
 			ft_mlx_pixel_put(&cub->img, x, y++, 0xFF283747);
-		int textureOffSetX;
-		if (cub->rays[x].wasHitVertical == TRUE) {
-			textureOffSetX = (int)cub->rays[x].wallHitY % TILE;
+		int texture_offset_x;
+		if (cub->rays[x].was_hit_vertical == TRUE) {
+			texture_offset_x = (int)cub->rays[x].wall_hit_y % TILE;
 		}
 		else {
-			textureOffSetX = (int)cub->rays[x].wallHitX % TILE;
+			texture_offset_x = (int)cub->rays[x].wall_hit_x % TILE;
 		}
-		int texNum = cub->rays[x].wallHitCotent - 1;
-		y = utils.wallTopPixel;
-		while (y < utils.wallBottomPixel)
+		check_inverse_offset_x(cub->rays[x], &texture_offset_x);
+		int texNum = cub->rays[x].wall_hit_cotent;
+		y = utils.wall_top_pixel;
+		while (y < utils.wall_bottom_pixel)
 		{
-			int	distanceFromTop = y + (utils.wallStripHeight / 2) - (HEIGHT / 2);
-			int textureOffSetY = distanceFromTop * ((float)TEXTURE_HEIGHT / utils.wallStripHeight);
-			uint32_t texelColor = cub->textures[texNum][(TEXTURE_WIDTH * textureOffSetY) + textureOffSetX];
-			if (cub->rays[x].wasHitVertical == TRUE)
+			int	distanceFromTop = y + (utils.wall_strip_height / 2) - (HEIGHT / 2);
+			int textureOffSetY = distanceFromTop * ((float)TEXTURE_HEIGHT / utils.wall_strip_height);
+			uint32_t texelColor = cub->textures[texNum][(TEXTURE_WIDTH * textureOffSetY) + texture_offset_x];
+			if (cub->rays[x].was_hit_vertical == TRUE)
 				changeColorIntesity(&texelColor, 0.7);
 			ft_mlx_pixel_put(&cub->img, x, y, texelColor);
 			y++;
 		}
-		y = utils.wallBottomPixel;
+		y = utils.wall_bottom_pixel;
 		while (y < HEIGHT)
 			ft_mlx_pixel_put(&cub->img, x, y++, 0xFF616A6B);
 		x++;

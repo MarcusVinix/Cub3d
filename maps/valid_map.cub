@@ -1,7 +1,7 @@
-NO ./maps/textures/wall.xpm
-SO ./maps/textures/empty.xpm
-WE ./maps/textures/wall.xpm
-EA ./maps/textures/wall.xpm
+EA ./maps/textures/wall_ea.xpm
+WE ./maps/textures/wall_we.xpm
+SO ./maps/textures/wall_so.xpm
+NO ./maps/textures/wall_no.xpm
 
 
 

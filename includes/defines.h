@@ -18,7 +18,12 @@
 
 #define MAP_NUM_ROWS 14
 #define MAP_NUM_COLS 25
-#define NUM_TEXTURES 8
+
+#define NO 0
+#define SO 1
+#define WE 2
+#define EA 3
+#define NUM_TEXTURES 4
 
 #define WIDTH 1200
 #define HEIGHT 800

@@ -6,23 +6,22 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 02:17:12 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 23:03:20 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-// int	heightLine(t_cub *cub, float x, float y)
-// {
-// 	int	i;
-
-// 	while ()
-// }
+void	check_inverse_offset_x(t_ray ray, int *texture_offset_x)
+{
+	if (ray.was_hit_vertical == FALSE&& is_ray_facing_down(ray.ray_angle) == TRUE)
+		*texture_offset_x = TILE - *texture_offset_x;
+	if (ray.was_hit_vertical == TRUE&& is_ray_facing_left(ray.ray_angle) == TRUE)
+		*texture_offset_x = TILE - *texture_offset_x;
+}
 
 int	isInsideMap(float x, float y, t_cub *cub)
 {
-	//while (nextVertTouchX >= 0 && nextVertTouchX <= getLenght(cub, nextVertTouchY) * TILE
-	// 	&& nextVertTouchY >= 0 && nextVertTouchY <= cub->map_info.height * TILE)
 	if (x >= 0 && x <= getLenght(cub, y) * TILE && y >= 0 && y <= cub->map_info.height * TILE)
 		return (TRUE);
 	else
@@ -82,28 +81,66 @@ void	findPlayerPosition(t_cub *cub)
 	}
 }
 
-void	setup(t_cub *cub)
+uint32_t	*getTextureBuffer(t_data *img)
+{
+	int				x;
+	int				y;
+	uint32_t	*buffer;
+
+	buffer = ft_calloc(65 * 65, sizeof(uint32_t *));
+	x = -1;
+	while (++x < 64)
+	{
+		y = -1;
+		while (++y < 64)
+		{
+			buffer[(64 * y) + x] = (uint32_t)get_color(img, x, y);
+		}
+	}
+	return (buffer);
+}
+
+void	sprites(t_data *img, void *mlx, char *path)
+{
+	img->img = mlx_xpm_file_to_image(mlx, path, &img->pos.x,
+			&img->pos.y);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->l_len, &img->endian);
+}
+
+void	start_player(t_cub *cub)
 {
 	ft_bzero(&cub->player, sizeof(t_player));
 	cub->map_info.height = ft_strlen_split(cub->map);
 	findPlayerPosition(cub);
 	cub->player.width = 5;
 	cub->player.height = 5;
-	cub->player.turnDirection = 0;
-	cub->player.walkDirection = 0;
-	cub->player.rotationAngle = PI / 2;
-	cub->player.walkSpeed = 30;
-	cub->player.turnSpeed = 5 * (PI / 180);
+	cub->player.turn_direction = 0;
+	cub->player.walk_direction = 0;
+	cub->player.rotation_angle = PI / 2;
+	cub->player.walk_speed = 30;
+	cub->player.turn_speed = 5 * (PI / 180);
+}
 
-    	//load textures from textures.h
-	cub->textures[0] = (uint32_t*)REDBRICK_TEXTURE;
-	cub->textures[1] = (uint32_t*)PURPLESTONE_TEXTURE;
-	cub->textures[2] = (uint32_t*)MOSSYSTONE_TEXTURE;
-	cub->textures[3] = (uint32_t*)GRAYSTONE_TEXTURE;
-	cub->textures[4] = (uint32_t*)COLORSTONE_TEXTURE;
-	cub->textures[5] = (uint32_t*)BLUESTONE_TEXTURE;
-	cub->textures[6] = (uint32_t*)WOOD_TEXTURE;
-	cub->textures[7] = (uint32_t*)EAGLE_TEXTURE;
+void	start_textures(t_cub *cub)
+{
+	sprites(&cub->sprites.no, cub->s_mlx.mlx, cub->texture_path[0][1]);
+	sprites(&cub->sprites.so, cub->s_mlx.mlx, cub->texture_path[1][1]);
+	sprites(&cub->sprites.we, cub->s_mlx.mlx, cub->texture_path[2][1]);
+	sprites(&cub->sprites.ea, cub->s_mlx.mlx, cub->texture_path[3][1]);
+	cub->textures[0] = getTextureBuffer(&cub->sprites.no);
+	cub->textures[1] = getTextureBuffer(&cub->sprites.so);
+	cub->textures[2] = getTextureBuffer(&cub->sprites.we);
+	cub->textures[3] = getTextureBuffer(&cub->sprites.ea);
+}
+
+void	setup(t_cub *cub)
+{
+	start_player(cub);
+	start_textures(cub);
+	// int i = 0;
+	// while (cub->map[i])
+	// 	printf("%s\n", cub->map[i++]);
 }
 
 float	normalizeAngle(float angle)

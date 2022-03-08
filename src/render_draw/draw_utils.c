@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:18:19 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/07 20:28:30 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 22:52:54 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,33 @@ void	drawLine(t_data *img, t_line line)
 {
 	int	i;
 	// diferença entre o inicio e fim da linha
-	line.deltaX = (line.x2 - line.x1);
-	line.deltaY = (line.y2 - line.y1);
+	line.delta_x = (line.x2 - line.x1);
+	line.delta_y = (line.y2 - line.y1);
 	
 	// o lado mais longo da linha;
-	if (abs(line.deltaX) >= abs(line.deltaY))
-		line.longestSideLength = abs(line.deltaX);
+	if (abs(line.delta_x) >= abs(line.delta_y))
+		line.long_side_len = abs(line.delta_x);
 	else
-		line.longestSideLength = abs(line.deltaY);
+		line.long_side_len = abs(line.delta_y);
 	
 	// tamanhos de incremento x e y
-	line.xIncrement = line.deltaX / (float)line.longestSideLength;
-	line.yIncrement = line.deltaY / (float)line.longestSideLength;
+	line.x_increment = line.delta_x / (float)line.long_side_len;
+	line.y_increment = line.delta_y / (float)line.long_side_len;
 
 	// start point
-	line.currentX = line.x1;
-	line.currentY = line.y1;
+	line.current_x = line.x1;
+	line.current_y = line.y1;
 
 	// iteração de zero até o lado mais lonngo da linha
 	i = 0;
-	while (i < line.longestSideLength)
+	while (i < line.long_side_len)
 	{
 		//desenha um pixel, arrenndodamennto para inteiro para pegar o pixel mais proximo
-		ft_mlx_pixel_put(img, round(line.currentX), round(line.currentY), line.color);
+		ft_mlx_pixel_put(img, round(line.current_x), round(line.current_y), line.color);
 
 		// incremennt the slop to get tthe next pixel
-		line.currentX += line.xIncrement;
-		line.currentY += line.yIncrement;
+		line.current_x += line.x_increment;
+		line.current_y += line.y_increment;
 		i++;
 	}
 }

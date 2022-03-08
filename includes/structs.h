@@ -5,36 +5,35 @@
 #include <defines.h>
 #include <stdint.h>
 
-
 typedef struct s_projection
 {
-	float	perpDistance;
-	float	projectedWallHeight;
-	int		wallStripHeight;
-	int		wallTopPixel;
-	int		wallBottomPixel;
+	float	perp_dist;
+	float	proj_wall_height;
+	int		wall_strip_height;
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
 }			t_projection;
 
 typedef struct s_utils_ray
 {
-	float	xIntercept;
-	float	yIntercept;
-	float	xStep;
-	float	yStep;
-	int			isRayFacingUp;
-	int			isRayFacingDown;
-	int			isRayFacingLeft;
-	int			isRayFacingRight;
+	float		x_intercept;
+	float		y_intercept;
+	float		x_step;
+	float		y_step;
+	int			is_ray_facing_up;
+	int			is_ray_facing_down;
+	int			is_ray_facing_left;
+	int			is_ray_facing_right;
 }			t_utils_ray;
 
 typedef struct s_ray
 {
-	float		rayAngle;
-	float		wallHitX;
-	float		wallHitY;
+	float		ray_angle;
+	float		wall_hit_x;
+	float		wall_hit_y;
 	float		distance;
-	int			wasHitVertical;
-	int			wallHitCotent;
+	int			was_hit_vertical;
+	int			wall_hit_cotent;
 }				t_ray;
 
 typedef struct s_line
@@ -43,13 +42,13 @@ typedef struct s_line
 	int				y1;
 	int				x2;
 	int				y2;
-	int				deltaX;
-	int				deltaY;
-	int				longestSideLength;
-	float			xIncrement;
-	float			yIncrement;
-	float			currentX;
-	float			currentY;
+	int				delta_x;
+	int				delta_y;
+	int				long_side_len;
+	float			x_increment;
+	float			y_increment;
+	float			current_x;
+	float			current_y;
 	unsigned int	color;
 
 }					t_line;
@@ -60,11 +59,11 @@ typedef struct s_player
 	float	y;
 	float	width;
 	float	height;
-	int		turnDirection; // -1 for leftl, +1 for right
-	int		walkDirection; // -1 for back, +1 for front
-	float	rotationAngle;
-	float	walkSpeed;
-	float	turnSpeed;
+	int		turn_direction; // -1 for leftl, +1 for right
+	int		walk_direction; // -1 for back, +1 for front
+	float	rotation_angle;
+	float	walk_speed;
+	float	turn_speed;
 }			t_player;
 
 typedef struct s_rect
@@ -80,10 +79,6 @@ typedef struct s_pos
 {
 	int	y;
 	int	x;
-	double	pdx;
-	double	pdy;
-	double	pa;
-	double	len;
 }		t_pos;
 
 typedef struct s_data
@@ -124,9 +119,6 @@ typedef struct s_cub
 	char	***texture_path;
 	char	**colors;
 	char	**map;
-	t_pos	move;
-	double	x;
-	double y;
 	t_data	img;
 	t_img	sprites;
 	t_mlx	s_mlx;

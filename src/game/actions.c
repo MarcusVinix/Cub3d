@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 00:44:50 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 23:03:20 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	movePlayer(t_cub *cub)
 	float	newX;
 	float	newY;
 
-	cub->player.rotationAngle += cub->player.turnDirection * cub->player.turnSpeed;
-	moveStep = cub->player.walkDirection * cub->player.walkSpeed;
-	newX = cub->player.x + cos(cub->player.rotationAngle) * moveStep;
-	newY = cub->player.y + sin(cub->player.rotationAngle) * moveStep;
+	cub->player.rotation_angle += cub->player.turn_direction * cub->player.turn_speed;
+	moveStep = cub->player.walk_direction * cub->player.walk_speed;
+	newX = cub->player.x + cos(cub->player.rotation_angle) * moveStep;
+	newY = cub->player.y + sin(cub->player.rotation_angle) * moveStep;
 
 	if (!mapHasWallAt(cub, newX, newY))
 	{
@@ -29,8 +29,8 @@ void	movePlayer(t_cub *cub)
 		cub->player.y = newY;
 	}
 
-	cub->player.turnDirection = 0;
-	cub->player.walkDirection = 0;
+	cub->player.turn_direction = 0;
+	cub->player.walk_direction = 0;
 }
 
 void	update(t_cub *cub)
@@ -51,12 +51,12 @@ int	action(int keycode, t_cub *cub)
 	if (keycode == ESC)
 		close_win(cub);
 	if (keycode == RIGHT)
-		cub->player.turnDirection = +1;
+		cub->player.turn_direction = +1;
 	if (keycode == LEFT)
-		cub->player.turnDirection = -1;
+		cub->player.turn_direction = -1;
 	if (keycode == TOP)
-		cub->player.walkDirection = +1;
+		cub->player.walk_direction = +1;
 	if (keycode == DOWN)
-		cub->player.walkDirection = -1;
+		cub->player.walk_direction = -1;
 	return (TRUE);
 }
