@@ -21,6 +21,10 @@ typedef struct s_utils_ray
 	float	yIntercept;
 	float	xStep;
 	float	yStep;
+	int			isRayFacingUp;
+	int			isRayFacingDown;
+	int			isRayFacingLeft;
+	int			isRayFacingRight;
 }			t_utils_ray;
 
 typedef struct s_ray
@@ -30,10 +34,6 @@ typedef struct s_ray
 	float		wallHitY;
 	float		distance;
 	int			wasHitVertical;
-	int			isRayFacingUp;
-	int			isRayFacingDown;
-	int			isRayFacingLeft;
-	int			isRayFacingRight;
 	int			wallHitCotent;
 }				t_ray;
 
@@ -111,6 +111,12 @@ typedef struct s_img
 	t_data	player;
 }			t_img;
 
+typedef struct s_map_info
+{
+	int	height;
+	int	width;
+}		t_map_info;
+
 typedef struct s_cub
 {
 	t_player	player;
@@ -125,6 +131,7 @@ typedef struct s_cub
 	t_img	sprites;
 	t_mlx	s_mlx;
 	uint32_t* textures[NUM_TEXTURES];
+	t_map_info	map_info;
 }			t_cub;
 
 #endif

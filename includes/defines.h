@@ -16,8 +16,8 @@
 # define WHITE 0xFFFAFA
 # define BLUEMLX 0x0000FF
 
-#define MAP_NUM_ROWS 13
-#define MAP_NUM_COLS 20
+#define MAP_NUM_ROWS 14
+#define MAP_NUM_COLS 25
 #define NUM_TEXTURES 8
 
 #define WIDTH 1200

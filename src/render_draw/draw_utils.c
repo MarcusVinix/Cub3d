@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:18:19 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/28 18:18:24 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:28:30 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	drawRect(t_data *img, t_rect rect)
 	while (i <= (rect.x + rect.width))
 	{
 		j = rect.y;
-		while (j < (rect.y + rect.height))
+		while (j <= (rect.y + rect.height))
 		{
 			ft_mlx_pixel_put(img, i, j, rect.color);
 			j++;
@@ -79,4 +79,20 @@ unsigned int	get_color(t_data *data, int x, int y)
 
 	color = data->addr + (y * data->l_len + x * (data->bpp / 8));
 	return (*(unsigned int *)color);
+}
+
+/**
+ * @brief Change the color intensity based on a factor value between 0 and 1
+ * 
+ * @param color 
+ * @param factor 
+ */
+void	changeColorIntesity(uint32_t *color, float factor)
+{
+	uint32_t a = (*color & 0xFF000000);
+	uint32_t r = (*color & 0x00FF0000) * factor;
+	uint32_t g = (*color & 0x0000FF00) * factor;
+	uint32_t b = (*color & 0x000000FF) * factor;
+
+	*color = a | (r & 0x00FF0000) | (g & 0x0000FF00) | (b & 0x000000FF);
 }

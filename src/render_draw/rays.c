@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 15:57:48 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 01:22:54 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,38 @@ void	renderRays(t_cub *cub)
 	}
 }
 
+int	isRayFacingDown(float angle)
+{
+	if (angle > 0 && angle < PI)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	isRayFacingUp(float angle)
+{
+	if (isRayFacingDown(angle) == TRUE)
+		return (FALSE);
+	else
+		return (TRUE);
+}
+
+int	isRayFacingRight(float angle)
+{
+	if (angle < 0.5 * PI || angle > 1.5 * PI)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	isRayFacingLeft(float angle)
+{
+	if (isRayFacingRight(angle) == TRUE)
+		return (FALSE);
+	else
+		return (TRUE);
+}
+
 void	castRay(float rayAngle, int id, t_cub *cub)
 {
 	t_utils_ray utils;
@@ -39,23 +71,10 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 	ft_bzero(&cub->rays[id], sizeof(t_ray));
 	rayAngle = normalizeAngle(rayAngle);
 
-	if (rayAngle > 0 && rayAngle < PI)
-		cub->rays[id].isRayFacingDown = TRUE;
-	else
-		cub->rays[id].isRayFacingDown = FALSE;
-	if (cub->rays[id].isRayFacingDown == TRUE)
-		cub->rays[id].isRayFacingUp = FALSE;
-	else
-		cub->rays[id].isRayFacingUp = TRUE;
-	if (rayAngle < 0.5 * PI || rayAngle > 1.5 * PI)
-		cub->rays[id].isRayFacingRight = TRUE;
-	else
-		cub->rays[id].isRayFacingRight = FALSE;
-	if (cub->rays[id].isRayFacingRight == TRUE)
-		cub->rays[id].isRayFacingLeft = FALSE;
-	else
-		cub->rays[id].isRayFacingLeft = TRUE;
-
+	utils.isRayFacingDown = isRayFacingDown(rayAngle);
+	utils.isRayFacingUp = isRayFacingUp(rayAngle);
+	utils.isRayFacingRight = isRayFacingRight(rayAngle);
+	utils.isRayFacingLeft = isRayFacingLeft(rayAngle);
 
 	// HORIZONTAL RAY-GRID INTERSECTION CODE
 	int		foundHorzWallHit = FALSE;
@@ -65,7 +84,7 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 
 	// Find The y-cordinate of the closest horizontal grid intersectionn
 	utils.yIntercept = floor(cub->player.y / TILE) * TILE;
-	if (cub->rays[id].isRayFacingDown == TRUE)
+	if (utils.isRayFacingDown == TRUE)
 		utils.yIntercept += TILE;
 	
 
@@ -75,33 +94,35 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 
 	//calculate tthe increment xstep andd ystep
 	utils.yStep = TILE;
-	if (cub->rays[id].isRayFacingUp == TRUE)
+	if (utils.isRayFacingUp == TRUE)
 		utils.yStep *= -1;
 	
 	utils.xStep = TILE / tan(rayAngle);
-	if (cub->rays[id].isRayFacingLeft == TRUE && utils.xStep > 0)
+	if (utils.isRayFacingLeft == TRUE && utils.xStep > 0)
 		utils.xStep *= -1;
-	if (cub->rays[id].isRayFacingRight == TRUE && utils.xStep < 0)
+	if (utils.isRayFacingRight == TRUE && utils.xStep < 0)
 		utils.xStep *= -1;
 	
 	float	nextHorzTouchX = utils.xIntercept;
 	float	nextHorzTouchY = utils.yIntercept;
 
 	//increment xstep and ystep untill we find a wall
-	while (nextHorzTouchX >= 0 && nextHorzTouchX <= MAP_NUM_COLS * TILE
-		&& nextHorzTouchY >= 0 && nextHorzTouchY <= MAP_NUM_ROWS * TILE)
+	while (isInsideMap(nextHorzTouchX, nextHorzTouchY, cub) == TRUE)
+	// while (nextHorzTouchX >= 0 && nextHorzTouchX <= getLenght(cub, nextHorzTouchY) * TILE
+	// 	&& nextHorzTouchY >= 0 && nextHorzTouchY <= cub->map_info.height * TILE)
 	{
 		float	xToCheck = nextHorzTouchX;
 		float	yToCheck;
-		if (cub->rays[id].isRayFacingUp == TRUE)
+		if (utils.isRayFacingUp == TRUE)
 			yToCheck = nextHorzTouchY + -1;
 		else
 			yToCheck = nextHorzTouchY;
-		if (mapHasWallAt(xToCheck, yToCheck)) {
+		if (mapHasWallAt(cub, xToCheck, yToCheck)) {
 			//fouund  a wall
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
-			horzWallContent = map[(int)floor(yToCheck / TILE)][(int)floor(xToCheck / TILE)];
+			horzWallContent = cub->map[(int)floor(yToCheck / TILE)][(int)floor(xToCheck / TILE)] - '0';
+			// printf("content horz %i  id %i\n ", horzWallContent, id);
 			foundHorzWallHit = TRUE;
 			break ;
 		} else {
@@ -119,7 +140,7 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 
 	// Find The x-cordinate of the closest vertical grid intersectionn
 	utils.xIntercept = floor(cub->player.x / TILE) * TILE;
-	if (cub->rays[id].isRayFacingRight == TRUE)
+	if (utils.isRayFacingRight == TRUE)
 		utils.xIntercept += TILE;
 	
 
@@ -129,33 +150,34 @@ void	castRay(float rayAngle, int id, t_cub *cub)
 
 	//calculate tthe increment xstep andd ystep
 	utils.xStep = TILE;
-	if (cub->rays[id].isRayFacingLeft == TRUE)
+	if (utils.isRayFacingLeft == TRUE)
 		utils.xStep *= -1;
 	
 	utils.yStep = TILE * tan(rayAngle);
-	if (cub->rays[id].isRayFacingUp == TRUE && utils.yStep > 0)
+	if (utils.isRayFacingUp == TRUE && utils.yStep > 0)
 		utils.yStep *= -1;
-	if (cub->rays[id].isRayFacingDown == TRUE && utils.yStep < 0)
+	if (utils.isRayFacingDown == TRUE && utils.yStep < 0)
 		utils.yStep *= -1;
 	
 	float	nextVertTouchX = utils.xIntercept;
 	float	nextVertTouchY = utils.yIntercept;
 
 	//increment xstep and ystep untill we find a wall
-	while (nextVertTouchX >= 0 && nextVertTouchX <= MAP_NUM_COLS * TILE
-		&& nextVertTouchY >= 0 && nextVertTouchY <= MAP_NUM_ROWS * TILE)
+	while (isInsideMap(nextVertTouchX, nextVertTouchY, cub) == TRUE)
+	// while (nextVertTouchX >= 0 && nextVertTouchX <= getLenght(cub, nextVertTouchY) * TILE
+	// 	&& nextVertTouchY >= 0 && nextVertTouchY <= cub->map_info.height * TILE)
 	{
 		float	yToCheck = nextVertTouchY;
 		float	xToCheck;
-		if (cub->rays[id].isRayFacingLeft == TRUE)
+		if (utils.isRayFacingLeft == TRUE)
 			xToCheck = nextVertTouchX + -1;
 		else
 			xToCheck = nextVertTouchX;
-		if (mapHasWallAt(xToCheck, yToCheck)) {
+		if (mapHasWallAt(cub, xToCheck, yToCheck)) {
 			//fouund  a wall
 			VertWallHitX = nextVertTouchX;
 			VertWallHitY = nextVertTouchY;
-			VertWallContent = map[(int)floor(yToCheck / TILE)][(int)floor(xToCheck / TILE)];
+			VertWallContent = cub->map[(int)floor(yToCheck / TILE)][(int)floor(xToCheck / TILE)] - '0';
 			foundVertWallHit = TRUE;
 			break ;
 		} else {

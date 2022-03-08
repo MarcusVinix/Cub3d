@@ -9,7 +9,7 @@ PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
 
 LIBS = -L ./libft -lft -lmlx -lX11 -lXext -lm
-SRC = $(PATH_SRC)free_struct.c $(PATH_SRC)cub3d.c\
+SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
 	  $(addprefix $(PATH_UTILS), utils.c sprites.c) \
@@ -27,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(PATH_SRC)cub3d.c $(LIBS)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
@@ -41,7 +41,7 @@ $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 test:
 	@rm -rf test
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) ./tests/testing.c ./tests/unity/unity.c -o check_test
+	$(CC) $(CFLAGS) -o check_test $(OBJS) ./tests/testing.c ./tests/unity/unity.c $(LIBS)
 
 clean:
 	$(RM) $(PATH_OBJ)

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:59:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 15:26:24 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 01:07:02 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,15 @@ void	generate3DProjection(t_cub *cub)
 		utils.projectedWallHeight = (TILE / utils.perpDistance) *
 			DIST_PROJ_PLANE;
 		utils.wallStripHeight = (int)utils.projectedWallHeight;
-
 		utils.wallTopPixel = (HEIGHT / 2) - (utils.wallStripHeight / 2);
 		if (utils.wallTopPixel < 0)
 			utils.wallTopPixel = 0;
 		utils.wallBottomPixel = (HEIGHT / 2) + (utils.wallStripHeight / 2);
 		if (utils.wallBottomPixel > HEIGHT)
 			utils.wallBottomPixel = HEIGHT;
-
 		y = 0;
 		while (y < utils.wallTopPixel)
 			ft_mlx_pixel_put(&cub->img, x, y++, 0xFF283747);
-
 		int textureOffSetX;
 		if (cub->rays[x].wasHitVertical == TRUE) {
 			textureOffSetX = (int)cub->rays[x].wallHitY % TILE;
@@ -47,13 +44,14 @@ void	generate3DProjection(t_cub *cub)
 			textureOffSetX = (int)cub->rays[x].wallHitX % TILE;
 		}
 		int texNum = cub->rays[x].wallHitCotent - 1;
-
 		y = utils.wallTopPixel;
 		while (y < utils.wallBottomPixel)
 		{
 			int	distanceFromTop = y + (utils.wallStripHeight / 2) - (HEIGHT / 2);
 			int textureOffSetY = distanceFromTop * ((float)TEXTURE_HEIGHT / utils.wallStripHeight);
 			uint32_t texelColor = cub->textures[texNum][(TEXTURE_WIDTH * textureOffSetY) + textureOffSetX];
+			if (cub->rays[x].wasHitVertical == TRUE)
+				changeColorIntesity(&texelColor, 0.7);
 			ft_mlx_pixel_put(&cub->img, x, y, texelColor);
 			y++;
 		}

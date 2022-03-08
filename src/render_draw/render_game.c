@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 01:30:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 01:41:31 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ void	render_map(t_cub *cub)
 	t_rect rect;
 
 	i = 0;
-	while (i < MAP_NUM_ROWS)
+	while (i < cub->map_info.height)
 	{
 		j = 0;
-		while (j < MAP_NUM_COLS)
+		while (j < ft_strlen(cub->map[i]))
 		{
-			rect.x = j * TILE * MINIMAP_SCALE_FACTOR;
-			rect.y = i * TILE * MINIMAP_SCALE_FACTOR;
-			rect.width = TILE * MINIMAP_SCALE_FACTOR;
-			rect.height = TILE * MINIMAP_SCALE_FACTOR;
-			rect.color = map[i][j] != 0 ? BLACK : WHITE;
-			drawRect(&cub->img, rect);
+			if (cub->map[i][j] != ' ')
+			{
+				rect.x = j * TILE * MINIMAP_SCALE_FACTOR;
+				rect.y = i * TILE * MINIMAP_SCALE_FACTOR;
+				rect.width = TILE * MINIMAP_SCALE_FACTOR;
+				rect.height = TILE * MINIMAP_SCALE_FACTOR;
+				rect.color = cub->map[i][j] != '0' ? BLACK : WHITE;
+				drawRect(&cub->img, rect);
+			}
 			j++;
 		}
 		i++;
@@ -65,7 +68,7 @@ void	render_player(t_data *img, t_player player)
 
 void	draw_gaming(t_cub *cub)
 {
-	mlx_clear_window(cub->s_mlx.mlx, cub->s_mlx.win);
+	// mlx_clear_window(cub->s_mlx.mlx, cub->s_mlx.win);
 	// draw_background(&cub->img, 0xFF283747, 0xFF616A6B);
 	generate3DProjection(cub);
 	render_map(cub);

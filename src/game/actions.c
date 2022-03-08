@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/01 00:28:49 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/08 00:44:50 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	movePlayer(t_cub *cub)
 	newX = cub->player.x + cos(cub->player.rotationAngle) * moveStep;
 	newY = cub->player.y + sin(cub->player.rotationAngle) * moveStep;
 
-	if (!mapHasWallAt(newX, newY))
+	if (!mapHasWallAt(cub, newX, newY))
 	{
 		cub->player.x = newX;
 		cub->player.y = newY;

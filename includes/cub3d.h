@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 01:38:38 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/07 20:39:42 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,13 @@ void			castAllRays(t_cub *cub);
 void			generate3DProjection(t_cub *cub);
 
 //utils
-int				mapHasWallAt(float x, float y);
+int				mapHasWallAt(t_cub *cub,float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
 float			normalizeAngle(float angle);
 float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
-
+int				getLenght(t_cub *cub, float	line);
+int				isInsideMap(float x, float y, t_cub *cub);
+void			changeColorIntesity(uint32_t *color, float factor);
 
 #endif
