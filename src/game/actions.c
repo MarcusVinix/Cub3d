@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 23:03:20 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:57:18 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	movePlayer(t_cub *cub)
 		cub->player.x = newX;
 		cub->player.y = newY;
 	}
-
 	cub->player.turn_direction = 0;
 	cub->player.walk_direction = 0;
 }

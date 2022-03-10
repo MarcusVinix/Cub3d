@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/09 00:49:47 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:58:53 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,31 @@
 
 void	render_map(t_cub *cub)
 {
-	int	i;
-	size_t	j;
+	int	x;
+	int y;
 	t_rect rect;
 
-	i = 0;
-	while (i < cub->map_info.height)
+	x = 0;
+	while (x < cub->map_info.height)
 	{
-		j = 0;
-		while (j < ft_strlen(cub->map[i]))
+		y = 0;
+		while (y < (int)ft_strlen(cub->map[x]))
 		{
-			if (cub->map[i][j] != ' ')
+			if (cub->map[x][y] != ' ')
 			{
-				rect.x = j * TILE * MINIMAP_SCALE_FACTOR;
-				rect.y = i * TILE * MINIMAP_SCALE_FACTOR;
+				rect.x = y * TILE * MINIMAP_SCALE_FACTOR;
+				rect.y = x * TILE * MINIMAP_SCALE_FACTOR;
 				rect.width = TILE * MINIMAP_SCALE_FACTOR;
 				rect.height = TILE * MINIMAP_SCALE_FACTOR;
-				rect.color = cub->map[i][j] != '0' ? BLACK : WHITE;
+				if (cub->map[x][y] == '1')
+					rect.color = BLACK;
+				else
+					rect.color = WHITE;
 				drawRect(&cub->img, rect);
 			}
-			j++;
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
 

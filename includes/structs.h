@@ -84,6 +84,7 @@ typedef struct s_player
 	float	rotation_angle;
 	float	walk_speed;
 	float	turn_speed;
+	int		orientation;
 }			t_player;
 
 typedef struct s_rect
@@ -140,6 +141,7 @@ typedef struct s_cub
 	char	**colors;
 	char	**map;
 	t_data	img;
+	t_data	img_map;
 	t_img	sprites;
 	t_mlx	s_mlx;
 	uint32_t* textures[NUM_TEXTURES];

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 23:03:20 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:19:15 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	mapHasWallAt(t_cub *cub, float x, float y)
 /* Free the allocated memory of the map and close the window */
 int	close_win(t_cub *cub)
 {
-	(void)cub;
-	//free_map(game->map.map, &game->map);
+	free_struct(cub);
 	exit(0);
 }
 
@@ -53,6 +52,18 @@ int	getLenght(t_cub *cub, float	line)
 		return (0);
 	else
 		return ((int)ft_strlen(cub->map[(int)floor(line / TILE)]));
+}
+
+void	save_orientation(t_cub *cub, char c)
+{
+	if (c == 'N')
+		cub->player.orientation = NO;
+	else if (c == 'S')
+		cub->player.orientation = SO;
+	else if (c == 'W')
+		cub->player.orientation = WE;
+	else if (c == 'E')
+		cub->player.orientation = EA;
 }
 
 void	findPlayerPosition(t_cub *cub)
@@ -66,10 +77,12 @@ void	findPlayerPosition(t_cub *cub)
 		y = 0;
 		while (y < ft_strlen(cub->map[x]))
 		{
-			if (cub->map[x][y] == 'N')
+			if (cub->map[x][y] == 'N' || cub->map[x][y] == 'S' ||
+				cub->map[x][y] == 'W' || cub->map[x][y] == 'E')
 			{
 				cub->player.x = y * TILE;
 				cub->player.y = x * TILE;
+				save_orientation(cub, cub->map[x][y]);
 				cub->map[x][y] = '0';
 				break ;
 			}
@@ -87,14 +100,14 @@ uint32_t	*getTextureBuffer(t_data *img)
 	int				y;
 	uint32_t	*buffer;
 
-	buffer = ft_calloc(65 * 65, sizeof(uint32_t *));
+	buffer = ft_calloc(TEXTURE_WIDTH * TEXTURE_HEIGHT, sizeof(uint32_t *));
 	x = -1;
-	while (++x < 64)
+	while (++x < TEXTURE_HEIGHT)
 	{
 		y = -1;
-		while (++y < 64)
+		while (++y < TEXTURE_WIDTH)
 		{
-			buffer[(64 * y) + x] = (uint32_t)get_color(img, x, y);
+			buffer[(TEXTURE_WIDTH * y) + x] = (uint32_t)get_color(img, x, y);
 		}
 	}
 	return (buffer);
@@ -108,6 +121,19 @@ void	sprites(t_data *img, void *mlx, char *path)
 			&img->l_len, &img->endian);
 }
 
+void	save_initial_angle(t_cub *cub)
+{
+	if (cub->player.orientation == WE)
+		cub->player.rotation_angle = TWO_PI / 2;
+	else if (cub->player.orientation == EA)
+		cub->player.rotation_angle = (TWO_PI * 2) / 2;
+	else if (cub->player.orientation == SO)
+		cub->player.rotation_angle = PI / 2;
+	else if (cub->player.orientation == NO)
+		cub->player.rotation_angle = (PI * 3) / 2;
+
+}
+
 void	start_player(t_cub *cub)
 {
 	ft_bzero(&cub->player, sizeof(t_player));
@@ -117,7 +143,7 @@ void	start_player(t_cub *cub)
 	cub->player.height = 5;
 	cub->player.turn_direction = 0;
 	cub->player.walk_direction = 0;
-	cub->player.rotation_angle = PI / 2;
+	save_initial_angle(cub);
 	cub->player.walk_speed = 30;
 	cub->player.turn_speed = 5 * (PI / 180);
 }
