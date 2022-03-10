@@ -144,6 +144,8 @@ typedef struct s_cub
 	t_data	img_map;
 	t_img	sprites;
 	t_mlx	s_mlx;
+	uint32_t celling_color;
+	uint32_t floor_color;
 	uint32_t* textures[NUM_TEXTURES];
 	t_map_info	map_info;
 }			t_cub;

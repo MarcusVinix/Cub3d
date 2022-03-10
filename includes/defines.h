@@ -9,12 +9,15 @@
 # define DOWN 0x73
 # define LEFT 0x61
 # define RIGHT 0x64
+# define ARROW_LEFT 65361
+# define ARROW_RIGHT 65363
 # define ESC 0xff1b
 # define TILE 64
 # define BLACK 16777216
 # define REDMLX 0x00FF0000
 # define WHITE 0xFFFAFA
 # define BLUEMLX 0x0000FF
+# define HEXA "0123456789ABCDEF"
 
 #define MAP_NUM_ROWS 14
 #define MAP_NUM_COLS 25

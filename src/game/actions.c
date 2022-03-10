@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 13:57:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:59:38 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	action(int keycode, t_cub *cub)
 {
 	if (keycode == ESC)
 		close_win(cub);
-	if (keycode == RIGHT)
+	if (keycode == RIGHT || keycode == ARROW_RIGHT)
 		cub->player.turn_direction = +1;
-	if (keycode == LEFT)
+	if (keycode == LEFT || keycode == ARROW_LEFT)
 		cub->player.turn_direction = -1;
 	if (keycode == TOP)
 		cub->player.walk_direction = +1;

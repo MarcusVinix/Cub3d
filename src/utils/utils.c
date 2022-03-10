@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 14:19:15 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:26:15 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,12 @@ void	start_player(t_cub *cub)
 	cub->player.turn_speed = 5 * (PI / 180);
 }
 
+void	build_main_img(t_cub *cub)
+{
+	cub->img.img = mlx_new_image(cub->s_mlx.mlx, WIDTH, HEIGHT);
+	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp, &cub->img.l_len, &cub->img.endian);
+}
+
 void	start_textures(t_cub *cub)
 {
 	sprites(&cub->sprites.no, cub->s_mlx.mlx, cub->texture_path[0][1]);
@@ -160,10 +166,33 @@ void	start_textures(t_cub *cub)
 	cub->textures[3] = getTextureBuffer(&cub->sprites.ea);
 }
 
+void	get_color_hexa(t_cub *cub)
+{
+	char	**floor;
+	char	**cell;
+	char	*aux;
+	char	*newfloor;
+	char	*newcell;
+
+
+	cell = ft_split(cub->colors[0], ',');
+	aux = ft_strjoin(cell[0], cell[1]);
+	newcell = ft_strjoin(aux, cell[2]);
+	free(aux);
+	floor = ft_split(cub->colors[1], ',');
+	aux = ft_strjoin(floor[0], floor[1]);
+	newfloor = ft_strjoin(aux, floor[2]);
+	int cellInt = ft_atoi(newcell);
+	int floorInt = ft_atoi(newfloor);
+	printf("cellint |%d| floor |%d|\n", cellInt, floorInt);
+}
+
 void	setup(t_cub *cub)
 {
 	start_player(cub);
 	start_textures(cub);
+	printf("color |%s| color 2 |%s|\n", cub->colors[0], cub->colors[1]);
+	get_color_hexa(cub);
 	// int i = 0;
 	// while (cub->map[i])
 	// 	printf("%s\n", cub->map[i++]);

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/07 20:39:42 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:36:05 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int				is_ray_racing_up(float angle);
 int				is_ray_facing_right(float angle);
 int				is_ray_facing_left(float angle);
 void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
-
+void			build_main_img(t_cub *cub);
 
 #endif
