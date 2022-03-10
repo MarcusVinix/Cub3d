@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:22 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/12 00:41:10 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/04 01:38:38 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	check_map(char *path_map, t_cub *cub)
 	if (cub->colors == NULL)
 		return (error_msg(ERROR_SKY_GRD_N_EXIST, 2, cub));
 	cub->map = store_map_blueprint(content_map);
-	ft_free_split(content_map);
 	if (valid_size_map(cub->map) == FALSE)
 		return (error_msg(ERROR_INVALID_SIZE_MAP, 1, cub));
 	if (valid_characters(cub->map) == FALSE)

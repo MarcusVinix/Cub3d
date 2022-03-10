@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:58:12 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/12 00:34:22 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:57:53 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	check_around(char **map, int line, int col)
 	if (col < len_down)
 		if (map[line + 1][col] == ' ')
 			return (TRUE);
+	if (col > len_up - 1 || col > len_down - 1)
+		return (TRUE);
 	return (FALSE);
 }
 
