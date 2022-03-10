@@ -138,7 +138,7 @@ typedef struct s_cub
 	t_player	player;
 	t_ray		rays[NUM_RAYS];
 	char	***texture_path;
-	char	**colors;
+	char	***colors;
 	char	**map;
 	t_data	img;
 	t_data	img_map;

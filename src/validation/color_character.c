@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_character.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 01:33:56 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:52:45 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,28 @@
  * @return On sucess the colors of ceilling and floor inside a double pointer.
  * NULL if something its wrong.
  */
-char	**valid_ceilling_and_floor_color(char **content_map)
+char	***valid_ceilling_and_floor_color(char **content_map)
 {
-	char	**collors;
+	char	***collors;
 	char	**key_val;
-	char	*letters[2];
 	int		i;
+	int		index_let;
 
-	i = 3;
-	letters[0] = "F";
-	letters[1] = "C";
+	i = -1;
+	index_let = 0;
 	collors = ft_calloc(3, sizeof(char *));
-	while (++i <= 5)
+	while (++i < 6)
 	{
 		key_val = ft_split(content_map[i], ' ');
-		if (ft_strcmp(key_val[0], letters[i - 4]) != 0)
-		{
-			ft_free_split(key_val);
-			ft_free_split(content_map);
-			return (NULL);
-		}
-		collors[i - 4] = ft_strdup(key_val[1]);
+		if (ft_strcmp(key_val[0], "F") == 0 || ft_strcmp(key_val[0], "C") == 0)
+			collors[index_let++] = ft_split(content_map[i], ' ');
 		ft_free_split(key_val);
+	}
+	if (ft_strcmp(collors[0][0], collors[1][0]) == 0)
+	{
+		ft_free_triple(collors);
+		ft_free_split(content_map);
+		return (NULL);
 	}
 	return (collors);
 }

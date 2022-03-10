@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 19:26:15 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:55:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,11 +175,11 @@ void	get_color_hexa(t_cub *cub)
 	char	*newcell;
 
 
-	cell = ft_split(cub->colors[0], ',');
+	cell = ft_split(cub->colors[0][1], ',');
 	aux = ft_strjoin(cell[0], cell[1]);
 	newcell = ft_strjoin(aux, cell[2]);
 	free(aux);
-	floor = ft_split(cub->colors[1], ',');
+	floor = ft_split(cub->colors[1][1], ',');
 	aux = ft_strjoin(floor[0], floor[1]);
 	newfloor = ft_strjoin(aux, floor[2]);
 	int cellInt = ft_atoi(newcell);
@@ -191,7 +191,7 @@ void	setup(t_cub *cub)
 {
 	start_player(cub);
 	start_textures(cub);
-	printf("color |%s| color 2 |%s|\n", cub->colors[0], cub->colors[1]);
+	printf("color |%s| color 2 |%s|\n", cub->colors[0][1], cub->colors[1][1]);
 	get_color_hexa(cub);
 	// int i = 0;
 	// while (cub->map[i])

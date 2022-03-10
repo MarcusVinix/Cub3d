@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 00:29:22 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/05 00:47:29 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:58:49 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*ft_free_split(char **str)
 		return (NULL);
 	while (str[count])
 		free(str[count++]);
-	if (str)
-		free(str);
+	free(str);
 	return (NULL);
 }

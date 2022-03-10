@@ -6,36 +6,16 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:22 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/04 01:38:38 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:33:21 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	count_valid_chars(char *str)
-{
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		if (*str == '1' || *str == '0')
-			count++;
-		str++;
-	}
-	return (count);
-}
-
 int	valid_size_map(char **map)
 {
-	int	i;
-
-	i = 0;
 	if (ft_strlen_split(map) < 3)
 		return (FALSE);
-	while (map[i])
-		if (count_valid_chars(map[i++]) < 3)
-			return (FALSE);
 	return (TRUE);
 }
 

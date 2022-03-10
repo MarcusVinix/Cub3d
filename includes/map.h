@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 23:10:51 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:49:58 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MAP_H
 
 char	**store_content_map(char *path_map);
-char	**valid_ceilling_and_floor_color(char **content_map);
+char	***valid_ceilling_and_floor_color(char **content_map);
 char	***valid_texture(char **content_map);
 int		texture_file_exist(char ***texture);
 int		valid_characters(char **content_map);

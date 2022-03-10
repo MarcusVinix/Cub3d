@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 19:37:50 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 20:57:51 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	render_player(t_data *img, t_player player)
 void	draw_gaming(t_cub *cub)
 {
 	generate3DProjection(cub);
-	// render_map(cub);
-	// renderRays(cub);
-	// render_player(&cub->img, cub->player);
+	render_map(cub);
+	renderRays(cub);
+	render_player(&cub->img, cub->player);
 	mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, cub->img.img, 0, 0);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->img.img);
 	build_main_img(cub);

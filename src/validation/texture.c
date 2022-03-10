@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:57:10 by mavinici          #+#    #+#             */
-/*   Updated: 2022/02/11 17:41:20 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:00:40 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	***valid_texture(char **content_map)
 	sides[1] = ft_split("SO FILE", ' ');
 	sides[2] = ft_split("WE FILE", ' ');
 	sides[3] = ft_split("EA FILE", ' ');
-	textures = ft_calloc(6, sizeof(char *));
+	textures = ft_calloc(7, sizeof(char *));
 	while (++i < 6 && i < ft_strlen_split(content_map))
 	{
 		textures[i] = ft_split(content_map[i], ' ');
