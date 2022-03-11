@@ -124,7 +124,6 @@ typedef struct s_img
 	t_data	we;
 	t_data	so;
 	t_data	ea;
-	t_data	player;
 }			t_img;
 
 typedef struct s_map_info
@@ -133,6 +132,23 @@ typedef struct s_map_info
 	int	width;
 }		t_map_info;
 
+typedef struct s_rgb
+{
+	int		red;
+	int		green;
+	int		blue;
+	int		status;
+}		t_rgb;
+
+typedef struct s_collor
+{
+	t_rgb	cell_rgb;
+	t_rgb	floor_rgb;
+	int		cell;
+	int		floor;
+	int		status;
+}		t_collor;
+
 typedef struct s_cub
 {
 	t_player	player;
@@ -140,13 +156,13 @@ typedef struct s_cub
 	char	***texture_path;
 	char	***colors;
 	char	**map;
+	char	**content_map;
 	t_data	img;
 	t_data	img_map;
 	t_img	sprites;
 	t_mlx	s_mlx;
-	uint32_t celling_color;
-	uint32_t floor_color;
 	uint32_t* textures[NUM_TEXTURES];
+	t_collor	collors;
 	t_map_info	map_info;
 }			t_cub;
 

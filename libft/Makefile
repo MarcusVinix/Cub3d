@@ -36,7 +36,7 @@ SRCS =	ft_bzero.c ft_isalpha.c \
 		is_all_space.c ft_strlen_split.c ft_strdup2.c \
 		find_index.c ft_split_rev.c concatenate_join.c \
 		ft_line.c get_next_line.c ft_free_split.c \
-		ft_set_free_and_null.c ft_free_triple.c
+		ft_set_free_and_null.c ft_free_triple.c ft_free_ptr.c
 
 OBJS_PATH = objs
 

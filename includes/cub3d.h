@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 20:33:57 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:07:03 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,21 @@
 # include	<math.h>
 # include	<structs.h>
 # include	<limits.h>
-//# include	<texture.h>
+
 
 //validation
 int				is_invalid_arg(int argc, char **argv);
 int				file_exist(char *map_path);
 int				check_extension(char *str, char *extension);
 int				check_map(char *path_map, t_cub *cub);
+t_collor		check_color(char ***colors);
+
 
 int				error_msg(char *msg, int level, t_cub *cub);
 //free
 void			free_struct(t_cub *cub);
+void			free_images(t_cub *cub);
+void			free_mlx_all(t_cub *cub);
 
 // draw
 void			ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
@@ -76,5 +80,6 @@ int				is_ray_facing_right(float angle);
 int				is_ray_facing_left(float angle);
 void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
 void			build_main_img(t_cub *cub);
+
 
 #endif

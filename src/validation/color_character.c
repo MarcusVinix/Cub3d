@@ -3,14 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   color_character.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 21:52:45 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 17:17:33 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+t_rgb	check_rgb_color(char **str)
+{
+	char	*color;
+	char	**color_spl;
+	t_rgb	rgb;
+
+	rgb.status = TRUE;
+	color = ft_split_rev(str);
+	color_spl = ft_split(color + 1, ',');
+	free(color);
+	if (ft_strlen_split(color_spl) < 3)
+	{
+		ft_free_split(color_spl);
+		rgb.status = FALSE;
+		return (rgb);
+	}
+	
+	rgb.red = ft_atoi(color_spl[0]);
+	rgb.green = ft_atoi(color_spl[1]);
+	rgb.blue = ft_atoi(color_spl[2]);
+	ft_free_split(color_spl);
+	if (rgb.blue < 0 || rgb.green < 0 || rgb.red < 0 ||
+		rgb.blue > 255 || rgb.green > 255 || rgb.red > 255)
+	{
+		rgb.status = FALSE;
+		return (rgb);
+	}
+	return (rgb);
+}
+
+t_collor	check_color(char ***colors)
+{
+	t_collor	collor;
+	
+	collor.status = TRUE;
+	collor.floor_rgb = check_rgb_color(colors[0]);
+	collor.cell_rgb = check_rgb_color(colors[1]);
+	if (collor.cell_rgb.status == FALSE || collor.floor_rgb.status == FALSE)
+		collor.status = FALSE;
+	return (collor);
+}
 
 /**
  * @brief Check if the colors of ceilling and floor its on
@@ -37,8 +79,11 @@ char	***valid_ceilling_and_floor_color(char **content_map)
 			collors[index_let++] = ft_split(content_map[i], ' ');
 		ft_free_split(key_val);
 	}
-	if (ft_strcmp(collors[0][0], collors[1][0]) == 0)
+	if (collors[0] == NULL || collors[1] == NULL || 
+		ft_strlen_split(collors[0]) < 2 || ft_strlen_split(collors[0]) < 2 ||
+			ft_strcmp(collors[0][0], collors[1][0]) == 0)
 	{
+		printf("CAIU\n");
 		ft_free_triple(collors);
 		ft_free_split(content_map);
 		return (NULL);

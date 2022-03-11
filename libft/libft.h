@@ -104,5 +104,6 @@ void	concatenate_join(char **aux, char *str);
 char	*ft_free_split(char **str);
 char	*ft_set_free_and_null(char **str);
 char	*ft_free_triple(char ***str);
+void	ft_free_ptr(void **ptr);
 
 #endif

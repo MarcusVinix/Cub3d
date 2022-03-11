@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:59:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/08 23:29:18 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:58:43 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	draw_celling(t_cub *cub, t_projection var)
 {
 	var.y = 0;
 	while (var.y < var.wall_top_pixel)
-		ft_mlx_pixel_put(&cub->img, var.x, var.y++, 0xFF283747);
+		ft_mlx_pixel_put(&cub->img, var.x, var.y++, cub->collors.cell);
 }
 
 void	draw_floor(t_cub *cub, t_projection var)
 {
 	var.y = var.wall_bottom_pixel;
 	while (var.y < HEIGHT)
-		ft_mlx_pixel_put(&cub->img, var.x, var.y++, 0xFF616A6B);
+		ft_mlx_pixel_put(&cub->img, var.x, var.y++, cub->collors.floor);
 }
 
 void	get_texture_offset(t_cub *cub, t_projection *var)

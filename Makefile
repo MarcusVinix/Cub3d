@@ -20,7 +20,7 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -g -I $(PATH_INCLUDES) -fsanitize=leak
+CFLAGS = -Wall -Wextra -Werror -O3 -g -I $(PATH_INCLUDES) #-fsanitize=leak
 RM = rm -rf
 
 all: $(NAME)

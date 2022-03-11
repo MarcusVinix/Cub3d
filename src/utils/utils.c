@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 21:55:48 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:07:29 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	mapHasWallAt(t_cub *cub, float x, float y)
 int	close_win(t_cub *cub)
 {
 	free_struct(cub);
+	free_mlx_all(cub);
 	exit(0);
 }
 
@@ -166,33 +167,18 @@ void	start_textures(t_cub *cub)
 	cub->textures[3] = getTextureBuffer(&cub->sprites.ea);
 }
 
-void	get_color_hexa(t_cub *cub)
+int	get_color_mlx(t_rgb color)
 {
-	char	**floor;
-	char	**cell;
-	char	*aux;
-	char	*newfloor;
-	char	*newcell;
-
-
-	cell = ft_split(cub->colors[0][1], ',');
-	aux = ft_strjoin(cell[0], cell[1]);
-	newcell = ft_strjoin(aux, cell[2]);
-	free(aux);
-	floor = ft_split(cub->colors[1][1], ',');
-	aux = ft_strjoin(floor[0], floor[1]);
-	newfloor = ft_strjoin(aux, floor[2]);
-	int cellInt = ft_atoi(newcell);
-	int floorInt = ft_atoi(newfloor);
-	printf("cellint |%d| floor |%d|\n", cellInt, floorInt);
+	return (color.red << 16 | color.green << 8 | color.blue);
 }
 
 void	setup(t_cub *cub)
 {
 	start_player(cub);
 	start_textures(cub);
-	printf("color |%s| color 2 |%s|\n", cub->colors[0][1], cub->colors[1][1]);
-	get_color_hexa(cub);
+	free_images(cub);
+	cub->collors.cell = get_color_mlx(cub->collors.cell_rgb);
+	cub->collors.floor = get_color_mlx(cub->collors.floor_rgb);
 	// int i = 0;
 	// while (cub->map[i])
 	// 	printf("%s\n", cub->map[i++]);
