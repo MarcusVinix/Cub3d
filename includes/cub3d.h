@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 16:07:03 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/11 22:50:02 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			draw_background(t_data *img, int color_up, int color_down);
 void			render_map(t_cub *cub);
 void			render_player(t_data *img, t_player player);
 void			draw_gaming(t_cub *cub);
-void			renderRays(t_cub *cub);
+void			render_ray(t_cub *cub);
 void			castRay(float ray_angle, int id, t_cub *cub);
 void			castAllRays(t_cub *cub);
 void			generate3DProjection(t_cub *cub);

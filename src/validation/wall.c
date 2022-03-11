@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:58:12 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/07 16:57:53 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/11 22:41:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_around(char **map, int line, int col)
 	len_up = ft_strlen(map[line - 1]);
 	len_down = ft_strlen(map[line + 1]);
 	if (map[line][col - 1])
-		if (map[line - 1][col] == ' ')
+		if (col < len_up && map[line - 1][col] == ' ')
 			return (TRUE);
 	if (map[line][col + 1])
 		if (map[line][col + 1] == ' ')

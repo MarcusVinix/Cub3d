@@ -17,10 +17,10 @@ SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_RENDER_DRAW), draw_utils.c render_game.c rays.c projection3D.c)
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
-NAME = cub3d
+NAME = cub3D
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -g -I $(PATH_INCLUDES) #-fsanitize=leak
+CFLAGS = -Wall -Wextra -Werror -O3 -g -I $(PATH_INCLUDES) -fsanitize=leak
 RM = rm -rf
 
 all: $(NAME)
@@ -66,5 +66,5 @@ push: add
 	git push
 
 valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./cub3d maps/valid_map.cub
+	valgrind ./cub3D maps/valid_map.cub
 

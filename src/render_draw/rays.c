@@ -6,13 +6,13 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 13:35:08 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/11 22:50:00 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	renderRays(t_cub *cub)
+void	render_ray(t_cub *cub)
 {
 	t_line	line;
 	int		i;
