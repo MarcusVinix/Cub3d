@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 00:09:47 by coder             #+#    #+#             */
-/*   Updated: 2022/03/12 01:51:23 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/12 17:07:38 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	free_struct(t_cub *cub)
 		ft_free_split(cub->map);
 	if (cub->content_map != NULL)
 		ft_free_split(cub->content_map);
+}
+
+/* Free the allocated memory of the map and close the window */
+int	close_win(t_cub *cub)
+{
+	free_struct(cub);
+	free_mlx_all(cub);
+	exit(0);
 }

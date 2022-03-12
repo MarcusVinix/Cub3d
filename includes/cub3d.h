@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/12 00:55:43 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/12 17:44:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ void			free_mlx_all(t_cub *cub);
 // draw
 void			ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
 unsigned int	get_color(t_data *data, int x, int y);
-void			draw_line(t_data *img, t_pos pos, int color, int sig);
 void			draw_ray(t_data *img, t_pos pos);
-void			drawRect(t_data *img, t_rect rect);
-void			drawLine(t_data *img, t_line line);
+void			draw_rect(t_data *img, t_rect rect);
+void			draw_line(t_data *img, t_line line);
 
 //actions
-void			movePlayer(t_cub *cub);
+void			move_player(t_cub *cub);
 void			update(t_cub *cub);
 int				action_loop(t_cub *cub);
 int				action(int keycode, t_cub *cub);
@@ -59,24 +58,32 @@ void			render_map(t_cub *cub);
 void			render_player(t_data *img, t_player player);
 void			draw_gaming(t_cub *cub);
 void			render_ray(t_cub *cub);
-void			castRay(float ray_angle, int id, t_cub *cub);
-void			castAllRays(t_cub *cub);
-void			generate3DProjection(t_cub *cub);
+void			cast_ray(float ray_angle, int id, t_cub *cub);
+void			cast_all_rays(t_cub *cub);
+void			generate3d_projection(t_cub *cub);
+void			find_horz_intersection(t_aux_ray *aux, t_utils_ray *utils,
+					t_cub *cub);
+t_aux_ray		ray_horizontal(t_cub *cub, t_utils_ray *utils, float angle);
+void			find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils,
+					t_cub *cub);
+t_aux_ray		ray_vertical(t_cub *cub, t_utils_ray *utils, float angle);
 
 //utils
-int				mapHasWallAt(t_cub *cub, float x, float y);
+int				map_has_wall_at(t_cub *cub, float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
-float			normalizeAngle(float angle);
-float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
-int				getLenght(t_cub *cub, float line);
-int				isInsideMap(float x, float y, t_cub *cub);
-void			changeColorIntesity(uint32_t *color, float factor);
+float			normalize_angle(float angle);
+float			distance_between_points(float x1, float y1, float x2, float y2);
+int				get_lenght(t_cub *cub, float line);
+int				is_inside_map(float x, float y, t_cub *cub);
+void			change_color_intesity(uint32_t *color, float factor);
 int				is_ray_facing_down(float angle);
 int				is_ray_racing_up(float angle);
 int				is_ray_facing_right(float angle);
 int				is_ray_facing_left(float angle);
 void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
 void			build_main_img(t_cub *cub);
+void			start_textures(t_cub *cub);
+int				get_color_mlx(t_rgb color);
 
 #endif
