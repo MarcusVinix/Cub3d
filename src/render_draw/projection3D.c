@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection3D.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:59:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 15:58:43 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 01:17:13 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void get_values_projection(t_cub *cub, t_projection *var)
 	var->perp_dist = cub->rays[var->x].distance *
 		cos(cub->rays[var->x].ray_angle - cub->player.rotation_angle);
 	var->proj_wall_height = (TILE / var->perp_dist) *
-		DIST_PROJ_PLANE;
+		cub->dist_proj_plane;
 	var->wall_strip_height = (int)var->proj_wall_height;
 	var->wall_top_pixel = (HEIGHT / 2) - (var->wall_strip_height / 2);
 	if (var->wall_top_pixel < 0)
@@ -48,7 +48,7 @@ void	get_texture_offset(t_cub *cub, t_projection *var)
 	else
 		var->texture_offset_x = (int)cub->rays[var->x].wall_hit_x % TILE;
 	check_inverse_offset_x(cub->rays[var->x], &var->texture_offset_x);
-	var->texNum = cub->rays[var->x].wall_hit_cotent;
+	var->tex_num = cub->rays[var->x].wall_hit_cotent;
 }
 
 void	generate3DProjection(t_cub *cub)
@@ -64,15 +64,15 @@ void	generate3DProjection(t_cub *cub)
 		var.y = var.wall_top_pixel;
 		while (var.y < var.wall_bottom_pixel)
 		{
-			var.distanceFromTop = var.y + (var.wall_strip_height / 2)
+			var.distance_from_top = var.y + (var.wall_strip_height / 2)
 					- (HEIGHT / 2);
-			var.textureOffSetY = var.distanceFromTop * ((float)TEXTURE_HEIGHT
+			var.texture_off_sety = var.distance_from_top * ((float)TEXTURE_HEIGHT
 					/ var.wall_strip_height);
-			var.texelColor = cub->textures[var.texNum][(TEXTURE_WIDTH *
-					var.textureOffSetY) + var.texture_offset_x];
+			var.texel_color = cub->textures[var.tex_num][(TEXTURE_WIDTH *
+					var.texture_off_sety) + var.texture_offset_x];
 			if (cub->rays[var.x].was_hit_vertical == TRUE)
-				changeColorIntesity(&var.texelColor, 0.7);
-			ft_mlx_pixel_put(&cub->img, var.x, var.y, var.texelColor);
+				changeColorIntesity(&var.texel_color, 0.7);
+			ft_mlx_pixel_put(&cub->img, var.x, var.y, var.texel_color);
 			var.y++;
 		}
 		draw_floor(cub, var);

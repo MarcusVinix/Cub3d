@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
+/*   Updated: 2022/03/12 01:18:04 by coder            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 
-#define STRUCTS_H
+# define STRUCTS_H
 
-#include <defines.h>
-#include <stdint.h>
+# include <defines.h>
+# include <stdint.h>
 
 typedef struct s_projection
 {
@@ -15,23 +27,23 @@ typedef struct s_projection
 	int			x;
 	int			y;
 	int			texture_offset_x;
-	int			textureOffSetY;
-	int			texNum;
-	int			distanceFromTop;
-	uint32_t	texelColor;
+	int			texture_off_sety;
+	int			tex_num;
+	int			distance_from_top;
+	uint32_t	texel_color;
 }				t_projection;
 
 typedef struct s_aux_ray
 {
-	int		foundWallHit;
+	int		found_wall_hit;
 	float	wall_hit_x;
 	float	wall_hit_y;
-	int		WallContent;
-	float	nextTouchX;
-	float	nextTouchY;
-	float	xToCheck;
-	float	yToCheck;
-	float	HitDistance;
+	int		wall_content;
+	float	next_touchx;
+	float	next_touchy;
+	float	xto_check;
+	float	yto_check;
+	float	hit_distance;
 }			t_aux_ray;
 
 typedef struct s_utils_ray
@@ -73,14 +85,16 @@ typedef struct s_line
 
 }					t_line;
 
+//turndirection =  -1 for leftl, +1 for right
+//walkdirection = -1 for back, +1 for front
 typedef struct s_player
 {
 	float	x;
 	float	y;
 	float	width;
 	float	height;
-	int		turn_direction; // -1 for leftl, +1 for right
-	int		walk_direction; // -1 for back, +1 for front
+	int		turn_direction;
+	int		walk_direction;
 	float	rotation_angle;
 	float	walk_speed;
 	float	turn_speed;
@@ -153,17 +167,18 @@ typedef struct s_cub
 {
 	t_player	player;
 	t_ray		rays[NUM_RAYS];
-	char	***texture_path;
-	char	***colors;
-	char	**map;
-	char	**content_map;
-	t_data	img;
-	t_data	img_map;
-	t_img	sprites;
-	t_mlx	s_mlx;
-	uint32_t* textures[NUM_TEXTURES];
+	char		***texture_path;
+	char		***colors;
+	char		**map;
+	char		**content_map;
+	t_data		img;
+	t_data		img_map;
+	t_img		sprites;
+	t_mlx		s_mlx;
+	uint32_t	*textures[NUM_TEXTURES];
 	t_collor	collors;
 	t_map_info	map_info;
+	double		dist_proj_plane;
 }			t_cub;
 
 #endif

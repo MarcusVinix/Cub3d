@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_character.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 17:17:33 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 01:35:09 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ t_rgb	check_rgb_color(char **str)
 		rgb.status = FALSE;
 		return (rgb);
 	}
-	
 	rgb.red = ft_atoi(color_spl[0]);
 	rgb.green = ft_atoi(color_spl[1]);
 	rgb.blue = ft_atoi(color_spl[2]);
 	ft_free_split(color_spl);
-	if (rgb.blue < 0 || rgb.green < 0 || rgb.red < 0 ||
-		rgb.blue > 255 || rgb.green > 255 || rgb.red > 255)
+	if (rgb.blue < 0 || rgb.green < 0 || rgb.red < 0
+		|| rgb.blue > 255 || rgb.green > 255 || rgb.red > 255)
 	{
 		rgb.status = FALSE;
 		return (rgb);
@@ -45,7 +44,7 @@ t_rgb	check_rgb_color(char **str)
 t_collor	check_color(char ***colors)
 {
 	t_collor	collor;
-	
+
 	collor.status = TRUE;
 	collor.floor_rgb = check_rgb_color(colors[0]);
 	collor.cell_rgb = check_rgb_color(colors[1]);
@@ -79,16 +78,22 @@ char	***valid_ceilling_and_floor_color(char **content_map)
 			collors[index_let++] = ft_split(content_map[i], ' ');
 		ft_free_split(key_val);
 	}
-	if (collors[0] == NULL || collors[1] == NULL || 
-		ft_strlen_split(collors[0]) < 2 || ft_strlen_split(collors[0]) < 2 ||
-			ft_strcmp(collors[0][0], collors[1][0]) == 0)
+	if (collors[0] == NULL || collors[1] == NULL
+		|| ft_strlen_split(collors[0]) < 2 || ft_strlen_split(collors[0]) < 2
+		|| ft_strcmp(collors[0][0], collors[1][0]) == 0)
 	{
-		printf("CAIU\n");
 		ft_free_triple(collors);
 		ft_free_split(content_map);
 		return (NULL);
 	}
 	return (collors);
+}
+
+static int	check_player(char pos)
+{
+	if (pos == 'N' || pos == 'W' || pos == 'S' || pos == 'E')
+		return (1);
+	return (0);
 }
 
 /**
@@ -105,27 +110,23 @@ int	valid_characters(char **map)
 
 	j = -1;
 	i = -1;
-	side = FALSE;
+	side = 0;
 	while (map[++i])
 	{
 		while (map[i][++j])
 		{
 			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == ' ')
 				continue ;
-			else if ((map[i][j] == 'N' || map[i][j] == 'W' || map[i][j] == 'S'
-				|| map[i][j] == 'E') && side == FALSE)
-			{
-				if (side == FALSE)
-					side = TRUE;
-				else
-					return (error_msg(ERROR_MORE_THEN_ONE_SIDE, 2, NULL));
-			}
+			else if (check_player(map[i][j]))
+				side++;
 			else
 				return (error_msg(ERROR_CARACTER_INVALID, 2, NULL));
 		}
 		j = -1;
 	}
-	if (side == FALSE)
+	if (side == 0)
 		return (FALSE);
+	else if (side > 1)
+		return (error_msg(ERROR_MORE_THEN_ONE_SIDE, 2, NULL));
 	return (TRUE);
 }

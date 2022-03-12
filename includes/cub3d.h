@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 22:50:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 00:55:43 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@
 # include	<structs.h>
 # include	<limits.h>
 
-
 //validation
 int				is_invalid_arg(int argc, char **argv);
 int				file_exist(char *map_path);
 int				check_extension(char *str, char *extension);
 int				check_map(char *path_map, t_cub *cub);
 t_collor		check_color(char ***colors);
-
 
 int				error_msg(char *msg, int level, t_cub *cub);
 //free
@@ -66,12 +64,12 @@ void			castAllRays(t_cub *cub);
 void			generate3DProjection(t_cub *cub);
 
 //utils
-int				mapHasWallAt(t_cub *cub,float x, float y);
+int				mapHasWallAt(t_cub *cub, float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
 float			normalizeAngle(float angle);
 float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
-int				getLenght(t_cub *cub, float	line);
+int				getLenght(t_cub *cub, float line);
 int				isInsideMap(float x, float y, t_cub *cub);
 void			changeColorIntesity(uint32_t *color, float factor);
 int				is_ray_facing_down(float angle);
@@ -80,6 +78,5 @@ int				is_ray_facing_right(float angle);
 int				is_ray_facing_left(float angle);
 void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
 void			build_main_img(t_cub *cub);
-
 
 #endif

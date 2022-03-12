@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 22:50:00 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 01:16:34 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,25 @@ void	render_ray(t_cub *cub)
 
 void	find_horz_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub *cub)
 {
-	aux->nextTouchX = utils->x_intercept;
-	aux->nextTouchY = utils->y_intercept;
-	while (isInsideMap(aux->nextTouchX, aux->nextTouchY, cub) == TRUE)
+	aux->next_touchx = utils->x_intercept;
+	aux->next_touchy = utils->y_intercept;
+	while (isInsideMap(aux->next_touchx, aux->next_touchy, cub) == TRUE)
 	{
-		aux->xToCheck = aux->nextTouchX;
+		aux->xto_check = aux->next_touchx;
 		if (utils->is_ray_facing_up == TRUE)
-			aux->yToCheck = aux->nextTouchY + -1;
+			aux->yto_check = aux->next_touchy + -1;
 		else
-			aux->yToCheck = aux->nextTouchY;
-		if (mapHasWallAt(cub, aux->xToCheck, aux->yToCheck)) {
-			aux->wall_hit_x = aux->nextTouchX;
-			aux->wall_hit_y = aux->nextTouchY;
-			aux->WallContent = cub->map[(int)floor(aux->yToCheck / TILE)]
-				[(int)floor(aux->xToCheck / TILE)] - '0';
-			aux->foundWallHit = TRUE;
+			aux->yto_check = aux->next_touchy;
+		if (mapHasWallAt(cub, aux->xto_check, aux->yto_check)) {
+			aux->wall_hit_x = aux->next_touchx;
+			aux->wall_hit_y = aux->next_touchy;
+			aux->wall_content = cub->map[(int)floor(aux->yto_check / TILE)]
+				[(int)floor(aux->xto_check / TILE)] - '0';
+			aux->found_wall_hit = TRUE;
 			break ;
 		} else {
-			aux->nextTouchX += utils->x_step;
-			aux->nextTouchY += utils->y_step;
+			aux->next_touchx += utils->x_step;
+			aux->next_touchy += utils->y_step;
 		}
 	}
 }
@@ -61,7 +61,7 @@ t_aux_ray	ray_horizontal(t_cub *cub, t_utils_ray *utils, float angle)
 	t_aux_ray	aux;
 
 	ft_bzero(&aux, sizeof(t_aux_ray));
-	aux.foundWallHit = FALSE;
+	aux.found_wall_hit = FALSE;
 	utils->y_intercept = floor(cub->player.y / TILE) * TILE;
 	if (utils->is_ray_facing_down == TRUE)
 		utils->y_intercept += TILE;
@@ -82,25 +82,25 @@ t_aux_ray	ray_horizontal(t_cub *cub, t_utils_ray *utils, float angle)
 
 void	find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub *cub)
 {
-	aux->nextTouchX = utils->x_intercept;
-	aux->nextTouchY = utils->y_intercept;
-	while (isInsideMap(aux->nextTouchX, aux->nextTouchY, cub) == TRUE)
+	aux->next_touchx = utils->x_intercept;
+	aux->next_touchy = utils->y_intercept;
+	while (isInsideMap(aux->next_touchx, aux->next_touchy, cub) == TRUE)
 	{
-		aux->yToCheck = aux->nextTouchY;
+		aux->yto_check = aux->next_touchy;
 		if (utils->is_ray_facing_left == TRUE)
-			aux->xToCheck = aux->nextTouchX + -1;
+			aux->xto_check = aux->next_touchx + -1;
 		else
-			aux->xToCheck = aux->nextTouchX;
-		if (mapHasWallAt(cub, aux->xToCheck, aux->yToCheck)) {
-			aux->wall_hit_x = aux->nextTouchX;
-			aux->wall_hit_y = aux->nextTouchY;
-			aux->WallContent = cub->map[(int)floor(aux->yToCheck / TILE)]
-				[(int)floor(aux->xToCheck / TILE)] - '0';
-			aux->foundWallHit = TRUE;
+			aux->xto_check = aux->next_touchx;
+		if (mapHasWallAt(cub, aux->xto_check, aux->yto_check)) {
+			aux->wall_hit_x = aux->next_touchx;
+			aux->wall_hit_y = aux->next_touchy;
+			aux->wall_content = cub->map[(int)floor(aux->yto_check / TILE)]
+				[(int)floor(aux->xto_check / TILE)] - '0';
+			aux->found_wall_hit = TRUE;
 			break ;
 		} else {
-			aux->nextTouchX += utils->x_step;
-			aux->nextTouchY += utils->y_step;
+			aux->next_touchx += utils->x_step;
+			aux->next_touchy += utils->y_step;
 		}
 	}
 }
@@ -110,7 +110,7 @@ t_aux_ray	ray_vertical(t_cub *cub, t_utils_ray *utils, float angle)
 	t_aux_ray	aux;
 
 	ft_bzero(&aux, sizeof(t_aux_ray));
-	aux.foundWallHit = FALSE;
+	aux.found_wall_hit = FALSE;
 	utils->x_intercept = floor(cub->player.x / TILE) * TILE;
 	if (utils->is_ray_facing_right == TRUE)
 		utils->x_intercept += TILE;
@@ -130,37 +130,37 @@ t_aux_ray	ray_vertical(t_cub *cub, t_utils_ray *utils, float angle)
 
 void	get_ray_distance(t_cub *cub, t_aux_ray *horz, t_aux_ray *vert)
 {
-	if (horz->foundWallHit == TRUE)
-		horz->HitDistance = distanceBetweenPoints(
+	if (horz->found_wall_hit == TRUE)
+		horz->hit_distance = distanceBetweenPoints(
 			cub->player.x, cub->player.y, horz->wall_hit_x, horz->wall_hit_y);
 	else
-		horz->HitDistance = INT_MAX;
-	if (vert->foundWallHit == TRUE)
-		vert->HitDistance = distanceBetweenPoints(
+		horz->hit_distance = INT_MAX;
+	if (vert->found_wall_hit == TRUE)
+		vert->hit_distance = distanceBetweenPoints(
 			cub->player.x, cub->player.y, vert->wall_hit_x, vert->wall_hit_y);
 	else
-		vert->HitDistance = INT_MAX;
+		vert->hit_distance = INT_MAX;
 }
 
 void	get_values_of_ray(t_ray *ray, t_utils_ray utils,
 	t_aux_ray horz, t_aux_ray vert)
 {
-	if (vert.HitDistance < horz.HitDistance)
+	if (vert.hit_distance < horz.hit_distance)
 	{
-		ray->distance = vert.HitDistance;
+		ray->distance = vert.hit_distance;
 		ray->wall_hit_x = vert.wall_hit_x;
 		ray->wall_hit_y = vert.wall_hit_y;
-		ray->wall_hit_cotent = vert.WallContent;
+		ray->wall_hit_cotent = vert.wall_content;
 		if (utils.is_ray_facing_left == TRUE)
 			ray->wall_hit_cotent = WE;
 		else
 			ray->wall_hit_cotent = EA;
 		ray->was_hit_vertical = TRUE;
 	} else {
-		ray->distance = horz.HitDistance;
+		ray->distance = horz.hit_distance;
 		ray->wall_hit_x = horz.wall_hit_x;
 		ray->wall_hit_y = horz.wall_hit_y;
-		ray->wall_hit_cotent = horz.WallContent;
+		ray->wall_hit_cotent = horz.wall_content;
 		if (utils.is_ray_facing_up == TRUE)
 			ray->wall_hit_cotent = NO;
 		else
@@ -198,7 +198,7 @@ void	castAllRays(t_cub *cub)
 	while (col < NUM_RAYS)
 	{
 		ray_angle = cub->player.rotation_angle + atan((col - NUM_RAYS / 2)
-			/ DIST_PROJ_PLANE);
+			/ cub->dist_proj_plane);
 		castRay(ray_angle, col, cub);
 		col++;
 	}

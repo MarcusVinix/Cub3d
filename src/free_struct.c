@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 00:09:47 by coder             #+#    #+#             */
-/*   Updated: 2022/03/11 16:53:22 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 01:51:23 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	free_mlx_all(t_cub *cub)
 
 void	free_struct(t_cub *cub)
 {
-
 	if (cub->texture_path != NULL)
 		ft_free_triple(cub->texture_path);
 	if (cub->colors != NULL)

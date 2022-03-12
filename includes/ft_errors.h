@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 21:33:52 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/11 17:18:36 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 00:57:10 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define ERROR_TEXTURE "Error:\nInvalid textures!"
 # define ERROR_CEIL_FLR_COLOR "Error:\nCeiiling/floor color its wrong format."
 # define ERROR_TEXTURE_FILE_NOT_EXIST "Error:\nTexture files doesn't exist!"
-# define ERROR_SKY_GRD_N_EXIST "Error:\nSky/ground colors isn't exist or its wrong!"
+# define ERROR_SKY_GRD_N_EXIST "Error:\nSky/ground colors isn't exist or wrong"
 # define ERROR_CARACTER_INVALID "Error:\nCharacter invalid!"
 # define ERROR_MORE_THEN_ONE_SIDE "Error\nOnly one side of position is allowed!"
 # define ERROR_INVALID_EDGE "Error:\nThe bord of the map must be 1."

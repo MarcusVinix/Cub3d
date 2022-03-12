@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
+/*   Updated: 2022/03/12 01:18:07 by coder            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 
-#define DEFINES_H
-#include <math.h>
+# define DEFINES_H
+# include <math.h>
 
 # define TRUE 0
 # define FALSE 1
@@ -19,48 +31,28 @@
 # define BLUEMLX 0x0000FF
 # define HEXA "0123456789ABCDEF"
 
-#define MAP_NUM_ROWS 14
-#define MAP_NUM_COLS 25
+# define MAP_NUM_ROWS 14
+# define MAP_NUM_COLS 25
 
-#define NO 0
-#define SO 1
-#define WE 2
-#define EA 3
-#define NUM_TEXTURES 4
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+# define NUM_TEXTURES 4
 
-#define WIDTH 1200
-#define HEIGHT 800
+# define WIDTH 1200
+# define HEIGHT 800
 
-#define TEXTURE_WIDTH 64
-#define TEXTURE_HEIGHT 64
-#define MINIMAP_WIDTH 150
-#define MINIMAP_HEIGHT 150
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
+# define MINIMAP_WIDTH 150
+# define MINIMAP_HEIGHT 150
 
-#define PI 3.14159265
-#define TWO_PI 6.28318530
-#define MINIMAP_SCALE_FACTOR 0.2
-#define FOV_ANGLE (60 * (PI / 180))
-#define NUM_RAYS WIDTH
+# define PI 3.14159265
+# define TWO_PI 6.28318530
+# define MINIMAP_SCALE_FACTOR 0.2
+# define NUM_RAYS WIDTH
 
-#define DIST_PROJ_PLANE ((WIDTH / 2) / tan(FOV_ANGLE / 2))
-
-#define FPS 30
-#define FRAME_TIME_LENGTH (1000 / FPS)
-
-static const int	map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 2, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5}
-};
+# define FPS 30
 
 #endif
