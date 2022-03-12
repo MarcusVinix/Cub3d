@@ -8,6 +8,8 @@ on:
     paths:
       - 'src/**.c'
       - 'includes/**.h'
+      - 'libft/**.c'
+      - 'libft/**.h'
   push:
     paths:
       - 'src/**.c'
