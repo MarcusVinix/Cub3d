@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/12 01:18:14 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/12 02:09:29 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,9 @@ int	get_color_mlx(t_rgb color)
 
 void	setup(t_cub *cub)
 {
-	double fov 60 * (PI / 180);
+	double fov;
+
+	fov = 60 * (PI / 180);
 	cub->dist_proj_plane = ((WIDTH / 2) / tan(fov / 2));
 	start_player(cub);
 	start_textures(cub);
