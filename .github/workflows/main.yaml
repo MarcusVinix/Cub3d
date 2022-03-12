@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - '**.c'
-      - '**.h'
+      - 'src/**.c'
+      - 'includes/**.h'
   push:
     paths:
       - '**.c'
