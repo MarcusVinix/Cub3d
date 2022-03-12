@@ -6,27 +6,27 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 16:59:38 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:54:36 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	movePlayer(t_cub *cub)
+void	move_player(t_cub *cub)
 {
-	float	moveStep;
-	float	newX;
-	float	newY;
+	float	move_step;
+	float	newx;
+	float	newy;
 
-	cub->player.rotation_angle += cub->player.turn_direction * cub->player.turn_speed;
-	moveStep = cub->player.walk_direction * cub->player.walk_speed;
-	newX = cub->player.x + cos(cub->player.rotation_angle) * moveStep;
-	newY = cub->player.y + sin(cub->player.rotation_angle) * moveStep;
-
-	if (!mapHasWallAt(cub, newX, newY))
+	cub->player.rotation_angle += cub->player.turn_direction
+		* cub->player.turn_speed;
+	move_step = cub->player.walk_direction * cub->player.walk_speed;
+	newx = cub->player.x + cos(cub->player.rotation_angle) * move_step;
+	newy = cub->player.y + sin(cub->player.rotation_angle) * move_step;
+	if (!map_has_wall_at(cub, newx, newy))
 	{
-		cub->player.x = newX;
-		cub->player.y = newY;
+		cub->player.x = newx;
+		cub->player.y = newy;
 	}
 	cub->player.turn_direction = 0;
 	cub->player.walk_direction = 0;
@@ -34,8 +34,8 @@ void	movePlayer(t_cub *cub)
 
 void	update(t_cub *cub)
 {
-	movePlayer(cub);
-	castAllRays(cub);
+	move_player(cub);
+	cast_all_rays(cub);
 }
 
 int	action_loop(t_cub *cub)

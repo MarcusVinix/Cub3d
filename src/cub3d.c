@@ -6,17 +6,15 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/10 18:48:33 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:43:29 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-
-
 void	start_game(t_cub *cub)
 {
-	t_data img_p;
+	t_data	img_p;
 
 	ft_bzero(&img_p, sizeof(t_data));
 	cub->s_mlx.mlx = mlx_init();

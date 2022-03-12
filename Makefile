@@ -12,9 +12,9 @@ LIBS = -L ./libft -lft -lmlx -lX11 -lXext -lm
 SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
-	  $(addprefix $(PATH_UTILS), utils.c sprites.c rays_sides.c) \
+	  $(addprefix $(PATH_UTILS), utils.c rays_sides.c utils_mlx.c utils_start.c utils_map.c) \
 	  $(addprefix $(PATH_GAME), actions.c) \
-	  $(addprefix $(PATH_RENDER_DRAW), draw_utils.c render_game.c rays.c projection3D.c)
+	  $(addprefix $(PATH_RENDER_DRAW), rays_utils.c draw_utils.c render_game.c rays.c projection3D.c)
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJ)%.o, $(SRC))
 NAME = cub3D
