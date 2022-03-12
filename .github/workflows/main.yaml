@@ -10,8 +10,10 @@ on:
       - 'includes/**.h'
   push:
     paths:
-      - '**.c'
-      - '**.h'
+      - 'src/**.c'
+      - 'includes/**.h'
+      - 'libft/**.c'
+      - 'libft/**.h'
 
 jobs:
   build:
