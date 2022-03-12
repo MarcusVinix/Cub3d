@@ -6,16 +6,13 @@ on:
     branches:
       - main
     paths:
-      - 'src/**.c'
-      - 'includes/**.h'
-      - 'libft/**.c'
-      - 'libft/**.h'
+      - '**.c'
+      - '**.h'
+
   push:
     paths:
-      - 'src/**.c'
-      - 'includes/**.h'
-      - 'libft/**.c'
-      - 'libft/**.h'
+      - '**.c'
+      - '**.h'
 
 jobs:
   build:
@@ -35,4 +32,4 @@ jobs:
         pip install norminette==3.3.51
     - name: Linter with Norminette
       run: |
-        norminette
+        norminette ./src/ ./includes/ ./libft/
