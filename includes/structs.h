@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/12 17:32:41 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/14 16:46:51 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ typedef struct s_map_info
 	int starty;
 	int p_start_y;
 	int p_start_x;
-	int p_end_y;
+	int p_end_x;
 	int	endx;
 	int endy;
 }		t_map_info;

@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/12 19:08:27 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/14 15:59:20 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@
 
 # define PI 3.14159265
 # define TWO_PI 6.28318530
-# define MINIMAP_SCALE_FACTOR 0.2
+# define MINIMAP_SCALE_FACTOR 0.5
 # define NUM_RAYS WIDTH
-# define BOX_MINIMAP 10
+# define BOX_MINIMAP 5
 # define START_POS_MINIMAP 10
 
 # define FPS 30

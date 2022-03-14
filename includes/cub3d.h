@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/12 17:44:13 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/14 16:55:28 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				action(int keycode, t_cub *cub);
 //render game
 void			draw_background(t_data *img, int color_up, int color_down);
 void			render_map(t_cub *cub);
-void			render_player(t_data *img, t_player player);
+void			render_player(t_cub *cub);
 void			draw_gaming(t_cub *cub);
 void			render_ray(t_cub *cub);
 void			cast_ray(float ray_angle, int id, t_cub *cub);
