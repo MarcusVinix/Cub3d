@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rays.c                                             :+:      :+:    :+:   */
+/*   rays_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 20:58:20 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:16:07 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
+
+void	render_ray(t_cub *cub)
+{
+	t_line	line;
+	int		i;
+
+	i = 0;
+	while (i < NUM_RAYS)
+	{
+		ft_bzero(&line, sizeof(t_line));
+		line.color = REDMLX;
+		line.x1 = MINIMAP_SCALE_FACTOR * cub->player.x;
+		line.y1 = MINIMAP_SCALE_FACTOR * cub->player.y;
+		line.x2 = MINIMAP_SCALE_FACTOR * cub->rays[i].wall_hit_x;
+		line.y2 = MINIMAP_SCALE_FACTOR * cub->rays[i].wall_hit_y;
+		draw_line(&cub->img, line);
+		i++;
+	}
+}
 
 void	get_ray_distance(t_cub *cub, t_aux_ray *horz, t_aux_ray *vert)
 {

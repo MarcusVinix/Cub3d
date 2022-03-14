@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   structs_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 21:08:16 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:17:49 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
+#ifndef STRUCTS_BONUS_H
 
-# define STRUCTS_H
+# define STRUCTS_BONUS_H
 
-# include <defines.h>
+# include <defines_bonus.h>
 # include <stdint.h>
 
 typedef struct s_projection
@@ -101,6 +101,14 @@ typedef struct s_player
 	int		orientation;
 }			t_player;
 
+typedef struct s_rect
+{
+	int				x;
+	int				y;
+	int				width;
+	int				height;
+	unsigned int	color;
+}					t_rect;
 
 typedef struct s_pos
 {
@@ -136,6 +144,13 @@ typedef struct s_map_info
 {
 	int	height;
 	int	width;
+	int	startx;
+	int starty;
+	int p_start_y;
+	int p_start_x;
+	int p_end_x;
+	int	endx;
+	int endy;
 }		t_map_info;
 
 typedef struct s_rgb

@@ -1,16 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   draw_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:18:19 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:01:28 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:16:09 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
+
+void	draw_line(t_data *img, t_line line)
+{
+	int	i;
+
+	line.delta_x = (line.x2 - line.x1);
+	line.delta_y = (line.y2 - line.y1);
+	if (abs(line.delta_x) >= abs(line.delta_y))
+		line.long_side_len = abs(line.delta_x);
+	else
+		line.long_side_len = abs(line.delta_y);
+	line.x_increment = line.delta_x / (float)line.long_side_len;
+	line.y_increment = line.delta_y / (float)line.long_side_len;
+	line.current_x = line.x1;
+	line.current_y = line.y1;
+	i = 0;
+	while (i < line.long_side_len)
+	{
+		ft_mlx_pixel_put(img, round(line.current_x),
+			round(line.current_y), line.color);
+		line.current_x += line.x_increment;
+		line.current_y += line.y_increment;
+		i++;
+	}
+}
+
+void	draw_rect(t_data *img, t_rect rect)
+{
+	int	i;
+	int	j;
+
+	i = rect.x;
+	while (i <= (rect.x + rect.width))
+	{
+		j = rect.y;
+		while (j <= (rect.y + rect.height))
+		{
+			ft_mlx_pixel_put(img, i, j, rect.color);
+			j++;
+		}
+		i++;
+	}
+}
 
 void	ft_mlx_pixel_put(t_data *img_data, int x, int y, int color)
 {

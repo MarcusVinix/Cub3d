@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:01:55 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:14:34 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#ifndef CUB3D_BONUS_H
 
-# define CUB3D_H
+# define CUB3D_BONUS_H
 
 # include	"../libft/libft.h"
-# include	"colors.h"
-# include	<ft_errors.h>
-# include	<map.h>
+# include	"colors_bonus.h"
+# include	<ft_errors_bonus.h>
+# include	<map_bonus.h>
 # include	<stdio.h>
 # include	<stdlib.h>
 # include	<fcntl.h>
 # include	<mlx.h>
 # include	<math.h>
-# include	<structs.h>
+# include	<structs_bonus.h>
 # include	<limits.h>
 
 //validation
@@ -42,6 +42,9 @@ void			free_mlx_all(t_cub *cub);
 // draw
 void			ft_mlx_pixel_put(t_data *img_data, int x, int y, int color);
 unsigned int	get_color(t_data *data, int x, int y);
+void			draw_ray(t_data *img, t_pos pos);
+void			draw_rect(t_data *img, t_rect rect);
+void			draw_line(t_data *img, t_line line);
 
 //actions
 void			move_player(t_cub *cub);
@@ -50,7 +53,11 @@ int				action_loop(t_cub *cub);
 int				action(int keycode, t_cub *cub);
 
 //render game
+void			draw_background(t_data *img, int color_up, int color_down);
+void			render_map(t_cub *cub);
+void			render_player(t_cub *cub);
 void			draw_gaming(t_cub *cub);
+void			render_ray(t_cub *cub);
 void			cast_ray(float ray_angle, int id, t_cub *cub);
 void			cast_all_rays(t_cub *cub);
 void			generate3d_projection(t_cub *cub);
