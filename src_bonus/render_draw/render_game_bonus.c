@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:05 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:30:05 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	render_player(t_cub *cub)
 void	draw_gaming(t_cub *cub)
 {
 	generate3d_projection(cub);
+	render_sprite_projection(cub);
 	render_map(cub);
 	//render_ray(cub);
 	render_player(cub);

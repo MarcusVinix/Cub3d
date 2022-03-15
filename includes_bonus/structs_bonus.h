@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 21:17:49 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:05:44 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,17 @@ typedef struct s_collor
 	int		status;
 }		t_collor;
 
+typedef struct s_sprite {
+	float		x;
+	float		y;
+	float		distance;
+	float		angle;
+	int			texture;
+	int			visible;
+	uint32_t	*buffer;
+	t_data		img;
+}				t_sprite;
+
 typedef struct s_cub
 {
 	t_player	player;
@@ -182,6 +193,7 @@ typedef struct s_cub
 	t_img		sprites;
 	t_mlx		s_mlx;
 	uint32_t	*textures[NUM_TEXTURES];
+	t_sprite	sprites_list[NUM_SPRITES];
 	t_collor	collors;
 	t_map_info	map_info;
 	double		dist_proj_plane;

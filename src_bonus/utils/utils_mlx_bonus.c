@@ -6,13 +6,13 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:00:20 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:03 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:44:12 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_bonus.h>
 
-static uint32_t	*get_texture_buffer(t_data *img)
+uint32_t	*get_texture_buffer(t_data *img)
 {
 	int			x;
 	int			y;

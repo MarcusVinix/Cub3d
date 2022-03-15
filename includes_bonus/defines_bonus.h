@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 21:13:35 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 15:27:51 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,19 @@
 # define ARROW_RIGHT 65363
 # define ESC 0xff1b
 # define TILE 64
-# define BLACK 16777216
+# define BLACK -16777216
 # define REDMLX 0x00FF0000
 # define WHITE 0xFFFAFA
 # define GREEN 0x8EF5BF
 # define GREY  0xA0A0A0 
 # define BLUEMLX 0x0000FF
 
-# define MAP_NUM_ROWS 14
-# define MAP_NUM_COLS 25
-
 # define NO 0
 # define SO 1
 # define WE 2
 # define EA 3
 # define NUM_TEXTURES 4
+# define NUM_SPRITES 1
 
 # define WIDTH 1200
 # define HEIGHT 800

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:14:34 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:49:28 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ t_aux_ray		ray_horizontal(t_cub *cub, t_utils_ray *utils, float angle);
 void			find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils,
 					t_cub *cub);
 t_aux_ray		ray_vertical(t_cub *cub, t_utils_ray *utils, float angle);
+void			render_sprite_projection(t_cub *cub);
+void			render_map_sprites(t_cub *cub);
 
 //utils
 int				map_has_wall_at(t_cub *cub, float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
-float			normalize_angle(float angle);
+void			normalize_angle(float *angle);
 float			distance_between_points(float x1, float y1, float x2, float y2);
 int				get_lenght(t_cub *cub, float line);
 int				is_inside_map(float x, float y, t_cub *cub);
@@ -85,5 +87,8 @@ void			check_inverse_offset_x(t_ray ray, int *texture_offset_x);
 void			build_main_img(t_cub *cub);
 void			start_textures(t_cub *cub);
 int				get_color_mlx(t_rgb color);
+void			sprites(t_data *img, void *mlx, char *path);
+uint32_t		*get_texture_buffer(t_data *img);
+void			start_sprites(t_cub *cub);
 
 #endif

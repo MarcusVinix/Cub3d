@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 00:09:47 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:49:00 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	free_images(t_cub *cub)
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.so.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.we.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.ea.img);
+	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites_list[0].img.img);
 }
 
 void	free_mlx_all(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 00:45:27 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:07 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:49:25 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	cast_ray(float ray_angle, int id, t_cub *cub)
 
 	ft_bzero(&utils, sizeof(t_utils_ray));
 	ft_bzero(&cub->rays[id], sizeof(t_ray));
-	ray_angle = normalize_angle(ray_angle);
+	normalize_angle(&ray_angle);
 	utils.is_ray_facing_down = is_ray_facing_down(ray_angle);
 	utils.is_ray_facing_up = is_ray_racing_up(ray_angle);
 	utils.is_ray_facing_right = is_ray_facing_right(ray_angle);
