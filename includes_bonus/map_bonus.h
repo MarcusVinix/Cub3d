@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:13:45 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:09:23 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		valid_left_right(char **map);
 int		valid_top_bottom(char **map);
 int		valid_wall_inside_map(char **map);
 int		valid_size_map(char **map);
+int		has_character(char **map, int i, int j);
 
 #endif

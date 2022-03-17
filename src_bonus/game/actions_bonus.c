@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 13:50:34 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:36:51 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	move_player(t_cub *cub)
 	move_step = cub->player.walk_direction * cub->player.walk_speed;
 	newx = cub->player.x + cos(cub->player.rotation_angle) * move_step;
 	newy = cub->player.y + sin(cub->player.rotation_angle) * move_step;
-	if (!map_has_wall_at(cub, newx, newy))
+	if (map_has_wall_at(cub, newx, newy) == FALSE
+		&& map_has_sprite(cub, newx, newy) == FALSE)
 	{
 		cub->player.x = newx;
 		cub->player.y = newy;

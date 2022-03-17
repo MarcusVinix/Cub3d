@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:50:45 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:06 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:11:03 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	find_horz_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub *cub)
 			aux->yto_check = aux->next_touchy + -1;
 		else
 			aux->yto_check = aux->next_touchy;
-		if (map_has_wall_at(cub, aux->xto_check, aux->yto_check))
+		if (map_has_wall_at(cub, aux->xto_check, aux->yto_check) == TRUE)
 		{
 			aux->wall_hit_x = aux->next_touchx;
 			aux->wall_hit_y = aux->next_touchy;
@@ -74,7 +74,7 @@ void	find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub *cub)
 			aux->xto_check = aux->next_touchx + -1;
 		else
 			aux->xto_check = aux->next_touchx;
-		if (map_has_wall_at(cub, aux->xto_check, aux->yto_check))
+		if (map_has_wall_at(cub, aux->xto_check, aux->yto_check) == TRUE)
 		{
 			aux->wall_hit_x = aux->next_touchx;
 			aux->wall_hit_y = aux->next_touchy;

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render_game_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 17:48:30 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/17 21:07:26 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_bonus.h>
 
-static void find_pos_minimap(t_cub *cub)
+static void	find_pos_minimap(t_cub *cub)
 {
-	int px; 
-	int py;
-	int width;
+	int	px;
+	int	py;
+	int	width;
 
 	py = (int)cub->player.y / TILE;
 	px = (int)cub->player.x / TILE;
@@ -31,28 +31,29 @@ static void find_pos_minimap(t_cub *cub)
 	else
 		cub->map_info.p_end_x = cub->map_info.height;
 	cub->map_info.p_start_y = px - (BOX_MINIMAP - 1);
-	printf("manox %i manoy %i\n", px, py);
 }
 
-static void print_edges(t_cub *cub)
+static void	print_edges(t_cub *cub)
 {
-	t_rect rect;
-	int endx;
-	int endy;
+	t_rect	rect;
+	int		endx;
+	int		endy;
 
 	rect.y = START_POS_MINIMAP;
 	rect.width = TILE * MINIMAP_SCALE_FACTOR;
 	rect.height = TILE * MINIMAP_SCALE_FACTOR;
 	endx = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.width;
 	endy = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.height;
-	while(rect.y < endy)
+	while (rect.y < endy)
 	{
 		rect.x = START_POS_MINIMAP;
-		while(rect.x < endx)
+		while (rect.x < endx)
 		{
-			if(rect.y == START_POS_MINIMAP || rect.y == endy - (int)(TILE * MINIMAP_SCALE_FACTOR))
+			if (rect.y == START_POS_MINIMAP || rect.y == endy
+				- (int)(TILE * MINIMAP_SCALE_FACTOR))
 				rect.color = BLACK;
-			else if(rect.x == START_POS_MINIMAP || rect.x == endx - (int)(TILE * MINIMAP_SCALE_FACTOR))
+			else if (rect.x == START_POS_MINIMAP || rect.x == endx
+				- (int)(TILE * MINIMAP_SCALE_FACTOR))
 				rect.color = BLACK;
 			else
 				rect.color = WHITE;
@@ -65,10 +66,9 @@ static void print_edges(t_cub *cub)
 
 void	check_color_in_map(t_cub *cub, int x, int y, t_rect *rect)
 {
-	printf("x: %i, y: %i\n", x, y);
 	if (cub->map[x][y] == '1')
 		rect->color = GREY;
-	else if(cub->map[x][y] == '0')
+	else if (cub->map[x][y] == '0')
 		rect->color = GREEN;
 	else
 		rect->color = WHITE;
@@ -77,21 +77,22 @@ void	check_color_in_map(t_cub *cub, int x, int y, t_rect *rect)
 
 void	render_map(t_cub *cub)
 {
-	t_rect rect;
-	int	max_posx;
-	int	posy;
+	t_rect	rect;
+	int		max_posx;
+	int		posy;
 
 	find_pos_minimap(cub);
 	print_edges(cub);
 	rect.y = cub->map_info.starty;
-	//printf("x: %i, y: %i\n",cub->map_info.p_start_y, cub->map_info.p_end_x);
-	while(rect.y < cub->map_info.endy && cub->map_info.p_start_x < cub->map_info.p_end_x)
+	while (rect.y < cub->map_info.endy && cub->map_info.p_start_x
+		< cub->map_info.p_end_x)
 	{
 		rect.x = cub->map_info.startx;
 		posy = cub->map_info.p_start_y;
 		if (cub->map_info.p_start_x >= 0)
 			max_posx = (int)ft_strlen(cub->map[cub->map_info.p_start_x]);
-		while(rect.x < cub->map_info.endx && cub->map_info.p_start_x >= 0 && posy < max_posx)
+		while (rect.x < cub->map_info.endx && cub->map_info.p_start_x
+			>= 0 && posy < max_posx)
 		{
 			if (posy >= 0)
 				check_color_in_map(cub, cub->map_info.p_start_x, posy, &rect);
@@ -105,12 +106,12 @@ void	render_map(t_cub *cub)
 
 void	render_player(t_cub *cub)
 {
-	t_rect rect;
-	
+	t_rect	rect;
+
 	rect.y = START_POS_MINIMAP + (cub->map_info.endy / 2 + 8);
 	rect.x = START_POS_MINIMAP + (cub->map_info.endx / 2 + 8);
 	rect.width = TILE * 0.2;
-	rect.height = TILE *0.2;
+	rect.height = TILE * 0.2;
 	rect.color = REDMLX;
 	draw_rect(&cub->img, rect);
 }
@@ -120,7 +121,6 @@ void	draw_gaming(t_cub *cub)
 	generate3d_projection(cub);
 	render_sprite_projection(cub);
 	render_map(cub);
-	//render_ray(cub);
 	render_player(cub);
 	mlx_put_image_to_window(cub->s_mlx.mlx, cub->s_mlx.win, cub->img.img, 0, 0);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->img.img);

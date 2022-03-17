@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/15 17:27:33 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/17 18:50:56 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define EA 3
 # define NUM_TEXTURES 4
 # define NUM_SPRITES 1
+# define LINES 6
 
 # define WIDTH 1200
 # define HEIGHT 800
@@ -53,5 +54,9 @@
 # define NUM_RAYS WIDTH
 # define BOX_MINIMAP 5
 # define START_POS_MINIMAP 10
+
+# define SPRITE2 "maps/sprites/goblin.xpm"
+# define SPRITE3 "maps/sprites/armor.xpm"
+# define SPRITE4 "maps/sprites/table_lamp.xpm"
 
 #endif

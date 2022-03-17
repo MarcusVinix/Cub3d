@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:00:21 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:15:55 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:20:44 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ char	**store_map_blueprint(char **content_map)
 
 	if (!content_map)
 		return (NULL);
-	map = ft_calloc(ft_strlen_split(content_map) - 5, sizeof(char *));
-	i = 6;
+	map = ft_calloc(ft_strlen_split(content_map) - (LINES - 1), sizeof(char *));
+	i = LINES;
 	j = 0;
 	while (content_map[i])
 		map[j++] = ft_strdup(content_map[i++]);

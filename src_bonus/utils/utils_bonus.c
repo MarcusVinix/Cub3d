@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 14:46:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:03:53 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ float	distance_between_points(float x1, float y1, float x2, float y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	start_sprites(t_cub *cub)
+void	init_some_values_sprites(t_utils_sprite *var, t_cub *cub)
 {
-	ft_bzero(&cub->sprites_list,  sizeof(t_sprite));
-	sprites(&cub->sprites_list[0].img, cub->s_mlx.mlx, "./maps/textures/goblin.xpm");
-	cub->sprites_list->buffer = get_texture_buffer(&cub->sprites_list[0].img);
-	cub->sprites_list[0].x = cub->player.x + 150;
-	cub->sprites_list[0].y = cub->player.y + 120;
+	var->fov = 60 * (PI / 180);
+	var->i = -1;
+	var->visible_sprites = ft_calloc(cub->num_sprites + 1, sizeof(t_sprite));
+	var->epsilon = 0.2;
 }

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 21:08:16 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:08:10 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct s_player
 	float	turn_speed;
 	int		orientation;
 }			t_player;
-
 
 typedef struct s_pos
 {

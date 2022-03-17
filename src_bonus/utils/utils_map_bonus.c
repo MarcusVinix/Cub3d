@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:06:57 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 14:41:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:52:02 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,27 @@ int	map_has_wall_at(t_cub *cub, float x, float y)
 		return (FALSE);
 	map_grid_indexx = floor(x / TILE);
 	map_grid_indexy = floor(y / TILE);
-	return (cub->map[map_grid_indexy][map_grid_indexx] != '0');
+	if (cub->map[map_grid_indexy][map_grid_indexx] == '1')
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	map_has_sprite(t_cub *cub, float x, float y)
+{
+	int	indexx;
+	int	indexy;
+
+	if (x < 0 || x >= get_lenght(cub, y) * TILE || y < 0
+		|| y >= cub->map_info.height * TILE)
+		return (TRUE);
+	indexx = (int)floor(x / TILE);
+	indexy = (int)floor(y / TILE);
+	if (cub->map[indexy][indexx] == '2' || cub->map[indexy][indexx] == '3'
+		|| cub->map[indexy][indexx] == '4')
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 int	get_lenght(t_cub *cub, float line)

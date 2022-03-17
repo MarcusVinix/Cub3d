@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 13:49:28 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:03:05 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			render_map_sprites(t_cub *cub);
 
 //utils
 int				map_has_wall_at(t_cub *cub, float x, float y);
+int				map_has_sprite(t_cub *cub, float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
 void			normalize_angle(float *angle);
@@ -90,5 +91,8 @@ int				get_color_mlx(t_rgb color);
 void			sprites(t_data *img, void *mlx, char *path);
 uint32_t		*get_texture_buffer(t_data *img);
 void			start_sprites(t_cub *cub);
+void			setup_sprites(t_cub *cub);
+void			init_some_values_sprites(t_utils_sprite *var, t_cub *cub);
+void			sort_visible_sprites(t_utils_sprite *var);
 
 #endif

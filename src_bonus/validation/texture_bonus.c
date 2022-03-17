@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:57:10 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:15:53 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:56:23 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	compare_textures(char ***textures, char ***sides, int *j)
 	int	i;
 
 	i = -1;
-	while ((++i < 6 && textures[i][0]) && *j != 4)
+	while ((++i < LINES && textures[i][0]) && *j != 4)
 	{
 		if (ft_strcmp(textures[i][0], sides[*j][0]) == 0)
 		{
@@ -78,8 +78,8 @@ char	***valid_texture(char **content_map)
 
 	i = -1;
 	sides = create_sides();
-	textures = ft_calloc(7, sizeof(char *));
-	while (++i < 6 && i < ft_strlen_split(content_map))
+	textures = ft_calloc(LINES + 1, sizeof(char *));
+	while (++i < LINES && i < ft_strlen_split(content_map))
 		textures[i] = ft_split(content_map[i], ' ');
 	i = -1;
 	j = 0;

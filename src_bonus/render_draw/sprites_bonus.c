@@ -6,138 +6,115 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:20:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/15 16:12:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:02:44 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_bonus.h>
 
-void	render_sprite_projection(t_cub *cub)
+void	get_all_visible_sprite(t_utils_sprite *var, t_cub *cub)
 {
-	t_sprite	visible_sprites[NUM_SPRITES];
-	int			num_visible_sprite = 0;
-	int			i;
-	float		angle_sprite_player;
-	double	fov;
-	int	x;
-	int	y;
-
-	(void)visible_sprites;
-	fov = 60 * (PI / 180);
-	// Find sprites that are visible (inside the FOV)
-	i = -1;
-	while (++i < NUM_SPRITES)
+	while (++var->i < cub->num_sprites)
 	{
 		normalize_angle(&cub->player.rotation_angle);
-		angle_sprite_player = cub->player.rotation_angle - atan2(
-			cub->sprites_list[i].y - cub->player.y, cub->sprites_list[i].x - cub->player.x);
-		if (angle_sprite_player > PI)
-			angle_sprite_player -= TWO_PI;
-		if (angle_sprite_player < -PI)
-			angle_sprite_player += TWO_PI;
-		angle_sprite_player = fabs(angle_sprite_player);
-		// If sprite angle is lees than half the FOV plus a small error marginn
-		const float	EPSILON = 0.2;
-		if (angle_sprite_player < (fov / 2) + EPSILON)
+		var->angle_sprite_player = cub->player.rotation_angle - atan2(
+				cub->sprites_list[var->i].y - cub->player.y,
+				cub->sprites_list[var->i].x - cub->player.x);
+		if (var->angle_sprite_player > PI)
+			var->angle_sprite_player -= TWO_PI;
+		if (var->angle_sprite_player < -PI)
+			var->angle_sprite_player += TWO_PI;
+		var->angle_sprite_player = fabs(var->angle_sprite_player);
+		if (var->angle_sprite_player < (var->fov / 2) + var->epsilon)
 		{
-			cub->sprites_list[i].visible = TRUE;
-			cub->sprites_list[i].angle = angle_sprite_player;
-			cub->sprites_list[i].distance = distance_between_points(
-				cub->sprites_list[i].x,
-				cub->sprites_list[i].y,
-				cub->player.x,
-				cub->player.y
-			);
-			visible_sprites[num_visible_sprite] = cub->sprites_list[i];
-			num_visible_sprite++;
+			cub->sprites_list[var->i].visible = TRUE;
+			cub->sprites_list[var->i].angle = var->angle_sprite_player;
+			cub->sprites_list[var->i].distance = distance_between_points(
+					cub->sprites_list[var->i].x, cub->sprites_list[var->i].y,
+					cub->player.x, cub->player.y);
+			var->visible_sprites[var->num_visible_sprite]
+				= cub->sprites_list[var->i];
+			var->num_visible_sprite++;
 		}
 		else
-		{
-			cub->sprites_list[i].visible = FALSE;
-		}
+			cub->sprites_list[var->i].visible = FALSE;
 	}
+}
 
-	// Sort sprites by distance usinng a naive bubble-sort algorithm
-	for (int i = 0; i < num_visible_sprite - 1; i++)
+void	get_color_and_buffer(t_utils_sprite *var, t_cub *cub)
+{
+	if (var->sprite.content == '2')
+		var->buffer = cub->sprites.sprite2.buffer;
+	else if (var->sprite.content == '3')
+		var->buffer = cub->sprites.sprite3.buffer;
+	else
+		var->buffer = cub->sprites.sprite4.buffer;
+	var->texel_color = var->buffer[(TEXTURE_WIDTH * var->texture_off_set_y)
+		+ var->texture_off_set_x];
+}
+
+void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
+{
+	while (var->x < var->sprite_right_x)
 	{
-		for (int j = i + 1; j < num_visible_sprite; j++)
+		var->texel_width = (TEXTURE_WIDTH / var->sprite_width);
+		var->texture_off_set_x = (var->x - var->sprite_left_x)
+			* var->texel_width;
+		var->y = var->sprite_top_y - 1;
+		while (++var->y < var->sprite_bottom_y)
 		{
-			if (visible_sprites[i].distance < visible_sprites[j].distance)
+			if (is_inside_map(var->x, var->y, cub) == TRUE)
 			{
-				t_sprite temp = visible_sprites[i];
-				visible_sprites[i] = visible_sprites[j];
-				visible_sprites[j] = temp;
+				var->distance_from_top = var->y + (var->sprite_height / 2)
+					- (HEIGHT / 2);
+				var->texture_off_set_y = var->distance_from_top
+					* (TEXTURE_HEIGHT / var->sprite_height);
+				get_color_and_buffer(var, cub);
+				if (var->sprite.distance < cub->rays[var->x].distance
+					&& var->texel_color != (unsigned int)BLACK
+					&& var->texel_color != 0xFF00FF)
+					ft_mlx_pixel_put(&cub->img, var->x, var->y,
+						var->texel_color);
 			}
 		}
+		var->x++;
 	}
+}
 
-	//rennder
-	i = -1;
-	t_sprite sprite;
-	float	sprite_height;
-	float	sprite_width;
-	float	sprite_top_y;
-	float	sprite_bottom_y;
-	float	sprite_angle;
-	float	sprite_screen_posx;
-	float	sprite_left_x;
-	float	sprite_right_x;
-	int		texture_off_set_x;
-	int		texture_off_set_y;
-	float	texel_width;
-	int		distance_from_top;
-	float	perp_distance;
-	while (++i < num_visible_sprite)
+void	sprite_render(t_utils_sprite *var, t_cub *cub)
+{
+	var->i = -1;
+	while (++var->i < var->num_visible_sprite)
 	{
-		sprite = visible_sprites[i];
-
-		// Calculate the perpendicular distance of the sprite to prevent fish-eye effect
-		perp_distance = sprite.distance * cos(sprite.angle);
-		
-		// calculate the sprite projected height and width 
-		sprite_height = (TILE / perp_distance) * cub->dist_proj_plane;
-		sprite_width = sprite_height;
-
-		//sprite top y
-		sprite_top_y = (HEIGHT / 2) - (sprite_height / 2);
-		if (sprite_top_y < 0)
-			sprite_top_y = 0;
-
-		//sprrite  bottom y
-		sprite_bottom_y = (HEIGHT / 2) + (sprite_height / 2);
-		if (sprite_bottom_y > HEIGHT)
-			sprite_bottom_y = HEIGHT;
-		 
-		 // Calculate the sprite X position in the projecttion plane
-		 sprite_angle = atan2(sprite.y - cub->player.y, sprite.x - cub->player.x) - cub->player.rotation_angle;
-		 sprite_screen_posx = tan(sprite_angle) * cub->dist_proj_plane;
-
-		 //spriteLEftX
-		 sprite_left_x = (WIDTH / 2) + sprite_screen_posx - (sprite_width / 2);
-
-		 //sprite Rightx
-		 sprite_right_x = sprite_left_x + sprite_width;
-
-		x = sprite_left_x;
-		while (x < sprite_right_x)
-		{
-			texel_width = (TEXTURE_WIDTH / sprite_width);
-			texture_off_set_x = (x - sprite_left_x) * texel_width;
-			y = sprite_top_y;
-			while (y < sprite_bottom_y)
-			{
-				if (is_inside_map(x, y, cub) == TRUE)
-				{
-					distance_from_top = y + (sprite_height / 2) - (HEIGHT / 2);
-					texture_off_set_y = distance_from_top * (TEXTURE_HEIGHT / sprite_height);
-					uint32_t texel_color = sprite.buffer[(TEXTURE_WIDTH * texture_off_set_y)
-						+ texture_off_set_x ];
-					if (sprite.distance < cub->rays[x].distance &&texel_color != (unsigned int)BLACK)
-						ft_mlx_pixel_put(&cub->img, x, y, texel_color);
-				}
-				y++;
-			}
-			x++;
-		}
+		var->sprite = var->visible_sprites[var->i];
+		var->perp_distance = var->sprite.distance * cos(var->sprite.angle);
+		var->sprite_height = (TILE / var->perp_distance) * cub->dist_proj_plane;
+		var->sprite_width = var->sprite_height;
+		var->sprite_top_y = (HEIGHT / 2) - (var->sprite_height / 2);
+		if (var->sprite_top_y < 0)
+			var->sprite_top_y = 0;
+		var->sprite_bottom_y = (HEIGHT / 2) + (var->sprite_height / 2);
+		if (var->sprite_bottom_y > HEIGHT)
+			var->sprite_bottom_y = HEIGHT;
+		var->sprite_angle = atan2(var->sprite.y - cub->player.y, var->sprite.x
+				- cub->player.x) - cub->player.rotation_angle;
+		var->sprite_screen_posx = tan(var->sprite_angle) * cub->dist_proj_plane;
+		var->sprite_left_x = (WIDTH / 2) + var->sprite_screen_posx
+			- (var->sprite_width / 2);
+		var->sprite_right_x = var->sprite_left_x + var->sprite_width;
+		var->x = var->sprite_left_x;
+		print_sprite_pixels(var, cub);
 	}
+}
+
+void	render_sprite_projection(t_cub *cub)
+{
+	t_utils_sprite	var;
+
+	ft_bzero(&var, sizeof(t_utils_sprite));
+	init_some_values_sprites(&var, cub);
+	get_all_visible_sprite(&var, cub);
+	sort_visible_sprites(&var);
+	sprite_render(&var, cub);
+	free(var.visible_sprites);
 }

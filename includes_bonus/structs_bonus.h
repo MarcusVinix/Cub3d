@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/15 13:05:44 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:09:06 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,14 @@ typedef struct s_pos
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		l_len;
-	int		endian;
-	t_pos	pos;
-}			t_data;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			l_len;
+	int			endian;
+	t_pos		pos;
+	uint32_t	*buffer;
+}				t_data;
 
 typedef struct s_mlx
 {
@@ -138,6 +139,9 @@ typedef struct s_img
 	t_data	we;
 	t_data	so;
 	t_data	ea;
+	t_data	sprite2;
+	t_data	sprite3;
+	t_data	sprite4;
 }			t_img;
 
 typedef struct s_map_info
@@ -145,12 +149,12 @@ typedef struct s_map_info
 	int	height;
 	int	width;
 	int	startx;
-	int starty;
-	int p_start_y;
-	int p_start_x;
-	int p_end_x;
+	int	starty;
+	int	p_start_y;
+	int	p_start_x;
+	int	p_end_x;
 	int	endx;
-	int endy;
+	int	endy;
 }		t_map_info;
 
 typedef struct s_rgb
@@ -179,7 +183,36 @@ typedef struct s_sprite {
 	int			visible;
 	uint32_t	*buffer;
 	t_data		img;
+	int			content;
 }				t_sprite;
+
+typedef struct s_utils_sprite
+{
+	t_sprite	*visible_sprites;
+	int			num_visible_sprite;
+	int			i;
+	float		angle_sprite_player;
+	double		fov;
+	int			x;
+	int			y;
+	t_sprite	sprite;
+	float		sprite_height;
+	float		sprite_width;
+	float		sprite_top_y;
+	float		sprite_bottom_y;
+	float		sprite_angle;
+	float		sprite_screen_posx;
+	float		sprite_left_x;
+	float		sprite_right_x;
+	int			texture_off_set_x;
+	int			texture_off_set_y;
+	float		texel_width;
+	int			distance_from_top;
+	float		perp_distance;
+	uint32_t	*buffer;
+	uint32_t	texel_color;
+	float		epsilon;
+}				t_utils_sprite;
 
 typedef struct s_cub
 {
@@ -193,10 +226,11 @@ typedef struct s_cub
 	t_img		sprites;
 	t_mlx		s_mlx;
 	uint32_t	*textures[NUM_TEXTURES];
-	t_sprite	sprites_list[NUM_SPRITES];
+	t_sprite	*sprites_list;
+	int			num_sprites;
 	t_collor	collors;
 	t_map_info	map_info;
 	double		dist_proj_plane;
-}			t_cub;
+}				t_cub;
 
 #endif

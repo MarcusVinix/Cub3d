@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/14 21:16:00 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:55:19 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	***valid_ceilling_and_floor_color(char **content_map)
 	i = -1;
 	index_let = 0;
 	collors = ft_calloc(3, sizeof(char *));
-	while (++i < 6)
+	while (++i < LINES)
 	{
 		key_val = ft_split(content_map[i], ' ');
 		if (ft_strcmp(key_val[0], "F") == 0 || ft_strcmp(key_val[0], "C") == 0)
@@ -115,7 +115,7 @@ int	valid_characters(char **map)
 	{
 		while (map[i][++j])
 		{
-			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == ' ')
+			if (has_character(map, i, j) == TRUE)
 				continue ;
 			else if (check_player(map[i][j]))
 				side++;
