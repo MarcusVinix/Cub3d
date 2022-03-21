@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:20:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 21:02:44 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:35:09 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,13 @@ void	get_color_and_buffer(t_utils_sprite *var, t_cub *cub)
 	if (var->sprite.content == '2')
 		var->buffer = cub->sprites.sprite2.buffer;
 	else if (var->sprite.content == '3')
-		var->buffer = cub->sprites.sprite3.buffer;
-	else
+		var->buffer = get_animeted_guard(cub);
+	else if (var->sprite.content == '4')
 		var->buffer = cub->sprites.sprite4.buffer;
+	else if (var->sprite.content == '5')
+		var->buffer = get_animeted_fire(cub);
+	else
+		var->buffer = cub->sprites.sprite6.buffer;
 	var->texel_color = var->buffer[(TEXTURE_WIDTH * var->texture_off_set_y)
 		+ var->texture_off_set_x];
 }
@@ -116,5 +120,10 @@ void	render_sprite_projection(t_cub *cub)
 	get_all_visible_sprite(&var, cub);
 	sort_visible_sprites(&var);
 	sprite_render(&var, cub);
+	if (cub->time >= 100)
+		cub->time = 50;
+	else
+		cub->time += 1;
+	change_time_sprite(cub);
 	free(var.visible_sprites);
 }

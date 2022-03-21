@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:06:57 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 20:52:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:39:22 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	map_has_sprite(t_cub *cub, float x, float y)
 	indexx = (int)floor(x / TILE);
 	indexy = (int)floor(y / TILE);
 	if (cub->map[indexy][indexx] == '2' || cub->map[indexy][indexx] == '3'
-		|| cub->map[indexy][indexx] == '4')
+		|| cub->map[indexy][indexx] == '4' || cub->map[indexy][indexx] == '6')
 		return (TRUE);
 	else
 		return (FALSE);

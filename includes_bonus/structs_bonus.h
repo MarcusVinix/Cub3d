@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/17 21:09:06 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:12:07 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_data
 	int			endian;
 	t_pos		pos;
 	uint32_t	*buffer;
+	int			time;
 }				t_data;
 
 typedef struct s_mlx
@@ -140,8 +141,10 @@ typedef struct s_img
 	t_data	so;
 	t_data	ea;
 	t_data	sprite2;
-	t_data	sprite3;
+	t_data	*sprite3;
 	t_data	sprite4;
+	t_data	*sprite5;
+	t_data	sprite6;
 }			t_img;
 
 typedef struct s_map_info
@@ -231,6 +234,8 @@ typedef struct s_cub
 	t_collor	collors;
 	t_map_info	map_info;
 	double		dist_proj_plane;
+	int			time;
+	int			time_check;
 }				t_cub;
 
 #endif

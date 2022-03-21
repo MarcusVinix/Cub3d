@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:45:45 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 21:03:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:34:33 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	get_num_sprites(t_cub *cub)
 		while (cub->map[x][++y])
 		{
 			if (cub->map[x][y] == '2' || cub->map[x][y] == '3'
-				|| cub->map[x][y] == '4')
+				|| cub->map[x][y] == '4' || cub->map[x][y] == '5'
+				|| cub->map[x][y] == '6')
 			{
 				cub->num_sprites++;
 			}
@@ -64,13 +65,14 @@ void	get_sprite_x_y(t_cub *cub)
 
 	x = -1;
 	num = 0;
-	while (cub->map[++x] && num + 1 < cub->num_sprites)
+	while (cub->map[++x] && num < cub->num_sprites)
 	{
 		y = -1;
-		while (cub->map[x][++y] && num + 1 < cub->num_sprites)
+		while (cub->map[x][++y] && num < cub->num_sprites)
 		{
 			if (cub->map[x][y] == '2' || cub->map[x][y] == '3'
-				|| cub->map[x][y] == '4')
+				|| cub->map[x][y] == '4' || cub->map[x][y] == '5'
+				|| cub->map[x][y] == '6')
 			{
 				cub->sprites_list[num].x = y * TILE;
 				cub->sprites_list[num].y = x * TILE;
@@ -84,11 +86,13 @@ void	get_sprite_x_y(t_cub *cub)
 void	start_sprites(t_cub *cub)
 {
 	sprites(&cub->sprites.sprite2, cub->s_mlx.mlx, SPRITE2);
-	sprites(&cub->sprites.sprite3, cub->s_mlx.mlx, SPRITE3);
+	start_guard(cub);
 	sprites(&cub->sprites.sprite4, cub->s_mlx.mlx, SPRITE4);
+	start_ghost(cub);
+	sprites(&cub->sprites.sprite6, cub->s_mlx.mlx, SPRITE6);
 	cub->sprites.sprite2.buffer = get_texture_buffer(&cub->sprites.sprite2);
-	cub->sprites.sprite3.buffer = get_texture_buffer(&cub->sprites.sprite3);
 	cub->sprites.sprite4.buffer = get_texture_buffer(&cub->sprites.sprite4);
+	cub->sprites.sprite6.buffer = get_texture_buffer(&cub->sprites.sprite6);
 }
 
 void	setup_sprites(t_cub *cub)

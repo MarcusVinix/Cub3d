@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:22:22 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 20:57:19 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:03:32 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	has_character(char **map, int i, int j)
 {
 	if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == ' '
-			|| map[i][j] == '2' || map[i][j] == '3' || map[i][j] == '4')
+			|| map[i][j] == '2' || map[i][j] == '3' || map[i][j] == '4'
+			|| map[i][j] == '5' || map[i][j] == '6')
 		return (TRUE);
 	else
 		return (FALSE);

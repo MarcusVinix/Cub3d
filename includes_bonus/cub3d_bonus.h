@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 21:03:05 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:28:57 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,10 @@ void			start_sprites(t_cub *cub);
 void			setup_sprites(t_cub *cub);
 void			init_some_values_sprites(t_utils_sprite *var, t_cub *cub);
 void			sort_visible_sprites(t_utils_sprite *var);
+uint32_t		*get_animeted_guard(t_cub *cub);
+uint32_t		*get_animeted_fire(t_cub *cub);
+void			change_time_sprite(t_cub *cub);
+void			start_ghost(t_cub *cub);
+void			start_guard(t_cub *cub);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 00:09:47 by coder             #+#    #+#             */
-/*   Updated: 2022/03/17 21:33:22 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:34:54 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,36 @@
 
 void	free_buffer(t_cub *cub)
 {
+	int	i;
+
 	free(cub->sprites.sprite2.buffer);
-	free(cub->sprites.sprite3.buffer);
+	i = -1;
+	while (++i < 3)
+		free(cub->sprites.sprite3[i].buffer);
 	free(cub->sprites.sprite4.buffer);
-	free(cub->sprites_list[0].buffer);
+	i = -1;
+	while (++i < 4)
+		free(cub->sprites.sprite5[i].buffer);
+	free(cub->sprites.sprite6.buffer);
 }
 
 void	free_images(t_cub *cub)
 {
+	int	i;
+
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.no.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.so.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.we.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.ea.img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite2.img);
-	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite3.img);
+	i = -1;
+	while (++i < 3)
+		mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite3[i].img);
 	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite4.img);
+	i = -1;
+	while (++i < 4)
+		mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite5[i].img);
+	mlx_destroy_image(cub->s_mlx.mlx, cub->sprites.sprite6.img);
 }
 
 void	free_mlx_all(t_cub *cub)
@@ -44,6 +59,8 @@ void	free_mlx_all(t_cub *cub)
 	mlx_destroy_display(cub->s_mlx.mlx);
 	ft_free_ptr(&cub->s_mlx.mlx);
 	free_buffer(cub);
+	free(cub->sprites.sprite3);
+	free(cub->sprites.sprite5);
 }
 
 void	free_struct(t_cub *cub)

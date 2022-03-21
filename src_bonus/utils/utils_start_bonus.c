@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/16 15:52:16 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:48:37 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	setup(t_cub *cub)
 	start_player(cub);
 	start_textures(cub);
 	setup_sprites(cub);
-	// free_images(cub);
+	free_images(cub);
 	cub->collors.cell = get_color_mlx(cub->collors.cell_rgb);
 	cub->collors.floor = get_color_mlx(cub->collors.floor_rgb);
 }

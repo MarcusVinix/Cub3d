@@ -30,7 +30,8 @@ SRC = $(PATH_SRC)free_struct.c \
 SRC_BONUS = $(PATH_SRC_BONUS)free_struct_bonus.c \
 	  $(addprefix $(PATH_ERROR_BONUS), error_bonus.c) \
 	  $(addprefix $(PATH_VALIDATION_BONUS), args_bonus.c map_bonus.c color_character_bonus.c read_map_file_bonus.c texture_bonus.c wall_bonus.c) \
-	  $(addprefix $(PATH_UTILS_BONUS), utils_bonus.c rays_sides_bonus.c utils_mlx_bonus.c utils_start_bonus.c utils_map_bonus.c utils_sprites.c) \
+	  $(addprefix $(PATH_UTILS_BONUS), utils_bonus.c rays_sides_bonus.c utils_mlx_bonus.c \
+	  	utils_sprite_animated_bonus.c utils_start_bonus.c utils_map_bonus.c utils_sprites.c) \
 	  $(addprefix $(PATH_GAME_BONUS), actions_bonus.c) \
 	  $(addprefix $(PATH_RENDER_DRAW_BONUS), rays_utils_bonus.c draw_utils_bonus.c render_game_bonus.c rays_bonus.c projection3D_bonus.c sprites_bonus.c)
 
@@ -42,7 +43,7 @@ NAME = cub3D
 NAME_BONUS = cub3D_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -g -fsanitize=leak
+CFLAGS = -Wall -Wextra -Werror -O3 -g
 RM = rm -rf
 
 all: $(NAME)
@@ -115,5 +116,5 @@ push: add
 	git push
 
 valgrind:
-	valgrind ./cub3D maps/valid_map.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D_bonus maps/valid_map.cub
 
