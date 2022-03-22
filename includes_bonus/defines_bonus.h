@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/21 18:38:46 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/22 00:03:52 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define ESC 0xff1b
 # define TILE 64
 # define BLACK -16777216
+# define PINK 0xFF00FF
 # define REDMLX 0x00FF0000
 # define WHITE 0xFFFAFA
 # define GREEN 0x58E64F
