@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 20:55:19 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:32:36 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	***valid_ceilling_and_floor_color(char **content_map)
 		|| ft_strcmp(collors[0][0], collors[1][0]) == 0)
 	{
 		ft_free_triple(collors);
-		ft_free_split(content_map);
 		return (NULL);
 	}
 	return (collors);

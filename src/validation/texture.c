@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:57:10 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/12 01:49:13 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/22 12:56:23 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ char	***valid_texture(char **content_map)
 	compare_textures(textures, sides, &j);
 	ft_free_triple(textures);
 	if (j != 4)
+	{
+		ft_free_triple(sides);
 		return (NULL);
+	}
 	return (sides);
 }

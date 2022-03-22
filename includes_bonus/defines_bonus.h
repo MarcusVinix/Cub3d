@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 00:03:52 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:55:36 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
-# define MINIMAP_WIDTH 150
-# define MINIMAP_HEIGHT 150
 
 # define PI 3.14159265
 # define TWO_PI 6.28318530

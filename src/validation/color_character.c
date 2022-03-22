@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_character.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/12 01:35:09 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/22 12:55:57 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	***valid_ceilling_and_floor_color(char **content_map)
 		|| ft_strcmp(collors[0][0], collors[1][0]) == 0)
 	{
 		ft_free_triple(collors);
-		ft_free_split(content_map);
 		return (NULL);
 	}
 	return (collors);

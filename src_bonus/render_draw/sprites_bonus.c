@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:20:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/22 00:15:34 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:53:31 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
 				var->texture_off_set_y = var->distance_from_top
 					* (TEXTURE_HEIGHT / var->sprite_height);
 				get_color_and_buffer(var, cub);
-				if (var->sprite.distance < cub->rays[var->x].distance - 5
+				if (var->sprite.distance < cub->rays[var->x].distance - 10
 					&& (var->texel_color != (unsigned int)BLACK
 					&& var->texel_color != PINK))
 					ft_mlx_pixel_put(&cub->img, var->x, var->y,

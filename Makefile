@@ -116,5 +116,5 @@ push: add
 	git push
 
 valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D_bonus maps/valid_map.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D maps/valid_map.cub
 
