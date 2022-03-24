@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:14:49 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 21:07:26 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:24:58 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,21 @@ static void	find_pos_minimap(t_cub *cub)
 static void	print_edges(t_cub *cub)
 {
 	t_rect	rect;
-	int		endx;
-	int		endy;
 
 	rect.y = START_POS_MINIMAP;
 	rect.width = TILE * MINIMAP_SCALE_FACTOR;
 	rect.height = TILE * MINIMAP_SCALE_FACTOR;
-	endx = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.width;
-	endy = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.height;
-	while (rect.y < endy)
+	rect.endx = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.width;
+	rect.endy = START_POS_MINIMAP + (BOX_MINIMAP * 2) * rect.height;
+	while (rect.y < rect.endy)
 	{
 		rect.x = START_POS_MINIMAP;
-		while (rect.x < endx)
+		while (rect.x < rect.endx)
 		{
-			if (rect.y == START_POS_MINIMAP || rect.y == endy
+			if (rect.y == START_POS_MINIMAP || rect.y == rect.endy
 				- (int)(TILE * MINIMAP_SCALE_FACTOR))
 				rect.color = BLACK;
-			else if (rect.x == START_POS_MINIMAP || rect.x == endx
+			else if (rect.x == START_POS_MINIMAP || rect.x == rect.endx
 				- (int)(TILE * MINIMAP_SCALE_FACTOR))
 				rect.color = BLACK;
 			else
@@ -62,17 +60,6 @@ static void	print_edges(t_cub *cub)
 		}
 		rect.y += TILE * MINIMAP_SCALE_FACTOR;
 	}
-}
-
-void	check_color_in_map(t_cub *cub, int x, int y, t_rect *rect)
-{
-	if (cub->map[x][y] == '1')
-		rect->color = GREY;
-	else if (cub->map[x][y] == '0')
-		rect->color = GREEN;
-	else
-		rect->color = WHITE;
-	draw_rect(&cub->img, *rect);
 }
 
 void	render_map(t_cub *cub)

@@ -115,6 +115,9 @@ add: fclean
 push: add
 	git push
 
+valgrind_bonus:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D_bonus assets/bonus.cub
+
 valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D maps/valid_map.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./cub3D assets/mandatory.cub
 

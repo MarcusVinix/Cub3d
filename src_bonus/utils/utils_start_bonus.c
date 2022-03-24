@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/22 02:12:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:00:25 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	start_player(t_cub *cub)
 	cub->player.turn_direction = 0;
 	cub->player.walk_direction = 0;
 	save_initial_angle(cub);
-	cub->player.walk_speed = 7;
+	cub->player.walk_speed = 10;
 	cub->player.turn_speed = 3 * (PI / 180);
 }
 

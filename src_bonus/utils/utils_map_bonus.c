@@ -6,11 +6,22 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:06:57 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/22 12:52:29 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:09:45 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_bonus.h>
+
+void	check_color_in_map(t_cub *cub, int x, int y, t_rect *rect)
+{
+	if (cub->map[x][y] == '1')
+		rect->color = GREY;
+	else if (cub->map[x][y] == ' ')
+		rect->color = WHITE;
+	else
+		rect->color = GREEN;
+	draw_rect(&cub->img, *rect);
+}
 
 int	is_inside_map(float x, float y, t_cub *cub)
 {

@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 12:52:37 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:23:52 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_utils_ray
 	int			is_ray_facing_down;
 	int			is_ray_facing_left;
 	int			is_ray_facing_right;
-}			t_utils_ray;
+}				t_utils_ray;
 
 typedef struct s_ray
 {
@@ -108,6 +108,8 @@ typedef struct s_rect
 	int				width;
 	int				height;
 	unsigned int	color;
+	int				endx;
+	int				endy;
 }					t_rect;
 
 typedef struct s_pos
@@ -166,7 +168,7 @@ typedef struct s_rgb
 	int		green;
 	int		blue;
 	int		status;
-}		t_rgb;
+}			t_rgb;
 
 typedef struct s_collor
 {
@@ -175,7 +177,7 @@ typedef struct s_collor
 	int		cell;
 	int		floor;
 	int		status;
-}		t_collor;
+}			t_collor;
 
 typedef struct s_sprite {
 	float		x;

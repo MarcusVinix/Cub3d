@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:46:45 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 12:55:36 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:53:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@
 # define BOX_MINIMAP 5
 # define START_POS_MINIMAP 10
 
-# define SPRITE2 "maps/sprites/armor.xpm"
-# define SPRITE3 "maps/sprites/animated"
-# define SPRITE4 "maps/sprites/table_lamp.xpm"
-# define SPRITE6 "maps/sprites/barrel.xpm"
+# define SPRITE2 "assets/sprites/armor.xpm"
+# define SPRITE3 "assets/sprites/animated"
+# define SPRITE4 "assets/sprites/table_lamp.xpm"
+# define SPRITE6 "assets/sprites/barrel.xpm"
 
 #endif

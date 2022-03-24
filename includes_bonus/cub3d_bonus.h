@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/21 23:28:57 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:24:54 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ uint32_t		*get_animeted_fire(t_cub *cub);
 void			change_time_sprite(t_cub *cub);
 void			start_ghost(t_cub *cub);
 void			start_guard(t_cub *cub);
+void			check_color_in_map(t_cub *cub, int x, int y, t_rect *rect);
 
 #endif

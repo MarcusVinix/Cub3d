@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:21:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/21 23:34:24 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:53:56 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	start_guard(t_cub *cub)
 {
 	cub->sprites.sprite3 = ft_calloc(4, sizeof(t_data));
 	sprites(&cub->sprites.sprite3[0], cub->s_mlx.mlx,
-		"maps/sprites/animated/guard1.xpm");
+		"assets/sprites/animated/guard1.xpm");
 	sprites(&cub->sprites.sprite3[1], cub->s_mlx.mlx,
-		"maps/sprites/animated/guard2.xpm");
+		"assets/sprites/animated/guard2.xpm");
 	sprites(&cub->sprites.sprite3[2], cub->s_mlx.mlx,
-		"maps/sprites/animated/guard3.xpm");
+		"assets/sprites/animated/guard3.xpm");
 	cub->sprites.sprite3[0].buffer = get_texture_buffer(
 			&cub->sprites.sprite3[0]);
 	cub->sprites.sprite3[1].buffer = get_texture_buffer(
@@ -80,13 +80,13 @@ void	start_ghost(t_cub *cub)
 {
 	cub->sprites.sprite5 = ft_calloc(5, sizeof(t_data));
 	sprites(&cub->sprites.sprite5[0], cub->s_mlx.mlx,
-		"maps/sprites/animated/ghost1.xpm");
+		"assets/sprites/animated/ghost1.xpm");
 	sprites(&cub->sprites.sprite5[1], cub->s_mlx.mlx,
-		"maps/sprites/animated/ghost2.xpm");
+		"assets/sprites/animated/ghost2.xpm");
 	sprites(&cub->sprites.sprite5[2], cub->s_mlx.mlx,
-		"maps/sprites/animated/ghost3.xpm");
+		"assets/sprites/animated/ghost3.xpm");
 	sprites(&cub->sprites.sprite5[3], cub->s_mlx.mlx,
-		"maps/sprites/animated/ghost4.xpm");
+		"assets/sprites/animated/ghost4.xpm");
 	cub->sprites.sprite5[0].buffer = get_texture_buffer(
 			&cub->sprites.sprite5[0]);
 	cub->sprites.sprite5[1].buffer = get_texture_buffer(
