@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 19:00:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:21:47 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	find_player_position(t_cub *cub)
 			if (cub->map[x][y] == 'N' || cub->map[x][y] == 'S' ||
 				cub->map[x][y] == 'W' || cub->map[x][y] == 'E')
 			{
-				cub->player.x = y * TILE;
-				cub->player.y = x * TILE;
+				cub->player.x = y * TILE + TILE / 2;
+				cub->player.y = x * TILE + TILE / 2;
 				save_orientation(cub, cub->map[x][y]);
 				cub->map[x][y] = '0';
 				break ;

@@ -72,7 +72,6 @@ void			render_map_sprites(t_cub *cub);
 
 //utils
 int				map_has_wall_at(t_cub *cub, float x, float y);
-int				map_has_sprite(t_cub *cub, float x, float y);
 int				close_win(t_cub *cub);
 void			setup(t_cub *cub);
 void			normalize_angle(float *angle);

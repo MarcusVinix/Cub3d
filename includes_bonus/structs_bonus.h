@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 00:58:01 by coder             #+#    #+#             */
-/*   Updated: 2022/03/24 18:23:52 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:22:22 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_player
 	float	height;
 	int		turn_direction;
 	int		walk_direction;
+	int		side_direction;
 	float	rotation_angle;
 	float	walk_speed;
 	float	turn_speed;

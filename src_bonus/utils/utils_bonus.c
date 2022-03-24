@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/17 21:03:53 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:37:24 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	init_some_values_sprites(t_utils_sprite *var, t_cub *cub)
 	var->fov = 60 * (PI / 180);
 	var->i = -1;
 	var->visible_sprites = ft_calloc(cub->num_sprites + 1, sizeof(t_sprite));
-	var->epsilon = 0.2;
+	var->epsilon = 0.5;
 }

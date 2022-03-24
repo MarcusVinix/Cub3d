@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:21:23 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 18:49:16 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:22:39 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 int	key_release(int key, t_cub *cub)
 {
-	if (key == RIGHT || key == ARROW_RIGHT)
+	if (key == RIGHT)
+		cub->player.side_direction = 0;
+	if (key == ARROW_RIGHT)
 		cub->player.turn_direction = 0;
-	if (key == LEFT || key == ARROW_LEFT)
+	if (key == LEFT)
+		cub->player.side_direction = 0;
+	if (key == ARROW_LEFT)
 		cub->player.turn_direction = 0;
 	if (key == TOP)
 		cub->player.walk_direction = 0;
