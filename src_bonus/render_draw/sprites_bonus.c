@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:20:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 19:13:47 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:42:59 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	get_all_visible_sprite(t_utils_sprite *var, t_cub *cub)
 
 void	get_color_and_buffer(t_utils_sprite *var, t_cub *cub)
 {
+	int	index;
+
 	if (var->sprite.content == '2')
 		var->buffer = cub->sprites.sprite2.buffer;
 	else if (var->sprite.content == '3')
@@ -53,8 +55,10 @@ void	get_color_and_buffer(t_utils_sprite *var, t_cub *cub)
 		var->buffer = get_animeted_fire(cub);
 	else
 		var->buffer = cub->sprites.sprite6.buffer;
-	var->texel_color = var->buffer[(TEXTURE_WIDTH * var->texture_off_set_y)
-		+ var->texture_off_set_x];
+	index = (TEXTURE_WIDTH * var->texture_off_set_y)
+		+ var->texture_off_set_x;
+	if (index >= 0 && index <= 4096)
+		var->texel_color = var->buffer[index];
 }
 
 void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
@@ -67,19 +71,17 @@ void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
 		var->y = var->sprite_top_y - 1;
 		while (++var->y < var->sprite_bottom_y)
 		{
-			if (is_inside_map(var->x, var->y, cub) == TRUE)
-			{
-				var->distance_from_top = var->y + (var->sprite_height / 2)
-					- (HEIGHT / 2);
-				var->texture_off_set_y = var->distance_from_top
-					* (TEXTURE_HEIGHT / var->sprite_height);
-				get_color_and_buffer(var, cub);
-				if (var->sprite.distance < cub->rays[var->x].distance
-					&& (var->texel_color != (unsigned int)BLACK
-						&& var->texel_color != PINK))
-					ft_mlx_pixel_put(&cub->img, var->x, var->y,
-						var->texel_color);
-			}
+			var->distance_from_top = var->y + (var->sprite_height / 2)
+				- (HEIGHT / 2);
+			var->texture_off_set_y = var->distance_from_top
+				* (TEXTURE_HEIGHT / var->sprite_height);
+			get_color_and_buffer(var, cub);
+			if (var->x >= 0 && var->y > 0
+				&& var->sprite.distance < cub->rays[var->x].distance
+				&& (var->texel_color != (unsigned int)BLACK
+					&& var->texel_color != PINK))
+				ft_mlx_pixel_put(&cub->img, var->x, var->y,
+					var->texel_color);
 		}
 		var->x++;
 	}
@@ -87,7 +89,6 @@ void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
 
 void	sprite_render(t_utils_sprite *var, t_cub *cub)
 {
-	var->i = -1;
 	while (++var->i < var->num_visible_sprite)
 	{
 		var->sprite = var->visible_sprites[var->i];
@@ -97,7 +98,11 @@ void	sprite_render(t_utils_sprite *var, t_cub *cub)
 		var->sprite_top_y = (HEIGHT / 2) - (var->sprite_height / 2);
 		if (var->sprite_top_y < 0)
 			var->sprite_top_y = 0;
+		if (var->sprite_top_y >= HEIGHT)
+			var->sprite_top_y = HEIGHT;
 		var->sprite_bottom_y = (HEIGHT / 2) + (var->sprite_height / 2);
+		if (var->sprite_bottom_y < 0)
+			var->sprite_bottom_y = 0;
 		if (var->sprite_bottom_y > HEIGHT)
 			var->sprite_bottom_y = HEIGHT;
 		var->sprite_angle = atan2(var->sprite.y - cub->player.y, var->sprite.x
@@ -119,6 +124,7 @@ void	render_sprite_projection(t_cub *cub)
 	init_some_values_sprites(&var, cub);
 	get_all_visible_sprite(&var, cub);
 	sort_visible_sprites(&var);
+	var.i = -1;
 	sprite_render(&var, cub);
 	if (cub->time >= 100)
 		cub->time = 50;
