@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:19:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 20:29:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:58:13 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	move_player(t_cub *cub)
 		* cub->player.turn_speed;
 	side_step = cub->player.side_direction * cub->player.walk_speed;
 	move_step = cub->player.walk_direction * cub->player.walk_speed;
+	if (move_step && side_step)
+	{
+		move_step /= 2;
+		side_step /= 2;
+	}
 	newx = cub->player.x + cos(cub->player.rotation_angle) * move_step;
 	newy = cub->player.y + sin(cub->player.rotation_angle) * move_step;
 	newx = newx - sin(-cub->player.rotation_angle) * side_step;
