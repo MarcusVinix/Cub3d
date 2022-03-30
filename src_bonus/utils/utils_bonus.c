@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:20:46 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/29 18:20:11 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:51:06 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ void	init_some_values_sprites(t_utils_sprite *var, t_cub *cub)
 	var->i = -1;
 	var->visible_sprites = ft_calloc(cub->num_sprites + 1, sizeof(t_sprite));
 	var->epsilon = 0.2;
+}
+
+void	fixing_right_x(t_utils_sprite *var)
+{
+	if (var->sprite_right_x < 0)
+		var->sprite_right_x = 0;
+	if (var->sprite_right_x >= NUM_RAYS)
+		var->sprite_right_x = NUM_RAYS;
 }

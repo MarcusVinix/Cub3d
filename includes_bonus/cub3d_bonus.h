@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/30 16:01:51 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/30 17:50:29 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void			change_time_sprite(t_cub *cub);
 void			start_ghost(t_cub *cub);
 void			start_guard(t_cub *cub);
 void			check_color_in_map(t_cub *cub, int x, int y, t_rect *rect);
+void			fixing_right_x(t_utils_sprite *var);
 
 #endif

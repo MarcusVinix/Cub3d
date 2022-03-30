@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:20:16 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/29 18:42:59 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:50:47 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	get_color_and_buffer(t_utils_sprite *var, t_cub *cub)
 
 void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
 {
+	fixing_right_x(var);
 	while (var->x < var->sprite_right_x)
 	{
 		var->texel_width = (TEXTURE_WIDTH / var->sprite_width);
@@ -76,7 +77,7 @@ void	print_sprite_pixels(t_utils_sprite *var, t_cub *cub)
 			var->texture_off_set_y = var->distance_from_top
 				* (TEXTURE_HEIGHT / var->sprite_height);
 			get_color_and_buffer(var, cub);
-			if (var->x >= 0 && var->y > 0
+			if (var->x >= 0
 				&& var->sprite.distance < cub->rays[var->x].distance
 				&& (var->texel_color != (unsigned int)BLACK
 					&& var->texel_color != PINK))
@@ -121,6 +122,7 @@ void	render_sprite_projection(t_cub *cub)
 	t_utils_sprite	var;
 
 	ft_bzero(&var, sizeof(t_utils_sprite));
+	ft_bzero(&var.visible_sprites, sizeof(t_sprite));
 	init_some_values_sprites(&var, cub);
 	get_all_visible_sprite(&var, cub);
 	sort_visible_sprites(&var);

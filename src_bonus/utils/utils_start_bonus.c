@@ -38,8 +38,8 @@ static void	find_player_position(t_cub *cub)
 			if (cub->map[x][y] == 'N' || cub->map[x][y] == 'S' ||
 				cub->map[x][y] == 'W' || cub->map[x][y] == 'E')
 			{
-				cub->player.x = y * TILE + TILE / 2;
-				cub->player.y = x * TILE + TILE / 2;
+				cub->player.x = (y * TILE) + 31;
+				cub->player.y = (x * TILE) + 32;
 				save_orientation(cub, cub->map[x][y]);
 				cub->map[x][y] = '0';
 				break ;

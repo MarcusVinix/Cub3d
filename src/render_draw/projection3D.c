@@ -22,9 +22,13 @@ void	get_values_projection(t_cub *cub, t_projection *var)
 	var->wall_top_pixel = (HEIGHT / 2) - (var->wall_strip_height / 2);
 	if (var->wall_top_pixel < 0)
 		var->wall_top_pixel = 0;
+	if (var->wall_top_pixel >= HEIGHT)
+		var->wall_top_pixel = HEIGHT;
 	var->wall_bottom_pixel = (HEIGHT / 2) + (var->wall_strip_height / 2);
-	if (var->wall_bottom_pixel > HEIGHT)
+	if (var->wall_bottom_pixel >= HEIGHT)
 		var->wall_bottom_pixel = HEIGHT;
+	if (var->wall_bottom_pixel < 0)
+		var->wall_bottom_pixel = 0;
 }
 
 void	draw_celling(t_cub *cub, t_projection var)

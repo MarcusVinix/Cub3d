@@ -43,7 +43,7 @@ NAME = cub3D
 NAME_BONUS = cub3D_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -g #-fsanitize=leak
+CFLAGS = -Wall -Wextra -Werror -O3 -g -fsanitize=leak
 RM = rm -rf
 
 all: $(NAME)
