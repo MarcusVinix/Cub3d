@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_character_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 18:42:44 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:03:36 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_rgb	check_rgb_color(char **str)
 
 	rgb.status = TRUE;
 	color = ft_split_rev(str);
-	color_spl = ft_split(color + 1, ',');
+	color_spl = ft_split(color + 2, ',');
 	free(color);
 	if (ft_strlen_split(color_spl) < 3)
 	{
@@ -28,16 +28,15 @@ t_rgb	check_rgb_color(char **str)
 		rgb.status = FALSE;
 		return (rgb);
 	}
+	if (verify_collor_char(&rgb, color_spl) == 1)
+		return (rgb);
 	rgb.red = ft_atoi(color_spl[0]);
 	rgb.green = ft_atoi(color_spl[1]);
 	rgb.blue = ft_atoi(color_spl[2]);
 	ft_free_split(color_spl);
 	if (rgb.blue < 0 || rgb.green < 0 || rgb.red < 0
 		|| rgb.blue > 255 || rgb.green > 255 || rgb.red > 255)
-	{
 		rgb.status = FALSE;
-		return (rgb);
-	}
 	return (rgb);
 }
 

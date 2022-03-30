@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:20:26 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/24 18:24:54 by mavinici         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:01:51 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				file_exist(char *map_path);
 int				check_extension(char *str, char *extension);
 int				check_map(char *path_map, t_cub *cub);
 t_collor		check_color(char ***colors);
-
+int				verify_collor_char(t_rgb *rgb, char **collors);
 int				error_msg(char *msg, int level, t_cub *cub);
 //free
 void			free_struct(t_cub *cub);

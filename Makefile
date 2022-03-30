@@ -20,7 +20,7 @@ PATH_INCLUDES_BONUS = ./includes_bonus/
 LIBS = -L ./libft -lft -lmlx -lX11 -lXext -lm
 SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_ERROR), error.c) \
-	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c read_map_file.c texture.c wall.c) \
+	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c color_valid.c read_map_file.c texture.c wall.c) \
 	  $(addprefix $(PATH_UTILS), utils.c rays_sides.c utils_mlx.c utils_start.c utils_map.c) \
 	  $(addprefix $(PATH_GAME), actions.c) \
 	  $(addprefix $(PATH_RENDER_DRAW), rays_utils.c draw_utils.c render_game.c rays.c projection3D.c)
@@ -29,7 +29,7 @@ SRC = $(PATH_SRC)free_struct.c \
 #bonus
 SRC_BONUS = $(PATH_SRC_BONUS)free_struct_bonus.c \
 	  $(addprefix $(PATH_ERROR_BONUS), error_bonus.c) \
-	  $(addprefix $(PATH_VALIDATION_BONUS), args_bonus.c map_bonus.c color_character_bonus.c read_map_file_bonus.c texture_bonus.c wall_bonus.c) \
+	  $(addprefix $(PATH_VALIDATION_BONUS), args_bonus.c map_bonus.c color_character_bonus.c color_valid_bonus.c read_map_file_bonus.c texture_bonus.c wall_bonus.c) \
 	  $(addprefix $(PATH_UTILS_BONUS), utils_bonus.c rays_sides_bonus.c utils_mlx_bonus.c \
 	  	utils_sprite_animated_bonus.c utils_start_bonus.c utils_map_bonus.c utils_sprites.c) \
 	  $(addprefix $(PATH_GAME_BONUS), actions_bonus.c) \
