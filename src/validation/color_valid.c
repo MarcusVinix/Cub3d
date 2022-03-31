@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:05:44 by coder             #+#    #+#             */
-/*   Updated: 2022/03/30 16:00:25 by coder            ###   ########.fr       */
+/*   Updated: 2022/04/01 00:07:58 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 int	is_all_num(char *str)
 {
-	int	index;
-	int	count;
+	int		index;
+	int		count;
+	int		spaces;
+	char	*new_str;
 
+	spaces = 0;
 	index = -1;
 	count = 0;
-	while (str[++index])
+	new_str = ft_strtrim(str, " ");
+	while (new_str[++index])
 	{
-		if (str[index] == ' ' && count == 0)
-			continue ;
-		if (ft_isdigit(str[index]) || str[index] == '-' || str[index] == '+')
+		if (ft_isdigit(new_str[index]) || new_str[index] == '-'
+			|| new_str[index] == '+')
 			count++;
 		else
-			return (1);
+			spaces++;
 	}
-	if (count > 3)
+	free(new_str);
+	if (count > 3 || spaces != 0)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:59:24 by mavinici          #+#    #+#             */
-/*   Updated: 2022/03/30 16:05:04 by coder            ###   ########.fr       */
+/*   Updated: 2022/04/01 00:05:45 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_rgb	check_rgb_color(char **str)
 
 	rgb.status = TRUE;
 	color = ft_split_rev(str);
-	color_spl = ft_split(color + 2, ',');
+	color_spl = ft_split(color + 1, ',');
 	free(color);
 	if (ft_strlen_split(color_spl) != 3)
 	{
