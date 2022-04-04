@@ -2,8 +2,8 @@ NO ./assets/textures/red_block.xpm
 SO ./assets/textures/purple_block.xpm
 EA ./assets/textures/brick_block.xpm
 WE ./assets/textures/blue_block.xpm
-C 255,200,160
-F 122,122,122
+C 255, 200,160
+F 122, 122,122
 
 
 
