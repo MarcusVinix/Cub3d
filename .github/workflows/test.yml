@@ -17,6 +17,11 @@ jobs:
       - name: Setup C/C++ Compiler
         uses: rlalik/setup-cpp-compiler@v1.1
       
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libx11-dev xserver-xorg-dev xorg-dev
+          sudo apt-get install libbsd-dev      
+
       - name: Compilando programa.
         run: make
 
