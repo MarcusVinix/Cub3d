@@ -85,7 +85,7 @@ $(PATH_OBJ_BONUS)%.o: $(PATH_SRC_BONUS)%.c
 test: $(MLX)
 	@rm -rf test
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES) -o check_test $(OBJS) ./tests/testing.c ./tests/unity/unity.c $(LIBS)
+	$(CC) $(MINILIBX) -I $(PATH_INCLUDES) -o check_test $(OBJS) ./tests/testing.c ./tests/unity/unity.c $(LIBS)
 
 clean:
 	$(RM) $(PATH_OBJ)

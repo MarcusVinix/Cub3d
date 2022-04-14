@@ -110,13 +110,13 @@ void testando_se_a_blueprint_do_mapa_esta_sendo_retornada(void)
 	TEST_ASSERT_NOT_NULL(store_map_blueprint(content_map));
 }
 
-void testando_se_a_altura_do_mapa_é_invalido(void)
+void testando_se_a_altura_do_mapa_e_invalido(void)
 {
 	char **content_map = store_map_blueprint(remove_empty_line(store_content_map(MAP_INVALID_SIZE_HEIGHT)));
 	TEST_ASSERT_EQUAL_INT(FALSE, valid_size_map(content_map));
 }
 
-void testando_se_a_altura_e_largura_do_mapa_é_valido(void)
+void testando_se_a_altura_e_largura_do_mapa_e_valido(void)
 {
 	char **content_map = store_map_blueprint(remove_empty_line(store_content_map(MAP_VALID)));
 	TEST_ASSERT_EQUAL_INT(TRUE, valid_size_map(content_map));
@@ -197,8 +197,8 @@ int main(void) {
 	RUN_TEST(testando_se_existe_as_cores_do_chao_e_teto);
 	RUN_TEST(testando_se_nao_existe_as_cores_do_chao_e_teto);
 	RUN_TEST(testando_se_a_blueprint_do_mapa_esta_sendo_retornada);
-	RUN_TEST(testando_se_a_altura_do_mapa_é_invalido);
-	RUN_TEST(testando_se_a_altura_e_largura_do_mapa_é_valido);
+	RUN_TEST(testando_se_a_altura_do_mapa_e_invalido);
+	RUN_TEST(testando_se_a_altura_e_largura_do_mapa_e_valido);
 	// RUN_TEST(testando_se_a_borda_do_map_tem_apenas_1);
 	// RUN_TEST(testando_se_a_borda_do_map_esta_invalida);
 	RUN_TEST(testando_se_o_mapa_tem_apenas_os_caracteres_permitidos);
