@@ -1,4 +1,5 @@
 PATH_SRC = ./src/
+PATH_MLX = ./minilibx/
 PATH_VALIDATION = $(PATH_SRC)validation/
 PATH_ERROR = $(PATH_SRC)error/
 PATH_UTILS = $(PATH_SRC)utils/
@@ -7,6 +8,7 @@ PATH_RENDER_DRAW = $(PATH_SRC)render_draw/
 PATH_OBJ = ./obj/
 PATH_LIBFT = ./libft/
 PATH_INCLUDES = ./includes/
+MINILIBX = -I $(PATH_MLX)
 #BONUS
 PATH_SRC_BONUS = ./src_bonus/
 PATH_VALIDATION_BONUS = $(PATH_SRC_BONUS)validation/
@@ -17,7 +19,7 @@ PATH_RENDER_DRAW_BONUS = $(PATH_SRC_BONUS)render_draw/
 PATH_OBJ_BONUS = ./obj_bonus/
 PATH_INCLUDES_BONUS = ./includes_bonus/
 
-LIBS = -L ./libft -lft -lmlx -lX11 -lXext -lm
+LIBS = -L ./libft -lft -L $(PATH_MLX) -lmlx -lX11 -lXext -lm
 SRC = $(PATH_SRC)free_struct.c \
 	  $(addprefix $(PATH_ERROR), error.c) \
 	  $(addprefix $(PATH_VALIDATION), args.c map.c color_character.c color_valid.c read_map_file.c texture.c wall.c) \
@@ -45,12 +47,16 @@ NAME_BONUS = cub3D_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -O3 -g #-fsanitize=leak
 RM = rm -rf
+MLX = $(PATH_MLX)libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(MLX) $(OBJS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) -I $(PATH_INCLUDES) -o $(NAME) $(OBJS) $(PATH_SRC)cub3d.c $(LIBS)
+	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES) -o $(NAME) $(OBJS) $(PATH_SRC)cub3d.c $(LIBS)
+
+$(MLX):
+	make -C $(PATH_MLX)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)
@@ -59,13 +65,13 @@ $(PATH_OBJ)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJ)utils
 	@mkdir -p $(PATH_OBJ)render_draw
 	@mkdir -p $(PATH_OBJ)game
-	$(CC) $(CFLAGS) -I $(PATH_INCLUDES) -I. -c $< -o $@
+	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES) -I. -c $< -o $@
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(OBJS_BONUS)
+$(NAME_BONUS): $(MLX) $(OBJS_BONUS)
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) -I $(PATH_INCLUDES_BONUS) -o $(NAME_BONUS) $(OBJS_BONUS) $(PATH_SRC_BONUS)cub3d_bonus.c $(LIBS)
+	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES_BONUS) -o $(NAME_BONUS) $(OBJS_BONUS) $(PATH_SRC_BONUS)cub3d_bonus.c $(LIBS)
 
 $(PATH_OBJ_BONUS)%.o: $(PATH_SRC_BONUS)%.c
 	@mkdir -p $(PATH_OBJ_BONUS)
@@ -74,12 +80,12 @@ $(PATH_OBJ_BONUS)%.o: $(PATH_SRC_BONUS)%.c
 	@mkdir -p $(PATH_OBJ_BONUS)utils
 	@mkdir -p $(PATH_OBJ_BONUS)render_draw
 	@mkdir -p $(PATH_OBJ_BONUS)game
-	$(CC) $(CFLAGS) -I $(PATH_INCLUDES_BONUS) -I. -c $< -o $@
+	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES_BONUS) -I. -c $< -o $@
 
-test:
+test: $(MLX)
 	@rm -rf test
 	make -C $(PATH_LIBFT)
-	$(CC) $(CFLAGS) -I $(PATH_INCLUDES) -o check_test $(OBJS) ./tests/testing.c ./tests/unity/unity.c $(LIBS)
+	$(CC) $(CFLAGS) $(MINILIBX) -I $(PATH_INCLUDES) -o check_test $(OBJS) ./tests/testing.c ./tests/unity/unity.c $(LIBS)
 
 clean:
 	$(RM) $(PATH_OBJ)
@@ -88,6 +94,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	make clean -C $(PATH_MLX)
 	make fclean -C $(PATH_LIBFT)
 
 re: fclean all
@@ -99,6 +106,7 @@ clean_bonus:
 
 fclean_bonus: clean_bonus
 	$(RM) $(NAME_BONUS)
+	make clean -C $(PATH_MLX)
 	make fclean -C $(PATH_LIBFT)
 
 re_bonus: fclean_bonus bonus
@@ -106,7 +114,7 @@ re_bonus: fclean_bonus bonus
 .PHONY: re all fclean clean
 
 norminha:
-	norminette $(PATH_SRC) $(PATH_INCLUDES) $(PATH_LIBFT)
+	norminette $(PATH_SRC) $(PATH_INCLUDES) $(PATH_LIBFT) $(PATH_INCLUDES_BONUS) $(PATH_SRC_BONUS)
 
 add: fclean
 	git add .
